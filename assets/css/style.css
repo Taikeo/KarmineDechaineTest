@@ -283,7 +283,7 @@ img{max-width:100%;display:block}
 .art-body .dc::first-letter{float:left;font-family:'Barlow Condensed',sans-serif;font-size:78px;font-weight:900;line-height:.82;margin:6px 10px 0 0;color:var(--cyan);text-transform:uppercase}
 .art-body h3{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin:28px 0 10px;color:var(--black)}
 .art-body blockquote{border-left:4px solid var(--cyan);padding:12px 20px;margin:20px 0;font-size:20px;font-style:italic;color:var(--black);background:#F0F9FB}
-.nav-articles{display:flex;justify-content:flex-end;gap:16px;margin-top:48px;padding-top:24px;border-top:3px solid var(--black)}
+
 .nav-art-btn{background:#fff;border:2px solid var(--black);padding:14px 20px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;max-width:48%;text-align:right}
 .nav-art-btn .nav-label{font-size:9px;color:var(--gray);display:block;margin-bottom:4px;letter-spacing:.2em}
 .nav-art-btn .nav-title{font-size:13px;font-weight:800;color:var(--black);line-height:1.2}
@@ -365,3 +365,6 @@ footer img.flogo{max-height:120px}.fcol-title{font-family:'Barlow Condensed',san
 .dropdown-menu a:last-child{border-bottom:none}
 .dropdown-menu a:hover{background:var(--cyan);color:var(--black)}
 .nav-dropdown:hover .dropdown-menu{display:block}
+
+/* Nav articles */
+.nav-articles{display:flex;justify-content:center;gap:16px;margin-top:48px;flex-wrap:wrap}
