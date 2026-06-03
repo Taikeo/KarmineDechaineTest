@@ -48,6 +48,97 @@
   </div>
 </div>
 
+<style>
+.anniv-wrap{position:relative;overflow:hidden;background:#111}
+.anniv-wrap canvas{display:block;width:100%;height:380px}
+.anniv-overlay{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center;padding:20px;box-sizing:border-box}
+.anniv-num{font-family:'Barlow Condensed',sans-serif;font-size:clamp(70px,16vw,150px);font-weight:900;line-height:1;color:#fff;letter-spacing:-.02em}
+.anniv-num span{color:var(--cyan)}
+.anniv-label{font-family:'Barlow Condensed',sans-serif;font-size:clamp(13px,2.5vw,20px);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#fff;margin-top:6px}
+.anniv-sub{font-family:'Barlow Condensed',sans-serif;font-size:clamp(11px,1.8vw,14px);font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:5px}
+.anniv-stats{display:flex;gap:0;border-top:2px solid var(--cyan);border-bottom:2px solid var(--cyan);background:#111}
+.anniv-stat{flex:1;padding:22px 10px;text-align:center;border-right:1px solid #333}
+.anniv-stat:last-child{border-right:none}
+.anniv-stat-num{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;line-height:1;color:var(--cyan)}
+.anniv-stat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#777;margin-top:3px}
+</style>
+
+<div class="anniv-wrap">
+  <canvas id="fw-canvas"></canvas>
+  <div class="anniv-overlay">
+    <div class="anniv-num">1 <span>semaine</span></div>
+    <div class="anniv-label">Le Karmine Déchaîné</div>
+    <div class="anniv-sub">Vérité · Courage · Encre</div>
+  </div>
+</div>
+<div class="anniv-stats">
+  <div class="anniv-stat"><div class="anniv-stat-num">4</div><div class="anniv-stat-lbl">Éditions</div></div>
+  <div class="anniv-stat"><div class="anniv-stat-num">7</div><div class="anniv-stat-lbl">Jours</div></div>
+  <div class="anniv-stat"><div class="anniv-stat-num">0</div><div class="anniv-stat-lbl">Censure</div></div>
+</div>
+
+<script>
+(function(){
+  const canvas=document.getElementById('fw-canvas');
+  const ctx=canvas.getContext('2d');
+  function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+  resize();window.addEventListener('resize',resize);
+  const COLORS=['#00C8E0','#FFD700','#FF6B6B','#A8E063','#FF9F43','#fff'];
+  const particles=[],fireworks=[];
+  function Particle(x,y,col){
+    this.x=x;this.y=y;this.color=col;
+    this.vx=(Math.random()-.5)*9;this.vy=Math.random()*-9-2;
+    this.gravity=.22;this.life=1;this.decay=Math.random()*.014+.007;
+    this.size=Math.random()*7+3;this.shape=Math.random()>.5?'rect':'circle';
+    this.r=Math.random()*Math.PI*2;this.rs=(Math.random()-.5)*.28;
+  }
+  Particle.prototype.update=function(){this.x+=this.vx;this.vy+=this.gravity;this.y+=this.vy;this.life-=this.decay;this.r+=this.rs;this.vx*=.99;};
+  Particle.prototype.draw=function(){
+    ctx.save();ctx.globalAlpha=Math.max(0,this.life);ctx.fillStyle=this.color;
+    ctx.translate(this.x,this.y);ctx.rotate(this.r);
+    if(this.shape==='rect')ctx.fillRect(-this.size/2,-this.size/4,this.size,this.size/2);
+    else{ctx.beginPath();ctx.arc(0,0,this.size/2,0,Math.PI*2);ctx.fill();}
+    ctx.restore();
+  };
+  function Firework(){
+    this.x=canvas.width*.1+Math.random()*canvas.width*.8;
+    this.y=canvas.height;
+    this.tx=canvas.width*.15+Math.random()*canvas.width*.7;
+    this.ty=30+Math.random()*canvas.height*.45;
+    var spd=Math.random()*4+6,ang=Math.atan2(this.ty-this.y,this.tx-this.x);
+    this.vx=Math.cos(ang)*spd;this.vy=Math.sin(ang)*spd;
+    this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+    this.trail=[];this.done=false;
+  }
+  Firework.prototype.update=function(){
+    this.trail.push({x:this.x,y:this.y});
+    if(this.trail.length>8)this.trail.shift();
+    this.x+=this.vx;this.y+=this.vy;
+    if(Math.hypot(this.tx-this.x,this.ty-this.y)<12){
+      this.done=true;
+      for(var i=0;i<60;i++){var p=new Particle(this.x,this.y,this.color);p.vx=(Math.random()-.5)*11;p.vy=(Math.random()-.5)*11;p.gravity=.18;particles.push(p);}
+      for(var j=0;j<12;j++)particles.push(new Particle(this.x+(Math.random()-.5)*30,this.y+(Math.random()-.5)*30,COLORS[Math.floor(Math.random()*COLORS.length)]));
+    }
+  };
+  Firework.prototype.draw=function(){
+    ctx.strokeStyle=this.color;ctx.lineWidth=2;ctx.beginPath();
+    for(var i=0;i<this.trail.length;i++){ctx.globalAlpha=i/this.trail.length*.8;i===0?ctx.moveTo(this.trail[i].x,this.trail[i].y):ctx.lineTo(this.trail[i].x,this.trail[i].y);}
+    ctx.stroke();ctx.globalAlpha=1;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(this.x,this.y,2.5,0,Math.PI*2);ctx.fill();
+  };
+  var frame=0,lastFW=0;
+  function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#111';ctx.fillRect(0,0,canvas.width,canvas.height);
+    if(frame-lastFW>75){fireworks.push(new Firework());if(Math.random()>.4)fireworks.push(new Firework());lastFW=frame;}
+    if(frame%2===0)for(var k=0;k<4;k++){var cp=new Particle(Math.random()*canvas.width,-10,COLORS[Math.floor(Math.random()*COLORS.length)]);cp.vy=Math.random()*2+1;cp.gravity=.04;cp.decay=.003;particles.push(cp);}
+    for(var i=fireworks.length-1;i>=0;i--){fireworks[i].update();if(!fireworks[i].done)fireworks[i].draw();else fireworks.splice(i,1);}
+    for(var j=particles.length-1;j>=0;j--){particles[j].update();if(particles[j].life>0&&particles[j].y<canvas.height+20)particles[j].draw();else particles.splice(j,1);}
+    ctx.globalAlpha=1;frame++;requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+
 <section class="archive-hero">
   <p>Archives complètes · Toutes les éditions</p>
 </section>
