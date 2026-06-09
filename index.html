@@ -30,22 +30,114 @@
   <nav class="mast-nav">
     <a href="editions.html">Éditions</a><span class="sep">|</span>
     <a href="enquetes.html">Enquêtes</a><span class="sep">|</span>
-    <a href="interviews.html">Interviews</a>
+    <a href="interviews.html">Interviews</a><span class="sep">|</span>
+    <a href="anniversaire.html" style="color:var(--cyan)">1 semaine</a>
   </nav>
 </header>
 <div class="ticker">
   <div class="ticker-label">Flash</div>
   <div class="ticker-track">
-    <span>MANIFESTATION AU COMMISSARIAT — LE PEUPLE PREND LE CONTRÔLE</span>
-    <span>ACCORD CADRE ÉTAT/BANQUE — 100 000 KCOINS PAR SEMAINE</span>
-    <span>CONVOCATION DU PRÉSIDENT AU COMMISSARIAT PAR HENRI</span>
-    <span>COMPTES DE LA POLICE GELÉS PAR ZACKK ET SOHALIA</span>
-    <span>MANIFESTATION AU COMMISSARIAT — LE PEUPLE PREND LE CONTRÔLE</span>
-    <span>ACCORD CADRE ÉTAT/BANQUE — 100 000 KCOINS PAR SEMAINE</span>
-    <span>CONVOCATION DU PRÉSIDENT AU COMMISSARIAT PAR HENRI</span>
-    <span>COMPTES DE LA POLICE GELÉS PAR ZACKK ET SOHALIA</span>
+    <span>SOHALIA DÉMISSIONNE DU CONSEIL ET INTERPELLE LE PRÉSIDENT DEVANT LA BANQUE</span>
+    <span>SSIAP NOMMÉ COMMISSAIRE — HENRI PROMU CAPITAINE</span>
+    <span>LE SERVEUR ROUVRE CE LUNDI 16H — NOUVEAUX HORAIRES EN VIGUEUR</span>
+    <span>MBAPPÉ OFFICIALISE SA CANDIDATURE AUX ÉLECTIONS — INTERVIEW À VENIR</span>
+    <span>SOHALIA DÉMISSIONNE DU CONSEIL ET INTERPELLE LE PRÉSIDENT DEVANT LA BANQUE</span>
+    <span>SSIAP NOMMÉ COMMISSAIRE — HENRI PROMU CAPITAINE</span>
+    <span>LE SERVEUR ROUVRE CE LUNDI 16H — NOUVEAUX HORAIRES EN VIGUEUR</span>
+    <span>MBAPPÉ OFFICIALISE SA CANDIDATURE AUX ÉLECTIONS — INTERVIEW À VENIR</span>
   </div>
 </div>
+
+<style>
+.anniv-wrap{position:relative;overflow:hidden;background:#111}
+.anniv-wrap canvas{display:block;width:100%;height:380px}
+.anniv-overlay{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center;padding:20px;box-sizing:border-box}
+.anniv-num{font-family:'Barlow Condensed',sans-serif;font-size:clamp(70px,16vw,150px);font-weight:900;line-height:1;color:#fff;letter-spacing:-.02em}
+.anniv-num span{color:var(--cyan)}
+.anniv-label{font-family:'Barlow Condensed',sans-serif;font-size:clamp(13px,2.5vw,20px);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#fff;margin-top:6px}
+.anniv-sub{font-family:'Barlow Condensed',sans-serif;font-size:clamp(11px,1.8vw,14px);font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:5px}
+.anniv-stats{display:flex;gap:0;border-top:2px solid var(--cyan);border-bottom:2px solid var(--cyan);background:#111}
+.anniv-stat{flex:1;padding:22px 10px;text-align:center;border-right:1px solid #333}
+.anniv-stat:last-child{border-right:none}
+.anniv-stat-num{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;line-height:1;color:var(--cyan)}
+.anniv-stat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#777;margin-top:3px}
+</style>
+
+<div class="anniv-wrap">
+  <canvas id="fw-canvas"></canvas>
+  <div class="anniv-overlay">
+    <div class="anniv-num">1 <span>semaine</span></div>
+    <div class="anniv-label">Le Karmine Déchaîné</div>
+    <div class="anniv-sub">Vérité · Courage · Encre</div>
+  </div>
+</div>
+<div class="anniv-stats">
+  <div class="anniv-stat"><div class="anniv-stat-num">5</div><div class="anniv-stat-lbl">Éditions</div></div>
+  <div class="anniv-stat"><div class="anniv-stat-num">7</div><div class="anniv-stat-lbl">Jours</div></div>
+  <div class="anniv-stat"><div class="anniv-stat-num">0</div><div class="anniv-stat-lbl">Censure</div></div>
+</div>
+
+<script>
+(function(){
+  const canvas=document.getElementById('fw-canvas');
+  const ctx=canvas.getContext('2d');
+  function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+  resize();window.addEventListener('resize',resize);
+  const COLORS=['#00C8E0','#FFD700','#FF6B6B','#A8E063','#FF9F43','#fff'];
+  const particles=[],fireworks=[];
+  function Particle(x,y,col){
+    this.x=x;this.y=y;this.color=col;
+    this.vx=(Math.random()-.5)*9;this.vy=Math.random()*-9-2;
+    this.gravity=.22;this.life=1;this.decay=Math.random()*.014+.007;
+    this.size=Math.random()*7+3;this.shape=Math.random()>.5?'rect':'circle';
+    this.r=Math.random()*Math.PI*2;this.rs=(Math.random()-.5)*.28;
+  }
+  Particle.prototype.update=function(){this.x+=this.vx;this.vy+=this.gravity;this.y+=this.vy;this.life-=this.decay;this.r+=this.rs;this.vx*=.99;};
+  Particle.prototype.draw=function(){
+    ctx.save();ctx.globalAlpha=Math.max(0,this.life);ctx.fillStyle=this.color;
+    ctx.translate(this.x,this.y);ctx.rotate(this.r);
+    if(this.shape==='rect')ctx.fillRect(-this.size/2,-this.size/4,this.size,this.size/2);
+    else{ctx.beginPath();ctx.arc(0,0,this.size/2,0,Math.PI*2);ctx.fill();}
+    ctx.restore();
+  };
+  function Firework(){
+    this.x=canvas.width*.1+Math.random()*canvas.width*.8;
+    this.y=canvas.height;
+    this.tx=canvas.width*.15+Math.random()*canvas.width*.7;
+    this.ty=30+Math.random()*canvas.height*.45;
+    var spd=Math.random()*4+6,ang=Math.atan2(this.ty-this.y,this.tx-this.x);
+    this.vx=Math.cos(ang)*spd;this.vy=Math.sin(ang)*spd;
+    this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+    this.trail=[];this.done=false;
+  }
+  Firework.prototype.update=function(){
+    this.trail.push({x:this.x,y:this.y});
+    if(this.trail.length>8)this.trail.shift();
+    this.x+=this.vx;this.y+=this.vy;
+    if(Math.hypot(this.tx-this.x,this.ty-this.y)<12){
+      this.done=true;
+      for(var i=0;i<60;i++){var p=new Particle(this.x,this.y,this.color);p.vx=(Math.random()-.5)*11;p.vy=(Math.random()-.5)*11;p.gravity=.18;particles.push(p);}
+      for(var j=0;j<12;j++)particles.push(new Particle(this.x+(Math.random()-.5)*30,this.y+(Math.random()-.5)*30,COLORS[Math.floor(Math.random()*COLORS.length)]));
+    }
+  };
+  Firework.prototype.draw=function(){
+    ctx.strokeStyle=this.color;ctx.lineWidth=2;ctx.beginPath();
+    for(var i=0;i<this.trail.length;i++){ctx.globalAlpha=i/this.trail.length*.8;i===0?ctx.moveTo(this.trail[i].x,this.trail[i].y):ctx.lineTo(this.trail[i].x,this.trail[i].y);}
+    ctx.stroke();ctx.globalAlpha=1;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(this.x,this.y,2.5,0,Math.PI*2);ctx.fill();
+  };
+  var frame=0,lastFW=0;
+  function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#111';ctx.fillRect(0,0,canvas.width,canvas.height);
+    if(frame-lastFW>75){fireworks.push(new Firework());if(Math.random()>.4)fireworks.push(new Firework());lastFW=frame;}
+    if(frame%2===0)for(var k=0;k<4;k++){var cp=new Particle(Math.random()*canvas.width,-10,COLORS[Math.floor(Math.random()*COLORS.length)]);cp.vy=Math.random()*2+1;cp.gravity=.04;cp.decay=.003;particles.push(cp);}
+    for(var i=fireworks.length-1;i>=0;i--){fireworks[i].update();if(!fireworks[i].done)fireworks[i].draw();else fireworks.splice(i,1);}
+    for(var j=particles.length-1;j>=0;j--){particles[j].update();if(particles[j].life>0&&particles[j].y<canvas.height+20)particles[j].draw();else particles.splice(j,1);}
+    ctx.globalAlpha=1;frame++;requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
 
 <section class="archive-hero">
   <p>Archives complètes · Toutes les éditions</p>
@@ -53,32 +145,30 @@
 
 <main class="section">
 
-  <!-- ENCART ENQUÊTE POLICE -->
-  <div style="border:4px solid #FF0000;background:#0A0A0A;margin-bottom:32px;overflow:hidden">
-    <div style="background:#FF0000;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-      <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:.25em;text-transform:uppercase;color:#fff">🔍 ENQUÊTE EXCLUSIVE — VIDÉO DISPONIBLE</span>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fff;animation:blink 1s infinite">NOUVEAU</span>
+  <!-- ENCART ÉLECTIONS -->
+  <div style="border:3px solid var(--cyan);background:var(--black);margin-bottom:32px;overflow:hidden">
+    <div style="background:var(--cyan);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:.25em;text-transform:uppercase;color:#000">🗳️ ÉLECTIONS EN VUE — ANNONCE OFFICIELLE</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#000">IMPORTANT</span>
     </div>
     <div style="padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
       <div style="flex:1;min-width:260px">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FF0000;margin-bottom:8px">Enquête N°001 — Justice &amp; Institutions</div>
-        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;text-transform:uppercase;line-height:1;color:#fff;margin-bottom:10px">La police de Karminéa <em style="font-style:normal;color:#FF0000">sous la loupe</em></h2>
-        <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.6;margin-bottom:16px">Bavures, racisme, détournements d'argent, misogynie et exhibitionnisme. Le Karmine Déchaîné publie les preuves. Ce que personne n'osait dire — nous le montrons.</p>
-        <a href="enquetes/enquete-001-police.html" style="display:inline-block;background:#FF0000;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;padding:10px 24px;transition:background .2s">Voir l'enquête complète →</a>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;line-height:1;color:#fff;margin-bottom:12px">Candidatures ouvertes : <em style="font-style:normal;color:var(--cyan)">déposez votre liste au bon endroit</em></h2>
+        <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.7;margin-bottom:6px">Vous souhaitez vous présenter aux élections ? Votre liste doit être déposée dans le channel <strong style="color:#fff">« DÉPOSITION DE VOTRE LISTE D'ÉLECTION »</strong>, dans la catégorie <strong style="color:#fff">Projets-RP</strong>. Sans inscription dans ce channel, votre candidature ne pourra pas être prise en compte.</p>
+        <p style="font-size:13px;color:var(--cyan);font-style:italic;margin:0">"Un vote commence toujours par une liste bien déposée."</p>
       </div>
-      <div style="font-size:72px;flex-shrink:0">🔍</div>
+      <div style="font-size:64px;flex-shrink:0">🗳️</div>
     </div>
   </div>
-  <style>@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}</style>
 
   <div class="featured">
     <div class="featured-body">
       <span class="feat-badge">Dernière édition</span>
-      <div class="feat-num">Édition N°004</div>
-      <h2 class="feat-title">Manifestation, révolte &amp; <em>accord historique</em></h2>
-      <p class="feat-desc">Le commissariat pris d'assaut, le président convoqué et un accord État/Banque exclusif — l'édition 004 est en ligne.</p>
-      <div class="feat-meta">Publié en Juin 2026 &nbsp;·&nbsp; 3 articles + 1 pub</div>
-      <a href="editions/edition-004/index.html" class="feat-link">Lire l'édition →</a>
+      <div class="feat-num">Édition N°007</div>
+      <h2 class="feat-title">Sohalia démissionne &amp; <em>Karminéa repart de l'avant</em></h2>
+      <p class="feat-desc">Discours coup de poing de Sohalia, promotions policières, réouverture du serveur et candidature surprise de Mbappé — l'édition 007 est en ligne.</p>
+      <div class="feat-meta">Publié en Juin 2026 &nbsp;·&nbsp; 4 articles</div>
+      <a href="editions/edition-007/index.html" class="feat-link">Lire l'édition →</a>
     </div>
     <div class="feat-cover">
       <img src="assets/img/logo-mascot.png" alt=""/>
@@ -88,6 +178,36 @@
   <div class="section-title">Toutes les éditions</div>
 
   <div class="editions-grid">
+
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body">
+        <div class="ed-num">Édition N°007</div>
+        <h3 class="ed-title">Sohalia démissionne &amp; Karminéa repart de l'avant</h3>
+        <div class="ed-date">Juin 2026</div>
+      </div>
+      <a href="editions/edition-007/index.html" class="ed-link">Lire →</a>
+    </article>
+
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body">
+        <div class="ed-num">Édition N°006</div>
+        <h3 class="ed-title">Prise d'otage &amp; Leonhart de retour dans les rues</h3>
+        <div class="ed-date">Juin 2026</div>
+      </div>
+      <a href="editions/edition-006/index.html" class="ed-link">Lire →</a>
+    </article>
+
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body">
+        <div class="ed-num">Édition N°005</div>
+        <h3 class="ed-title">Capture des révolutionnaires &amp; nuit de tous les dangers</h3>
+        <div class="ed-date">Juin 2026</div>
+      </div>
+      <a href="editions/edition-005/index.html" class="ed-link">Lire →</a>
+    </article>
 
     <article class="ed-card">
       <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
@@ -142,6 +262,23 @@
   <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;color:#fff;line-height:1;margin-bottom:12px">Parlez-nous !</h3>
   <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.7;max-width:600px">Le Karmine Déchaîné est un journal indépendant, porté par une équipe passionnée — mais nous ne pouvons pas être partout à la fois. Si vous avez assisté à un incident, une altercation, une ouverture de commerce, un fait marquant ou tout autre événement digne d'intérêt sur notre territoire, <strong style="color:#fff">nous avons besoin de vous.</strong></p>
 </div>
+
+<!-- ENCART DONS -->
+<div style="background:#0A0A0A;border-top:3px solid var(--cyan);border-bottom:3px solid var(--cyan);padding:24px 32px;margin:40px 0;text-align:center">
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">💛 Soutenir le journal</div>
+  <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;text-transform:uppercase;color:#fff;line-height:1;margin-bottom:10px">Faire un don anonyme</h3>
+  <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.7;max-width:560px;margin:0 auto 14px">Le Karmine Déchaîné est un journal indépendant, sans publicité imposée, sans actionnaire. Si vous souhaitez soutenir notre travail de façon anonyme, vous pouvez effectuer un virement directement sur notre compte.</p>
+  <div style="display:inline-block;background:#111;border:2px solid var(--cyan);padding:12px 28px;margin-bottom:6px">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa">Identifiant du compte</span>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--cyan);line-height:1;margin-top:4px">106</div>
+  </div>
+  <div style="background:#111;border:1px solid #333;padding:10px 20px;margin-top:10px;display:inline-block">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa">Commande à saisir</span>
+    <div style="font-family:monospace;font-size:15px;color:#fff;margin-top:4px">/bank transfer [compte source] 106 [montant]</div>
+  </div>
+  <p style="font-size:12px;color:#555;margin:8px 0 0;font-style:italic">Le don est entièrement anonyme. Merci de votre soutien.</p>
+</div>
+<!-- FIN ENCART DONS -->
 <footer>
   <div style="max-width:1200px;margin:0 auto;padding:0 20px">
     <div style="display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid #222;flex-wrap:wrap">

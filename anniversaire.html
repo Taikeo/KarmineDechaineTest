@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQG9XRWKCQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZQG9XRWKCQ');
+  </script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>1 semaine — Le Karmine Déchaîné</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
+  <style>
+    .anniv-canvas{display:block;width:100%;height:0;padding-bottom:56%;position:relative;overflow:hidden;background:#111}
+    .anniv-canvas canvas{position:absolute;top:0;left:0;width:100%;height:100%}
+    .anniv-overlay{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center;padding:20px;box-sizing:border-box}
+    .anniv-num{font-family:'Barlow Condensed',sans-serif;font-size:clamp(80px,18vw,160px);font-weight:900;line-height:1;color:#fff;text-shadow:0 0 0 #000;letter-spacing:-.02em}
+    .anniv-num span{color:var(--cyan)}
+    .anniv-label{font-family:'Barlow Condensed',sans-serif;font-size:clamp(14px,3vw,22px);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#fff;margin-top:4px}
+    .anniv-sub{font-family:'Barlow Condensed',sans-serif;font-size:clamp(12px,2vw,16px);font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px}
+    .stats-band{display:grid;grid-template-columns:repeat(3,1fr);border-top:3px solid var(--black);border-bottom:1px solid #e8e8e4}
+    .stat-cell{padding:28px 16px;text-align:center;border-right:1px solid #e8e8e4}
+    .stat-cell:last-child{border-right:none}
+    .stat-num{font-family:'Barlow Condensed',sans-serif;font-size:56px;font-weight:900;line-height:1;color:var(--cyan)}
+    .stat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#888;margin-top:4px}
+    .timeline{max-width:680px;margin:0 auto;padding:40px 20px}
+    .tl-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);border-top:2px solid var(--cyan);padding-top:6px;margin-bottom:28px;display:inline-block}
+    .tl-item{display:grid;grid-template-columns:60px 1fr;gap:16px;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid #e8e8e4}
+    .tl-item:last-child{border-bottom:none}
+    .tl-day{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;line-height:1;color:var(--cyan);padding-top:2px}
+    .tl-day-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa;display:block}
+    .tl-head{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;text-transform:uppercase;color:var(--black);line-height:1.1;margin-bottom:4px}
+    .tl-body{font-size:14px;color:#555;line-height:1.6}
+    .closing-band{background:var(--black);padding:40px 20px;text-align:center}
+    .closing-band .big{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:900;text-transform:uppercase;color:#fff;line-height:1.1}
+    .closing-band .big span{color:var(--cyan)}
+    .closing-band .small{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:10px}
+    .btn-retour{display:inline-block;margin-top:24px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);border:2px solid var(--cyan);padding:10px 28px;text-decoration:none;transition:background .2s,color .2s}
+    .btn-retour:hover{background:var(--cyan);color:#000}
+  </style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-top">
+    <span><strong>LE KARMINE DÉCHAÎNÉ</strong> &nbsp;·&nbsp; Journal officiel</span>
+    <span id="js-date"></span>
+  </div>
+  <div class="mast-center" style="cursor:pointer" onclick="window.location='index.html'">
+    <img src="assets/img/logo-banner.png" alt="Le Karmine Déchaîné"/>
+    <span class="mast-tagline">Journalisme indépendant, libre et sans chaînes</span>
+  </div>
+  <nav class="mast-nav">
+    <a href="editions.html">Éditions</a><span class="sep">|</span>
+    <a href="enquetes.html">Enquêtes</a><span class="sep">|</span>
+    <a href="interviews.html">Interviews</a><span class="sep">|</span>
+    <a href="anniversaire.html" style="color:var(--cyan)">1 semaine</a>
+  </nav>
+</header>
+
+<div class="anniv-canvas">
+  <canvas id="fw"></canvas>
+  <div class="anniv-overlay">
+    <div class="anniv-num">1 <span>semaine</span></div>
+    <div class="anniv-label">Le Karmine Déchaîné</div>
+    <div class="anniv-sub">Vérité · Courage · Encre</div>
+  </div>
+</div>
+
+<div class="stats-band">
+  <div class="stat-cell">
+    <div class="stat-num">5</div>
+    <div class="stat-lbl">Éditions publiées</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">7</div>
+    <div class="stat-lbl">Jours d'existence</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">0</div>
+    <div class="stat-lbl">Fois censuré</div>
+  </div>
+</div>
+
+<div class="timeline">
+  <div class="tl-title">Retour sur la semaine</div>
+
+  <div class="tl-item">
+    <div>
+      <div class="tl-day">01</div>
+      <span class="tl-day-lbl">Édition 1</span>
+    </div>
+    <div>
+      <div class="tl-head">Le premier numéro sort</div>
+      <div class="tl-body">La rédaction lance le journal. Premier tour de piste avec les fondamentaux : politique locale, faits de société, lexique des jeunes.</div>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div>
+      <div class="tl-day">02</div>
+      <span class="tl-day-lbl">Édition 2</span>
+    </div>
+    <div>
+      <div class="tl-head">Dame Diane fait la une</div>
+      <div class="tl-body">Kidnapping en mer, pool party derrière la banque — le Karmine Déchaîné couvre en exclusivité les événements que personne d'autre n'ose raconter.</div>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div>
+      <div class="tl-day">03</div>
+      <span class="tl-day-lbl">Édition 3</span>
+    </div>
+    <div>
+      <div class="tl-head">Le parlement s'embrase</div>
+      <div class="tl-body">Tensions politiques, scoop Leonhart, drapeaux et dissensions. La rédaction est sur le terrain quand ça chauffe.</div>
+    </div>
+  </div>
+
+  <div class="tl-item">
+    <div>
+      <div class="tl-day">04</div>
+      <span class="tl-day-lbl">Édition 4</span>
+    </div>
+    <div>
+      <div class="tl-head">Le président convoqué, l'accord révélé</div>
+      <div class="tl-body">Convocation au commissariat, accord cadre État/Banque en exclusivité, et un nouveau lexique des jeunes pour continuer à décrypter la culture.</div>
+    </div>
+  </div>
+</div>
+
+<div class="closing-band">
+  <div class="big">C'est seulement <span>le début.</span></div>
+  <div class="small">Le Karmine Déchaîné — Semaine I — Juin 2026</div>
+  <br>
+  <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+</div>
+
+
+<!-- ENCART DONS -->
+<div style="background:#0A0A0A;border-top:3px solid var(--cyan);border-bottom:3px solid var(--cyan);padding:24px 32px;margin:40px 0;text-align:center">
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">💛 Soutenir le journal</div>
+  <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;text-transform:uppercase;color:#fff;line-height:1;margin-bottom:10px">Faire un don anonyme</h3>
+  <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.7;max-width:560px;margin:0 auto 14px">Le Karmine Déchaîné est un journal indépendant, sans publicité imposée, sans actionnaire. Si vous souhaitez soutenir notre travail de façon anonyme, vous pouvez effectuer un virement directement sur notre compte.</p>
+  <div style="display:inline-block;background:#111;border:2px solid var(--cyan);padding:12px 28px;margin-bottom:6px">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa">Identifiant du compte</span>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--cyan);line-height:1;margin-top:4px">106</div>
+  </div>
+  <div style="background:#111;border:1px solid #333;padding:10px 20px;margin-top:10px;display:inline-block">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa">Commande à saisir</span>
+    <div style="font-family:monospace;font-size:15px;color:#fff;margin-top:4px">/bank transfer [compte source] 106 [montant]</div>
+  </div>
+  <p style="font-size:12px;color:#555;margin:8px 0 0;font-style:italic">Le don est entièrement anonyme. Merci de votre soutien.</p>
+</div>
+<!-- FIN ENCART DONS -->
+<footer>
+  <div style="max-width:900px;margin:0 auto;padding:32px 20px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;padding-bottom:20px;border-bottom:1px solid #333">
+      <div style="flex:1;min-width:200px"><div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px">Le Karmine Déchaîné</div><p style="font-size:12px;color:#999;font-weight:300">Journalisme indépendant, libre et sans chaînes.</p></div>
+      <nav style="display:flex;gap:20px;flex-wrap:wrap">
+        <a href="editions.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Éditions</a>
+        <a href="enquetes.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Enquêtes</a>
+        <a href="interviews.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Interviews</a>
+      </nav>
+    </div>
+    <div style="padding:14px 0;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#444;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>© Le Karmine Déchaîné</span><span style="color:var(--cyan)">Vérité, courage, encre.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const d = new Date();
+document.getElementById('js-date').textContent = d.toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+const canvas = document.getElementById('fw');
+const ctx = canvas.getContext('2d');
+function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+resize();
+window.addEventListener('resize',resize);
+
+const COLORS=['#00C8E0','#FFD700','#FF6B6B','#A8E063','#FF9F43','#fff'];
+const particles=[];
+const fireworks=[];
+
+class Particle{
+  constructor(x,y,col){
+    this.x=x;this.y=y;this.color=col;
+    this.vx=(Math.random()-.5)*9;
+    this.vy=Math.random()*-9-2;
+    this.gravity=.22;this.life=1;
+    this.decay=Math.random()*.014+.007;
+    this.size=Math.random()*7+3;
+    this.shape=Math.random()>.5?'rect':'circle';
+    this.r=Math.random()*Math.PI*2;
+    this.rs=(Math.random()-.5)*.28;
+  }
+  update(){this.x+=this.vx;this.vy+=this.gravity;this.y+=this.vy;this.life-=this.decay;this.r+=this.rs;this.vx*=.99;}
+  draw(){
+    ctx.save();ctx.globalAlpha=Math.max(0,this.life);ctx.fillStyle=this.color;
+    ctx.translate(this.x,this.y);ctx.rotate(this.r);
+    if(this.shape==='rect')ctx.fillRect(-this.size/2,-this.size/4,this.size,this.size/2);
+    else{ctx.beginPath();ctx.arc(0,0,this.size/2,0,Math.PI*2);ctx.fill();}
+    ctx.restore();
+  }
+}
+
+class Firework{
+  constructor(){
+    this.x=canvas.width*.1+Math.random()*canvas.width*.8;
+    this.y=canvas.height;
+    this.tx=canvas.width*.15+Math.random()*canvas.width*.7;
+    this.ty=30+Math.random()*canvas.height*.45;
+    const spd=Math.random()*4+6;
+    const ang=Math.atan2(this.ty-this.y,this.tx-this.x);
+    this.vx=Math.cos(ang)*spd;this.vy=Math.sin(ang)*spd;
+    this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+    this.trail=[];this.done=false;
+  }
+  update(){
+    this.trail.push({x:this.x,y:this.y});
+    if(this.trail.length>8)this.trail.shift();
+    this.x+=this.vx;this.y+=this.vy;
+    if(Math.hypot(this.tx-this.x,this.ty-this.y)<12){
+      this.done=true;
+      for(let i=0;i<60;i++){const p=new Particle(this.x,this.y,this.color);p.vx=(Math.random()-.5)*11;p.vy=(Math.random()-.5)*11;p.gravity=.18;particles.push(p);}
+      for(let i=0;i<12;i++)particles.push(new Particle(this.x+(Math.random()-.5)*30,this.y+(Math.random()-.5)*30,COLORS[Math.floor(Math.random()*COLORS.length)]));
+    }
+  }
+  draw(){
+    ctx.strokeStyle=this.color;ctx.lineWidth=2;ctx.beginPath();
+    for(let i=0;i<this.trail.length;i++){ctx.globalAlpha=i/this.trail.length*.8;i===0?ctx.moveTo(this.trail[i].x,this.trail[i].y):ctx.lineTo(this.trail[i].x,this.trail[i].y);}
+    ctx.stroke();ctx.globalAlpha=1;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(this.x,this.y,2.5,0,Math.PI*2);ctx.fill();
+  }
+}
+
+let frame=0,lastFW=0;
+function spawnConfetti(){
+  for(let i=0;i<4;i++){
+    const p=new Particle(Math.random()*canvas.width,-10,COLORS[Math.floor(Math.random()*COLORS.length)]);
+    p.vy=Math.random()*2+1;p.gravity=.04;p.decay=.003;
+    particles.push(p);
+  }
+}
+
+function loop(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='#111';ctx.fillRect(0,0,canvas.width,canvas.height);
+  if(frame-lastFW>75){
+    fireworks.push(new Firework());
+    if(Math.random()>.4)fireworks.push(new Firework());
+    lastFW=frame;
+  }
+  if(frame%2===0)spawnConfetti();
+  for(let i=fireworks.length-1;i>=0;i--){fireworks[i].update();if(!fireworks[i].done)fireworks[i].draw();else fireworks.splice(i,1);}
+  for(let i=particles.length-1;i>=0;i--){particles[i].update();if(particles[i].life>0&&particles[i].y<canvas.height+20)particles[i].draw();else particles.splice(i,1);}
+  ctx.globalAlpha=1;frame++;requestAnimationFrame(loop);
+}
+loop();
+</script>
+</body>
+</html>
