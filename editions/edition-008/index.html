@@ -61,33 +61,45 @@
     </div>
   </div>
 
-  <div class="two-col">
-    <div>
-      <div class="cards" style="border-bottom:none">
-        <article class="card" style="border-right:none">
-          <div class="card-cat">📰 Message de la Rédaction</div>
-          <h2 class="card-title">Le Karmine Déchaîné marque une pause : retour aux sources</h2>
-          <p class="card-excerpt">Un au revoir, pas un adieu. La rédaction suspend ses activités et retourne vers le Nord. Les archives restent accessibles. Merci pour tout.</p>
-          <div class="card-byline">Par La Rédaction · Juin 2026</div>
-          <a href="articles/article-002.html" class="card-btn">Lire →</a>
-        </article>
+  <!-- CARD PLEINE LARGEUR — Mot de la rédaction -->
+  <div style="border:3px solid var(--black);background:var(--black);display:grid;grid-template-columns:1fr 1fr;margin-bottom:28px;overflow:hidden">
+    <!-- Visuel gauche -->
+    <div style="background:#111;display:flex;align-items:center;justify-content:center;padding:48px 32px;position:relative;overflow:hidden;border-right:3px solid #1a1a1a">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,.012) 3px,rgba(255,255,255,.012) 4px)"></div>
+      <div style="text-align:center;position:relative;z-index:1">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(60px,10vw,110px);font-weight:900;line-height:1;color:#1f1f1f;-webkit-text-stroke:1px #2a2a2a;letter-spacing:-.02em">FIN</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:#333;margin-top:8px">de chapitre</div>
+        <div style="width:1px;height:40px;background:linear-gradient(to bottom,transparent,#333,transparent);margin:16px auto"></div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#2a2a2a">Vérité · Courage · Encre</div>
       </div>
     </div>
+    <!-- Texte droite -->
+    <div style="background:#fff;padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px">📰 Message de la Rédaction</div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;line-height:1.1;color:var(--black);margin-bottom:14px">Le Karmine Déchaîné marque une pause : <em style="font-style:normal;color:var(--cyan)">retour aux sources</em></h2>
+        <p style="font-size:14px;color:#555;line-height:1.7;font-family:Georgia,serif;margin-bottom:16px">Un au revoir, pas un adieu. La rédaction suspend ses activités et retourne vers le Nord, vers ses racines, vers le 59. Les archives restent accessibles. Merci pour tout, Karminéa.</p>
+        <div style="border-left:3px solid var(--cyan);padding:10px 14px;background:#f9f9f7;margin-bottom:16px">
+          <p style="font-family:Georgia,serif;font-style:italic;font-size:14px;color:#333;margin:0">"Un bon journaliste sait quand écrire. Un grand journaliste sait aussi quand s'arrêter."</p>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#aaa;margin-bottom:12px">Par La Rédaction · Juin 2026</div>
+        <a href="articles/article-002.html" style="display:inline-block;background:var(--black);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;padding:12px 28px;text-decoration:none">Lire le message →</a>
+      </div>
+    </div>
+  </div>
 
-    <aside>
-      <div class="sb-block">
-        <div class="sb-title">En bref</div>
-        <ul class="sb-list">
-          <li><span class="sb-num">01</span>Sylvaris ouvre ses archives au monde via la technologie de Karminéa. Fondation, Grandes Traversées, lignées, cicatrices — tout est accessible sur sylvaris.carabine.studio.</li>
-          <li><span class="sb-num">02</span>Le Karmine Déchaîné suspend temporairement ses activités. La rédaction retourne vers ses racines, vers le 59 et le Nord. Un au revoir, pas un adieu.</li>
-        </ul>
-      </div>
-      <div class="sb-block cyan">
-        <div class="sb-title">Citation de l'édition</div>
-        <div class="stat-label" style="font-style:italic;font-size:15px;line-height:1.5">"Un bon journaliste sait quand écrire. Un grand journaliste sait aussi quand s'arrêter."</div>
-        <div class="stat-label" style="margin-top:8px">— La Rédaction</div>
-      </div>
-    </aside>
+  <!-- EN BREF -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #e8e8e4;margin-bottom:28px">
+    <div style="padding:20px 24px;border-right:1px solid #e8e8e4">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e8e8e4">En bref</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin:0"><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;color:var(--black)">01 —</strong> Sylvaris ouvre ses archives au monde via la technologie de Karminéa. Fondation, Grandes Traversées, lignées — tout est sur sylvaris.carabine.studio.</p>
+    </div>
+    <div style="padding:20px 24px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:transparent;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e8e8e4">.</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin:0"><strong style="font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;color:var(--black)">02 —</strong> Le Karmine Déchaîné suspend ses activités. La rédaction retourne vers le 59 et le Nord. Un au revoir, pas un adieu.</p>
+    </div>
   </div>
 
 </div>
