@@ -48,11 +48,137 @@
 </div>
 </div>
 <!-- BANDEAU PAUSE -->
-<div class="pause-hero">
-  <div class="pause-hero-label">Mot de la rédaction</div>
-  <div class="pause-hero-title">Le journal <span>marque une pause.</span></div>
-  <div class="pause-hero-divider"></div>
-  <p class="pause-hero-sub">Les publications sont temporairement suspendues. Toutes les archives restent accessibles. La rédaction vous remercie pour votre soutien.</p>
+<style>
+@keyframes freeze-tick{0%,100%{transform:rotate(0deg)}49.9%{transform:rotate(0deg)}50%{transform:rotate(6deg)}99.9%{transform:rotate(6deg)}}
+@keyframes freeze-crack{0%{opacity:0;transform:scaleX(0)}20%{opacity:1;transform:scaleX(1)}100%{opacity:.6;transform:scaleX(1)}}
+@keyframes freeze-flicker{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.4}94%{opacity:1}97%{opacity:.7}98%{opacity:1}}
+@keyframes freeze-stamp{0%{opacity:0;transform:scale(1.4) rotate(-8deg)}60%{opacity:1;transform:scale(0.97) rotate(-8deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
+
+.freeze-wrap{
+  background:var(--black);
+  padding:40px 32px 48px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border-bottom:3px solid #111;
+}
+
+/* lignes de scan */
+.freeze-wrap::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.015) 2px,rgba(255,255,255,.015) 4px);
+  pointer-events:none;
+}
+
+/* vignette */
+.freeze-wrap::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.6) 100%);
+  pointer-events:none;
+}
+
+.freeze-inner{position:relative;z-index:2}
+
+.freeze-clock{
+  width:80px;height:80px;
+  border:3px solid #333;
+  border-radius:50%;
+  margin:0 auto 24px;
+  position:relative;
+}
+.freeze-clock::before{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  width:2px;height:30px;
+  background:#aaa;
+  transform-origin:bottom center;
+  transform:translateX(-50%) translateY(-100%);
+  animation:freeze-tick 2s steps(1) infinite;
+}
+.freeze-clock::after{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  width:2px;height:20px;
+  background:#777;
+  transform-origin:bottom center;
+  transform:translateX(-50%) translateY(-100%) rotate(90deg);
+}
+.freeze-clock-dot{
+  position:absolute;top:50%;left:50%;
+  width:6px;height:6px;
+  background:#fff;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+
+.freeze-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(42px,8vw,80px);
+  font-weight:900;
+  text-transform:uppercase;
+  color:#fff;
+  line-height:1;
+  letter-spacing:-.01em;
+  margin-bottom:6px;
+  animation:freeze-flicker 8s infinite;
+}
+.freeze-title em{
+  font-style:normal;
+  color:var(--cyan);
+  display:block;
+}
+
+.freeze-sub{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;
+  font-weight:400;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:#555;
+  margin:16px 0 32px;
+}
+
+.freeze-stamp{
+  display:inline-block;
+  border:3px solid #555;
+  padding:8px 24px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:#555;
+  transform:rotate(-8deg);
+  animation:freeze-stamp .6s cubic-bezier(.2,.8,.3,1.2) .3s both;
+}
+
+/* fissure déco */
+.freeze-crack{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg, transparent 10%, var(--cyan) 30%, transparent 35%, var(--cyan) 60%, transparent 65%, var(--cyan) 80%, transparent 90%);
+  opacity:.15;
+  animation:freeze-crack 1s ease-out .2s both;
+}
+</style>
+
+<div class="freeze-wrap">
+  <div class="freeze-crack"></div>
+  <div class="freeze-inner">
+    <div class="freeze-clock">
+      <div class="freeze-clock-dot"></div>
+    </div>
+    <div class="freeze-title">Le temps<em>s'est arrêté.</em></div>
+    <p class="freeze-sub">Les publications sont suspendues · Les archives restent accessibles</p>
+    <div class="freeze-stamp">En pause</div>
+  </div>
 </div>
 <!-- FIN BANDEAU PAUSE -->
 
