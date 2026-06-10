@@ -47,140 +47,270 @@
   </div>
 </div>
 </div>
-<!-- BANDEAU PAUSE -->
+<!-- EFFET GIVRE -->
 <style>
-@keyframes freeze-tick{0%,100%{transform:rotate(0deg)}49.9%{transform:rotate(0deg)}50%{transform:rotate(6deg)}99.9%{transform:rotate(6deg)}}
-@keyframes freeze-crack{0%{opacity:0;transform:scaleX(0)}20%{opacity:1;transform:scaleX(1)}100%{opacity:.6;transform:scaleX(1)}}
-@keyframes freeze-flicker{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.4}94%{opacity:1}97%{opacity:.7}98%{opacity:1}}
-@keyframes freeze-stamp{0%{opacity:0;transform:scale(1.4) rotate(-8deg)}60%{opacity:1;transform:scale(0.97) rotate(-8deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
+#frost-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:0;transition:opacity 1.5s ease}
+#frost-canvas.visible{opacity:1}
 
-.freeze-wrap{
-  background:var(--black);
-  padding:40px 32px 48px;
-  text-align:center;
+@keyframes frost-in{from{opacity:0}to{opacity:1}}
+@keyframes crack-draw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+@keyframes frost-pulse{0%,100%{opacity:.7}50%{opacity:.9}}
+
+.freeze-banner{
   position:relative;
+  background:#0a0a0a;
   overflow:hidden;
-  border-bottom:3px solid #111;
+  border-top:1px solid #0d0d0d;
+  border-bottom:1px solid #0d0d0d;
+  padding:52px 32px;
+  text-align:center;
 }
 
-/* lignes de scan */
-.freeze-wrap::before{
+/* Lignes de scan CRT */
+.freeze-banner::before{
   content:'';
-  position:absolute;
-  inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.015) 2px,rgba(255,255,255,.015) 4px);
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(180,230,255,.018) 3px,rgba(180,230,255,.018) 4px);
   pointer-events:none;
-}
-
-/* vignette */
-.freeze-wrap::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.6) 100%);
-  pointer-events:none;
+  z-index:1;
 }
 
 .freeze-inner{position:relative;z-index:2}
 
-.freeze-clock{
-  width:80px;height:80px;
-  border:3px solid #333;
-  border-radius:50%;
-  margin:0 auto 24px;
-  position:relative;
-}
-.freeze-clock::before{
-  content:'';
-  position:absolute;
-  top:50%;left:50%;
-  width:2px;height:30px;
-  background:#aaa;
-  transform-origin:bottom center;
-  transform:translateX(-50%) translateY(-100%);
-  animation:freeze-tick 2s steps(1) infinite;
-}
-.freeze-clock::after{
-  content:'';
-  position:absolute;
-  top:50%;left:50%;
-  width:2px;height:20px;
-  background:#777;
-  transform-origin:bottom center;
-  transform:translateX(-50%) translateY(-100%) rotate(90deg);
-}
-.freeze-clock-dot{
-  position:absolute;top:50%;left:50%;
-  width:6px;height:6px;
-  background:#fff;
-  border-radius:50%;
-  transform:translate(-50%,-50%);
-}
-
-.freeze-title{
+.freeze-big{
   font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(42px,8vw,80px);
+  font-size:clamp(52px,10vw,96px);
   font-weight:900;
   text-transform:uppercase;
+  line-height:.95;
   color:#fff;
-  line-height:1;
-  letter-spacing:-.01em;
-  margin-bottom:6px;
-  animation:freeze-flicker 8s infinite;
+  letter-spacing:-.02em;
+  margin:0 0 10px;
+  text-shadow: 0 0 40px rgba(180,230,255,.15);
 }
-.freeze-title em{
+.freeze-big em{
   font-style:normal;
-  color:var(--cyan);
+  color:#a8d8f0;
   display:block;
 }
 
+.freeze-meta{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:#2a3a44;
+  margin-bottom:20px;
+}
+
+.freeze-divider{
+  display:flex;align-items:center;gap:12px;
+  justify-content:center;
+  margin:18px 0;
+}
+.freeze-divider::before,.freeze-divider::after{
+  content:'';flex:1;max-width:120px;
+  height:1px;background:linear-gradient(90deg,transparent,#1a3a4a);
+}
+.freeze-divider::after{background:linear-gradient(90deg,#1a3a4a,transparent)}
+.freeze-divider-icon{color:#1a4a5a;font-size:18px}
+
 .freeze-sub{
   font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;
-  font-weight:400;
-  letter-spacing:.3em;
+  font-size:13px;letter-spacing:.25em;
   text-transform:uppercase;
-  color:#555;
-  margin:16px 0 32px;
+  color:#1f3a4a;
+  max-width:500px;margin:0 auto;
+  line-height:2;
 }
 
-.freeze-stamp{
-  display:inline-block;
-  border:3px solid #555;
-  padding:8px 24px;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:18px;
-  font-weight:900;
-  letter-spacing:.3em;
-  text-transform:uppercase;
-  color:#555;
-  transform:rotate(-8deg);
-  animation:freeze-stamp .6s cubic-bezier(.2,.8,.3,1.2) .3s both;
+/* SVG craquelures dans le banner */
+.freeze-cracks{
+  position:absolute;inset:0;
+  pointer-events:none;z-index:1;
+  opacity:.5;
 }
+.freeze-cracks line, .freeze-cracks path{
+  stroke:#a8d8f0;
+  stroke-width:0.5;
+  fill:none;
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  animation:crack-draw 2s ease-out forwards;
+}
+.freeze-cracks line:nth-child(1){animation-delay:.2s}
+.freeze-cracks line:nth-child(2){animation-delay:.5s}
+.freeze-cracks path:nth-child(3){animation-delay:.8s}
+.freeze-cracks path:nth-child(4){animation-delay:1.1s}
+.freeze-cracks path:nth-child(5){animation-delay:1.4s}
+.freeze-cracks path:nth-child(6){animation-delay:.3s}
+.freeze-cracks path:nth-child(7){animation-delay:.9s}
+.freeze-cracks path:nth-child(8){animation-delay:1.6s}
 
-/* fissure déco */
-.freeze-crack{
+/* Cristaux aux coins */
+.frost-corner{
   position:absolute;
-  bottom:0;left:0;right:0;
-  height:2px;
-  background:linear-gradient(90deg, transparent 10%, var(--cyan) 30%, transparent 35%, var(--cyan) 60%, transparent 65%, var(--cyan) 80%, transparent 90%);
-  opacity:.15;
-  animation:freeze-crack 1s ease-out .2s both;
+  opacity:0;
+  animation:frost-in 1.5s ease forwards;
 }
+.frost-corner svg path{fill:rgba(168,216,240,.06);stroke:rgba(168,216,240,.15);stroke-width:.5}
+.frost-corner.tl{top:0;left:0;animation-delay:.3s}
+.frost-corner.tr{top:0;right:0;transform:scaleX(-1);animation-delay:.6s}
+.frost-corner.bl{bottom:0;left:0;transform:scaleY(-1);animation-delay:.9s}
+.frost-corner.br{bottom:0;right:0;transform:scale(-1);animation-delay:1.2s}
 </style>
 
-<div class="freeze-wrap">
-  <div class="freeze-crack"></div>
+<div class="freeze-banner">
+
+  <!-- Craquelures SVG -->
+  <svg class="freeze-cracks" viewBox="0 0 1200 220" preserveAspectRatio="none">
+    <line x1="120" y1="0" x2="80" y2="220"/>
+    <line x1="1080" y1="0" x2="1120" y2="220"/>
+    <path d="M200,0 L170,60 L210,80 L150,220"/>
+    <path d="M950,0 L980,70 L940,95 L1000,220"/>
+    <path d="M400,0 L380,40 L420,55 L390,110 L430,220"/>
+    <path d="M750,220 L730,140 L760,120 L720,60 L750,0"/>
+    <path d="M0,80 L60,70 L80,100 L40,110"/>
+    <path d="M1200,140 L1140,130 L1120,160 L1160,170"/>
+  </svg>
+
+  <!-- Cristaux aux coins -->
+  <div class="frost-corner tl">
+    <svg width="180" height="180" viewBox="0 0 180 180">
+      <path d="M0,0 L80,0 L0,80 Z M0,0 L120,20 L30,60 Z M0,0 L20,120 L60,30 Z M10,0 L90,10 L10,90 L0,10 Z M0,10 L10,90 L90,10 Z M40,0 L100,40 L40,100 L0,40 Z M0,40 L40,100 L100,40 Z M60,0 L120,60 L60,120 L0,60 Z"/>
+    </svg>
+  </div>
+  <div class="frost-corner tr">
+    <svg width="180" height="180" viewBox="0 0 180 180">
+      <path d="M0,0 L80,0 L0,80 Z M0,0 L120,20 L30,60 Z M0,0 L20,120 L60,30 Z M10,0 L90,10 L10,90 L0,10 Z M0,10 L10,90 L90,10 Z M40,0 L100,40 L40,100 L0,40 Z M0,40 L40,100 L100,40 Z M60,0 L120,60 L60,120 L0,60 Z"/>
+    </svg>
+  </div>
+  <div class="frost-corner bl">
+    <svg width="180" height="180" viewBox="0 0 180 180">
+      <path d="M0,0 L80,0 L0,80 Z M0,0 L120,20 L30,60 Z M0,0 L20,120 L60,30 Z M40,0 L100,40 L40,100 L0,40 Z M60,0 L120,60 L60,120 L0,60 Z"/>
+    </svg>
+  </div>
+  <div class="frost-corner br">
+    <svg width="180" height="180" viewBox="0 0 180 180">
+      <path d="M0,0 L80,0 L0,80 Z M0,0 L120,20 L30,60 Z M0,0 L20,120 L60,30 Z M40,0 L100,40 L40,100 L0,40 Z M60,0 L120,60 L60,120 L0,60 Z"/>
+    </svg>
+  </div>
+
   <div class="freeze-inner">
-    <div class="freeze-clock">
-      <div class="freeze-clock-dot"></div>
-    </div>
-    <div class="freeze-title">Le temps<em>s'est arrêté.</em></div>
-    <p class="freeze-sub">Les publications sont suspendues · Les archives restent accessibles</p>
-    <div class="freeze-stamp">En pause</div>
+    <div class="freeze-meta">Mot de la rédaction</div>
+    <div class="freeze-big">Le journal<em>marque une pause.</em></div>
+    <div class="freeze-divider"><span class="freeze-divider-icon">❄</span></div>
+    <p class="freeze-sub">Les publications sont temporairement suspendues · Les archives restent accessibles · La rédaction vous remercie</p>
   </div>
 </div>
-<!-- FIN BANDEAU PAUSE -->
+
+<!-- Canvas givre sur toute la page -->
+<canvas id="frost-canvas"></canvas>
+<script>
+(function(){
+  const canvas = document.getElementById('frost-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+
+  function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Cristal de glace : branche récursive
+  function drawCrystal(x, y, angle, length, depth){
+    if(depth === 0 || length < 2) return;
+    const ex = x + Math.cos(angle) * length;
+    const ey = y + Math.sin(angle) * length;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+    // branches latérales
+    const spread = Math.PI / 3;
+    [spread, -spread].forEach(a => {
+      drawCrystal(ex, ey, angle + a, length * 0.55, depth - 1);
+    });
+    // petites branches intermédiaires
+    if(depth > 1){
+      const mx = x + Math.cos(angle) * length * 0.5;
+      const my = y + Math.sin(angle) * length * 0.5;
+      [Math.PI/2, -Math.PI/2].forEach(a => {
+        drawCrystal(mx, my, angle + a, length * 0.3, depth - 2);
+      });
+    }
+  }
+
+  let progress = 0;
+  const crystals = [];
+
+  // Générer des points de départ sur les bords
+  function spawnCrystals(){
+    const count = 18;
+    for(let i = 0; i < count; i++){
+      const edge = Math.floor(Math.random() * 4);
+      let x, y, baseAngle;
+      if(edge === 0){ x = Math.random()*W; y = 0; baseAngle = Math.PI/2; }
+      else if(edge === 1){ x = W; y = Math.random()*H; baseAngle = Math.PI; }
+      else if(edge === 2){ x = Math.random()*W; y = H; baseAngle = -Math.PI/2; }
+      else { x = 0; y = Math.random()*H; baseAngle = 0; }
+
+      crystals.push({
+        x, y,
+        baseAngle: baseAngle + (Math.random()-.5) * 0.4,
+        length: 40 + Math.random() * 80,
+        depth: 4 + Math.floor(Math.random() * 3),
+        delay: Math.random() * 60,
+        drawn: false
+      });
+    }
+    // Coins — cristaux plus grands
+    [[0,0,Math.PI/4],[W,0,Math.PI*3/4],[0,H,-Math.PI/4],[W,H,-Math.PI*3/4]].forEach(([x,y,a]) => {
+      crystals.push({ x, y, baseAngle:a, length:100+Math.random()*60, depth:5, delay:Math.random()*30, drawn:false });
+    });
+  }
+  spawnCrystals();
+
+  let frame = 0;
+
+  function draw(){
+    frame++;
+    ctx.clearRect(0, 0, W, H);
+
+    crystals.forEach(cr => {
+      if(frame < cr.delay) return;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(168,216,240,0.12)';
+      ctx.lineWidth = 0.8;
+      // 6 axes symétriques comme un vrai flocon
+      for(let i=0; i<6; i++){
+        const angle = cr.baseAngle + (Math.PI/3)*i;
+        drawCrystal(cr.x, cr.y, angle, cr.length, cr.depth);
+      }
+      ctx.restore();
+    });
+
+    // Overlay givre léger sur les bords
+    const grad = ctx.createRadialGradient(W/2,H/2,H*0.3,W/2,H/2,H*0.9);
+    grad.addColorStop(0,'rgba(168,216,240,0)');
+    grad.addColorStop(1,'rgba(168,216,240,0.04)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,W,H);
+
+    requestAnimationFrame(draw);
+  }
+
+  // Apparition progressive
+  setTimeout(() => {
+    canvas.classList.add('visible');
+    draw();
+  }, 400);
+})();
+</script>
+<!-- FIN EFFET GIVRE -->
 
 <section class="archive-hero">
   <p>Archives complètes · Toutes les éditions</p>
