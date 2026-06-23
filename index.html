@@ -5,34 +5,34 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZQG9XRWKCQ');</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Le Karmine Déchaîné — Le retour</title>
+  <title>Le Karmine Déchaîné — Le Retour</title>
   <link rel="stylesheet" href="assets/css/style.css"/>
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
   <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
   <style>
-    @keyframes retour-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes badge-pop{0%{transform:scale(0) rotate(-12deg)}70%{transform:scale(1.1) rotate(-3deg)}100%{transform:scale(1) rotate(-5deg)}}
-    @keyframes line-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-    @keyframes ticker-glow{0%,100%{text-shadow:none}50%{text-shadow:0 0 12px var(--cyan)}}
+    @keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+    @keyframes badge-pop{0%{transform:scale(0) rotate(-8deg)}70%{transform:scale(1.08) rotate(-2deg)}100%{transform:scale(1) rotate(-4deg)}}
+    @keyframes retour-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes line-grow{from{width:0}to{width:100%}}
+    @keyframes pulse-cyan{0%,100%{box-shadow:0 0 0 0 rgba(0,200,224,.4)}50%{box-shadow:0 0 0 12px rgba(0,200,224,0)}}
 
-    .retour-hero{
-      background:var(--black);
-      padding:64px 32px 56px;
+    .retour-wrap{
+      background:#fff;
+      border-bottom:3px solid #e8e8e4;
+      padding:60px 32px 52px;
       text-align:center;
       position:relative;
       overflow:hidden;
-      border-bottom:3px solid var(--black);
     }
 
-    /* Lignes déco en fond */
-    .retour-hero::before{
-      content:'';
+    /* Confettis canvas */
+    #confetti-canvas{
       position:absolute;inset:0;
-      background:
-        linear-gradient(90deg, transparent 49.9%, rgba(0,200,224,.04) 50%, transparent 50.1%),
-        repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(0,200,224,.03) 60px,rgba(0,200,224,.03) 61px);
       pointer-events:none;
+      z-index:0;
     }
+
+    .retour-inner{position:relative;z-index:1}
 
     .retour-badge{
       display:inline-block;
@@ -41,67 +41,78 @@
       font-family:'Barlow Condensed',sans-serif;
       font-size:12px;font-weight:900;
       letter-spacing:.4em;text-transform:uppercase;
-      padding:6px 20px;
-      margin-bottom:28px;
-      animation:badge-pop .6s cubic-bezier(.2,.8,.3,1.4) .2s both;
+      padding:7px 22px;
+      margin-bottom:24px;
+      animation:badge-pop .5s cubic-bezier(.2,.8,.3,1.4) .1s both;
+      animation:pulse-cyan 2s ease infinite, badge-pop .5s cubic-bezier(.2,.8,.3,1.4) .1s both;
     }
 
     .retour-title{
       font-family:'Barlow Condensed',sans-serif;
-      font-size:clamp(64px,14vw,140px);
+      font-size:clamp(56px,12vw,120px);
       font-weight:900;
       text-transform:uppercase;
       line-height:.9;
-      color:#fff;
+      color:var(--black);
       letter-spacing:-.02em;
-      animation:retour-in .8s ease .4s both;
+      margin:0 0 6px;
+      animation:retour-in .7s ease .3s both;
     }
     .retour-title em{
       font-style:normal;
       color:var(--cyan);
-      display:block;
     }
 
-    .retour-line{
-      width:80px;height:3px;
-      background:var(--cyan);
-      margin:28px auto;
-      transform-origin:center;
-      animation:line-grow .6s ease .9s both;
+    .retour-rule{
+      height:3px;
+      background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+      margin:20px auto;
+      max-width:600px;
+      animation:line-grow .8s ease .8s both;
     }
 
     .retour-sub{
       font-family:'Barlow Condensed',sans-serif;
-      font-size:16px;font-weight:400;
-      letter-spacing:.2em;text-transform:uppercase;
-      color:#666;
-      animation:retour-in .6s ease 1s both;
+      font-size:17px;font-weight:400;
+      letter-spacing:.15em;text-transform:uppercase;
+      color:#888;
+      animation:retour-in .6s ease .9s both;
+      max-width:560px;margin:0 auto;
+      line-height:1.8;
     }
+    .retour-sub strong{color:var(--black);font-weight:700}
 
-    .retour-sub strong{color:#fff;font-weight:700}
-
-    .retour-ticker-note{
-      margin-top:36px;
-      animation:retour-in .6s ease 1.2s both;
+    .retour-stats{
+      display:flex;justify-content:center;gap:0;
+      margin:32px auto 0;
+      max-width:480px;
+      border:1px solid #e8e8e4;
+      animation:retour-in .6s ease 1.1s both;
+    }
+    .retour-stat{
+      flex:1;padding:16px 10px;border-right:1px solid #e8e8e4;text-align:center;
+    }
+    .retour-stat:last-child{border-right:none}
+    .retour-stat-num{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:36px;font-weight:900;color:var(--cyan);line-height:1;
+    }
+    .retour-stat-lbl{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa;margin-top:3px;
     }
 
     .retour-cta{
       display:inline-block;
-      margin-top:32px;
+      margin-top:28px;
       font-family:'Barlow Condensed',sans-serif;
-      font-size:14px;font-weight:900;
-      letter-spacing:.25em;text-transform:uppercase;
-      color:var(--cyan);
-      border:2px solid var(--cyan);
-      padding:12px 36px;
-      text-decoration:none;
-      animation:retour-in .6s ease 1.4s both;
-      transition:background .2s,color .2s;
+      font-size:13px;font-weight:900;letter-spacing:.25em;text-transform:uppercase;
+      color:#fff;background:var(--black);
+      padding:13px 36px;text-decoration:none;
+      animation:retour-in .6s ease 1.3s both;
+      transition:background .2s;
     }
     .retour-cta:hover{background:var(--cyan);color:#000}
-
-    /* ticker glow sur le retour */
-    .ticker .ticker-track span{animation:ticker-glow 3s ease infinite}
   </style>
 </head>
 <body>
@@ -125,29 +136,34 @@
 <div class="ticker">
   <div class="ticker-label">Flash</div>
   <div class="ticker-track">
-    <span>LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
-    <span>LA RÉDACTION REPREND DU SERVICE — RESTEZ CONNECTÉS</span>
-    <span>NOUVELLES ÉDITIONS À VENIR — NE MANQUEZ RIEN</span>
-    <span>LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
-    <span>LA RÉDACTION REPREND DU SERVICE — RESTEZ CONNECTÉS</span>
-    <span>NOUVELLES ÉDITIONS À VENIR — NE MANQUEZ RIEN</span>
-    <span>LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
-    <span>LA RÉDACTION REPREND DU SERVICE — RESTEZ CONNECTÉS</span>
+    <span>🎉 LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
+    <span>LA RÉDACTION REPREND DU SERVICE — NOUVELLES ÉDITIONS À VENIR</span>
+    <span>MERCI POUR VOTRE SOUTIEN ET VOTRE PATIENCE</span>
+    <span>🎉 LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
+    <span>LA RÉDACTION REPREND DU SERVICE — NOUVELLES ÉDITIONS À VENIR</span>
+    <span>MERCI POUR VOTRE SOUTIEN ET VOTRE PATIENCE</span>
+    <span>🎉 LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
+    <span>LA RÉDACTION REPREND DU SERVICE — NOUVELLES ÉDITIONS À VENIR</span>
   </div>
 </div>
 
 <!-- GRAND RETOUR -->
-<div class="retour-hero">
-  <div class="retour-badge">✦ &nbsp; Nous sommes de retour &nbsp; ✦</div>
-  <div class="retour-title">Le Karmine<em>Déchaîné.</em></div>
-  <div class="retour-line"></div>
-  <p class="retour-sub">La rédaction reprend du service. <strong>Les archives, les enquêtes, les vérités.</strong><br/>Tout ce que Karminéa a besoin de savoir — nous serons là.</p>
-  <div class="retour-ticker-note">
+<div class="retour-wrap">
+  <canvas id="confetti-canvas"></canvas>
+  <div class="retour-inner">
+    <div class="retour-badge">🎉 &nbsp; Le journal est de retour &nbsp; 🎉</div>
+    <div class="retour-title">Le Karmine <em>Déchaîné</em><br/>est de retour.</div>
+    <div class="retour-rule"></div>
+    <p class="retour-sub">La pause est terminée. La rédaction reprend du service.<br/><strong>Vérité, courage, encre</strong> — comme toujours.</p>
+    <div class="retour-stats">
+      <div class="retour-stat"><div class="retour-stat-num">8</div><div class="retour-stat-lbl">Éditions</div></div>
+      <div class="retour-stat"><div class="retour-stat-num">∞</div><div class="retour-stat-lbl">À venir</div></div>
+      <div class="retour-stat"><div class="retour-stat-num">0</div><div class="retour-stat-lbl">Censure</div></div>
+    </div>
     <a href="editions.html" class="retour-cta">Parcourir les archives →</a>
   </div>
 </div>
 
-<!-- DERNIÈRE ÉDITION -->
 <section class="archive-hero">
   <p>Archives complètes · Toutes les éditions</p>
 </section>
@@ -157,19 +173,18 @@
 
   <div class="featured">
     <span class="feat-badge">Dernière édition</span>
-    <div class="feat-num">Édition N°008 — Finale</div>
+    <div class="feat-num">Édition N°008</div>
     <h2 class="feat-title">Les archives de Sylvaris &amp; <em>un au revoir de la rédaction</em></h2>
-    <p class="feat-desc">Sylvaris ouvre ses archives au monde, et le Karmine Déchaîné avait pris une pause bien méritée. Mais on est là. On revient.</p>
+    <p class="feat-desc">Sylvaris ouvre ses archives au monde, et le Karmine Déchaîné avait pris une pause. Mais on est là. On revient.</p>
     <div class="feat-meta">Publié en Juin 2026 &nbsp;·&nbsp; 2 articles</div>
     <a href="editions/edition-008/index.html" class="feat-link">Lire l'édition →</a>
   </div>
 
-  <!-- TOUTES LES ÉDITIONS -->
   <div class="section-title">Toutes les éditions</div>
   <div class="editions-grid">
     <article class="ed-card">
       <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°008 — Finale</div><h3 class="ed-title">Les archives de Sylvaris &amp; au revoir de la rédaction</h3><div class="ed-date">Juin 2026</div></div>
+      <div class="ed-body"><div class="ed-num">Édition N°008</div><h3 class="ed-title">Les archives de Sylvaris &amp; au revoir de la rédaction</h3><div class="ed-date">Juin 2026</div></div>
       <a href="editions/edition-008/index.html" class="ed-link">Lire →</a>
     </article>
     <article class="ed-card">
@@ -249,8 +264,57 @@
 </footer>
 
 <script>
-const d = new Date();
-document.getElementById('js-date').textContent = d.toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+// Date
+const d=new Date();
+document.getElementById('js-date').textContent=d.toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+// Confettis
+(function(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  const wrap=canvas.parentElement;
+  function resize(){canvas.width=wrap.offsetWidth;canvas.height=wrap.offsetHeight;}
+  resize();
+
+  const COLORS=['#00C8E0','#FFD700','#FF6B6B','#A8E063','#FF9F43','#C8A2C8','#fff','#00C8E0'];
+  const particles=[];
+
+  for(let i=0;i<120;i++){
+    particles.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height-canvas.height,
+      size:Math.random()*8+4,
+      color:COLORS[Math.floor(Math.random()*COLORS.length)],
+      speed:Math.random()*2+1,
+      angle:Math.random()*360,
+      rotation:Math.random()*360,
+      rotSpeed:(Math.random()-.5)*4,
+      shape:Math.random()>.5?'rect':'circle',
+      opacity:Math.random()*.6+.4,
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.y+=p.speed;
+      p.x+=Math.sin(p.angle*Math.PI/180)*.5;
+      p.rotation+=p.rotSpeed;
+      p.angle+=.5;
+      if(p.y>canvas.height)p.y=-10;
+      ctx.save();
+      ctx.globalAlpha=p.opacity;
+      ctx.fillStyle=p.color;
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rotation*Math.PI/180);
+      if(p.shape==='rect')ctx.fillRect(-p.size/2,-p.size/4,p.size,p.size/2);
+      else{ctx.beginPath();ctx.arc(0,0,p.size/2,0,Math.PI*2);ctx.fill();}
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 </script>
 
 </body>
