@@ -1,6 +1,7 @@
 
 /* ===== FONTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&display=swap');
 
 /* ===== FIX SCROLL HORIZONTAL ===== */
 html{overflow-x:hidden;width:100%}
@@ -175,9 +176,9 @@ footer img.flogo{max-height:120px}
 
 .art-rubrique{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);border-top:2px solid var(--cyan);padding-top:5px;margin-bottom:12px;display:inline-block}
 .art-kicker{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
-.art-title{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;text-transform:uppercase;line-height:1.02;margin-bottom:16px;word-break:break-word;overflow-wrap:break-word;letter-spacing:-.02em}
+.art-title{font-family:'Clash Display',sans-serif;font-size:48px;font-weight:700;text-transform:uppercase;line-height:1.02;margin-bottom:16px;word-break:break-word;overflow-wrap:break-word;letter-spacing:-.02em}
 .art-title em{font-style:normal;color:var(--cyan)}
-.art-subtitle{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--midgray);border-left:3px solid var(--cyan);padding-left:16px;margin-bottom:16px}
+.art-subtitle{font-family:'Satoshi',system-ui,sans-serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--midgray);border-left:3px solid var(--cyan);padding-left:16px;margin-bottom:16px}
 .art-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:8px 0;margin-bottom:0}
 .art-meta strong{color:var(--black)}
 .art-meta .s{color:#ccc}
@@ -185,83 +186,82 @@ footer img.flogo{max-height:120px}
 .art-hero-img{width:100%;max-height:480px;object-fit:cover;margin:28px 0 8px;border:2px solid #111}
 .art-caption{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;color:var(--gray);text-transform:uppercase;margin-bottom:28px;border-left:2px solid var(--cyan);padding-left:8px}
 
-/* Corps article — Space Grotesk */
+/* Corps article — Satoshi + Clash Display */
 .art-body{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:16px;
-  line-height:1.85;
+  font-family:'Satoshi',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.9;
   font-weight:400;
-  color:#1a1a1a;
-  margin-top:36px;
+  color:#111;
+  margin-top:40px;
   max-width:700px;
+  letter-spacing:-.01em;
 }
-.art-body p{margin-bottom:1.5em}
+.art-body p{margin-bottom:1.6em}
 
 /* Lettrine */
 .art-body .dc::first-letter,.dc::first-letter{
   float:left;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:80px;font-weight:900;
-  line-height:.85;
-  margin:6px 14px 0 0;
+  font-family:'Clash Display',sans-serif;
+  font-size:88px;font-weight:700;
+  line-height:.82;
+  margin:8px 14px 0 0;
   color:var(--cyan);
 }
 
-/* H3 — tag moderne */
+/* H3 */
 .art-body h3{
-  font-family:'Space Grotesk',sans-serif;
+  font-family:'Satoshi',sans-serif;
   font-size:11px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.28em;
+  text-transform:uppercase;letter-spacing:.3em;
   color:var(--cyan);
-  margin:48px 0 16px;
-  display:flex;align-items:center;gap:10px;
+  margin:52px 0 18px;
+  display:flex;align-items:center;gap:12px;
 }
 .art-body h3::before{
-  content:'';
-  display:inline-block;
+  content:'';display:inline-block;
   width:20px;height:2px;
-  background:var(--cyan);
-  flex-shrink:0;
+  background:var(--cyan);flex-shrink:0;
 }
 
 /* Listes */
-.art-body ul,.art-body ol{padding-left:0;margin-bottom:1.4em;list-style:none}
+.art-body ul,.art-body ol{padding-left:0;margin-bottom:1.5em;list-style:none}
 .art-body li{
-  font-family:'Space Grotesk',sans-serif;
-  padding:8px 0 8px 20px;
+  font-family:'Satoshi',sans-serif;
+  padding:9px 0 9px 22px;
   position:relative;
-  border-bottom:1px solid #eee;
-  font-size:15px;line-height:1.7;
+  border-bottom:1px solid #ebebeb;
+  font-size:16px;line-height:1.7;
 }
 .art-body li:last-child{border-bottom:none}
-.art-body ul li::before{content:'◆';position:absolute;left:0;top:10px;font-size:7px;color:var(--cyan)}
-.art-body strong{font-weight:600;color:var(--black)}
-.art-body em{font-style:italic;color:var(--midgray)}
+.art-body ul li::before{content:'◆';position:absolute;left:0;top:11px;font-size:7px;color:var(--cyan)}
+.art-body strong{font-weight:700;color:var(--black)}
+.art-body em{font-style:italic}
 
-/* Blockquote */
+/* Blockquote premium */
 blockquote{
   border:none;
-  border-left:3px solid var(--cyan);
-  margin:36px 0;
-  padding:18px 24px;
+  border-left:2px solid var(--cyan);
+  margin:40px 0;
+  padding:20px 28px;
   background:transparent;
-  font-family:'Space Grotesk',sans-serif;
-  font-size:17px;
-  font-style:normal;
+  font-family:'Satoshi',sans-serif;
+  font-size:19px;
   font-weight:500;
   color:var(--black);
-  line-height:1.65;
+  line-height:1.6;
+  letter-spacing:-.01em;
 }
 blockquote em{
   font-style:normal;
   display:block;
-  margin-top:10px;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;font-weight:700;
+  margin-top:12px;
+  font-family:'Satoshi',sans-serif;
+  font-size:11px;font-weight:500;
   letter-spacing:.2em;text-transform:uppercase;
   color:var(--gray);
-  padding-top:8px;
-  border-top:1px solid #ddd;
+  padding-top:10px;
+  border-top:1px solid #e0e0e0;
 }
 
 /* Nav entre articles */
