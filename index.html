@@ -1,157 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQG9XRWKCQ"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZQG9XRWKCQ');</script>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Le Karmine Déchaîné — Le Retour</title>
-  <link rel="stylesheet" href="assets/css/style.css"/>
-  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
-  <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
-  <style>
-    @keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-    @keyframes badge-pop{0%{transform:scale(0) rotate(-8deg)}70%{transform:scale(1.08) rotate(-2deg)}100%{transform:scale(1) rotate(-4deg)}}
-    @keyframes retour-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes line-grow{from{width:0}to{width:100%}}
-    @keyframes pulse-cyan{0%,100%{box-shadow:0 0 0 0 rgba(0,200,224,.4)}50%{box-shadow:0 0 0 12px rgba(0,200,224,0)}}
-
-    .retour-wrap{
-      background:#fff;
-      border-bottom:3px solid #e8e8e4;
-      padding:60px 32px 52px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    /* Confettis canvas */
-    #confetti-canvas{
-      position:absolute;inset:0;
-      pointer-events:none;
-      z-index:0;
-    }
-
-    .retour-inner{position:relative;z-index:1}
-
-    .retour-badge{
-      display:inline-block;
-      background:var(--cyan);
-      color:#000;
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:12px;font-weight:900;
-      letter-spacing:.4em;text-transform:uppercase;
-      padding:7px 22px;
-      margin-bottom:24px;
-      animation:badge-pop .5s cubic-bezier(.2,.8,.3,1.4) .1s both;
-      animation:pulse-cyan 2s ease infinite, badge-pop .5s cubic-bezier(.2,.8,.3,1.4) .1s both;
-    }
-
-    .retour-title{
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:clamp(56px,12vw,120px);
-      font-weight:900;
-      text-transform:uppercase;
-      line-height:.9;
-      color:var(--black);
-      letter-spacing:-.02em;
-      margin:0 0 6px;
-      animation:retour-in .7s ease .3s both;
-    }
-    .retour-title em{
-      font-style:normal;
-      color:var(--cyan);
-    }
-
-    .retour-rule{
-      height:3px;
-      background:linear-gradient(90deg, transparent, var(--cyan), transparent);
-      margin:20px auto;
-      max-width:600px;
-      animation:line-grow .8s ease .8s both;
-    }
-
-    .retour-sub{
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:17px;font-weight:400;
-      letter-spacing:.15em;text-transform:uppercase;
-      color:#888;
-      animation:retour-in .6s ease .9s both;
-      max-width:560px;margin:0 auto;
-      line-height:1.8;
-    }
-    .retour-sub strong{color:var(--black);font-weight:700}
-
-    .retour-stats{
-      display:flex;justify-content:center;gap:0;
-      margin:32px auto 0;
-      max-width:480px;
-      border:1px solid #e8e8e4;
-      animation:retour-in .6s ease 1.1s both;
-    }
-    .retour-stat{
-      flex:1;padding:16px 10px;border-right:1px solid #e8e8e4;text-align:center;
-    }
-    .retour-stat:last-child{border-right:none}
-    .retour-stat-num{
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:36px;font-weight:900;color:var(--cyan);line-height:1;
-    }
-    .retour-stat-lbl{
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa;margin-top:3px;
-    }
-
-    .retour-cta{
-      display:inline-block;
-      margin-top:28px;
-      font-family:'Barlow Condensed',sans-serif;
-      font-size:13px;font-weight:900;letter-spacing:.25em;text-transform:uppercase;
-      color:#fff;background:var(--black);
-      padding:13px 36px;text-decoration:none;
-      animation:retour-in .6s ease 1.3s both;
-      transition:background .2s;
-    }
-    .retour-cta:hover{background:var(--cyan);color:#000}
-  </style>
-<style>
-@keyframes badge-pop{0%{transform:scale(0) rotate(-8deg)}70%{transform:scale(1.1) rotate(-2deg)}100%{transform:scale(1) rotate(-4deg)}}
-@keyframes fade-up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
-@keyframes line-expand{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes num-pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
-@keyframes sparkle-anim{0%,100%{opacity:0;transform:scale(0) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(180deg)}}
-.retour-wrap{position:relative;overflow:hidden;border-bottom:4px solid var(--cyan);}
-#confetti-canvas{position:absolute;inset:0;pointer-events:none;z-index:2;}
-.retour-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,#000 0%,#001a1f 40%,#000d10 60%,#000 100%);}
-.retour-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--cyan) 1px,transparent 1px),linear-gradient(90deg,var(--cyan) 1px,transparent 1px);background-size:60px 60px;opacity:.04;}
-.retour-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(0,180,216,.12) 0%,transparent 70%);}
-.retour-inner{position:relative;z-index:3;max-width:900px;margin:0 auto;padding:80px 32px 72px;text-align:center;}
-.retour-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:.5em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px;animation:fade-up .5s ease .1s both;}
-.retour-eyebrow::before,.retour-eyebrow::after{content:'';display:block;width:40px;height:1px;background:var(--cyan);opacity:.4;}
-.retour-badge{display:inline-block;background:var(--cyan);color:#000;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:.3em;text-transform:uppercase;padding:8px 28px;margin-bottom:28px;animation:badge-pop .6s cubic-bezier(.2,.8,.3,1.4) .2s both;}
-.retour-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(64px,13vw,130px);font-weight:900;text-transform:uppercase;line-height:.88;letter-spacing:-.02em;color:#fff;margin:0 0 8px;animation:fade-up .7s ease .3s both;}
-.retour-title em{font-style:normal;color:var(--cyan);display:block;text-shadow:0 0 60px rgba(0,180,216,.4);}
-.retour-rule{height:3px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transform-origin:center;margin:24px auto;max-width:400px;animation:line-expand .8s ease .8s both;}
-.retour-sub{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);animation:fade-up .6s ease .9s both;line-height:1.8;}
-.retour-sub strong{color:#fff;font-weight:700}
-.retour-stats{display:flex;justify-content:center;gap:0;margin:36px auto;max-width:500px;border:1px solid rgba(0,180,216,.2);animation:fade-up .6s ease 1.1s both;}
-.retour-stat{flex:1;padding:20px 12px;text-align:center;border-right:1px solid rgba(0,180,216,.2);}
-.retour-stat:last-child{border-right:none}
-.retour-stat-num{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;color:var(--cyan);line-height:1;text-shadow:0 0 20px rgba(0,180,216,.3);animation:num-pop .5s cubic-bezier(.2,.8,.3,1.2) 1.3s both;}
-.retour-stat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px;}
-.retour-cta{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:.3em;text-transform:uppercase;color:#000;background:var(--cyan);padding:14px 40px;text-decoration:none;animation:fade-up .6s ease 1.4s both;transition:all .2s;border:2px solid var(--cyan);}
-.retour-cta:hover{background:transparent;color:var(--cyan)}
-.retour-cta-ghost{display:inline-block;margin-left:12px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:14px 28px;text-decoration:none;animation:fade-up .6s ease 1.5s both;transition:all .2s;border:2px solid rgba(255,255,255,.15);}
-.retour-cta-ghost:hover{border-color:rgba(255,255,255,.4);color:#fff}
-.sparkle{position:absolute;color:var(--cyan);font-size:20px;animation:sparkle-anim 2s ease infinite;pointer-events:none;z-index:3;opacity:0;}
-.sparkle:nth-child(1){top:15%;left:8%;animation-delay:.0s}.sparkle:nth-child(2){top:25%;right:10%;animation-delay:.4s}.sparkle:nth-child(3){top:65%;left:5%;animation-delay:.8s}.sparkle:nth-child(4){top:70%;right:7%;animation-delay:1.2s}.sparkle:nth-child(5){top:40%;left:15%;animation-delay:.6s}.sparkle:nth-child(6){top:50%;right:14%;animation-delay:1s}
-</style>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZQG9XRWKCQ');
+  </script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Le Karmine Déchaîné</title>
+<link rel="stylesheet" href="assets/css/style.css"/>
+<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+<link rel="icon" type="image/png" href="assets/img/favicon.png"/>
 </head>
 <body>
 
 <header class="mast">
   <div class="mast-top">
-    <span><strong>LE KARMINE DÉCHAÎNÉ</strong> &nbsp;·&nbsp; Journal officiel de Karminéa</span>
+    <span><strong>LE KARMINE DÉCHAÎNÉ</strong> &nbsp;·&nbsp; Journal officiel</span>
     <span id="js-date"></span>
   </div>
   <div class="mast-center" style="cursor:pointer" onclick="window.location='index.html'">
@@ -164,40 +33,17 @@
     <a href="interviews.html">Interviews</a>
   </nav>
 </header>
-
 <div class="ticker">
   <div class="ticker-label">Flash</div>
   <div class="ticker-track">
-    <span>🎉 LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
-    <span>LA RÉDACTION REPREND DU SERVICE — NOUVELLES ÉDITIONS À VENIR</span>
-    <span>MERCI POUR VOTRE SOUTIEN ET VOTRE PATIENCE</span>
-    <span>🎉 LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
-    <span>LA RÉDACTION REPREND DU SERVICE — NOUVELLES ÉDITIONS À VENIR</span>
-    <span>MERCI POUR VOTRE SOUTIEN ET VOTRE PATIENCE</span>
-    <span>🎉 LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
-    <span>LA RÉDACTION REPREND DU SERVICE — NOUVELLES ÉDITIONS À VENIR</span>
-  </div>
-</div>
-
-<!-- GRAND RETOUR -->
-<div class="retour-wrap">
-  <div class="retour-bg"></div>
-  <canvas id="confetti-canvas"></canvas>
-  <span class="sparkle">✦</span><span class="sparkle">✦</span><span class="sparkle">✦</span>
-  <span class="sparkle">✦</span><span class="sparkle">✦</span><span class="sparkle">✦</span>
-  <div class="retour-inner">
-    <div class="retour-eyebrow">Le Karmine Déchaîné</div>
-    <div class="retour-badge">🎉 &nbsp; Nous sommes de retour &nbsp; 🎉</div>
-    <div class="retour-title">La pause<em>est terminée.</em></div>
-    <div class="retour-rule"></div>
-    <p class="retour-sub">La rédaction reprend du service.<br/><strong>Vérité, courage, encre</strong> — comme toujours.</p>
-    <div class="retour-stats">
-      <div class="retour-stat"><div class="retour-stat-num">9</div><div class="retour-stat-lbl">Éditions</div></div>
-      <div class="retour-stat"><div class="retour-stat-num">∞</div><div class="retour-stat-lbl">À venir</div></div>
-      <div class="retour-stat"><div class="retour-stat-num">0</div><div class="retour-stat-lbl">Censure</div></div>
-    </div>
-    <a href="editions/edition-009/index.html" class="retour-cta">Dernière édition →</a>
-    <a href="editions.html" class="retour-cta-ghost">Archives →</a>
+    <span>MANIFESTATION AU COMMISSARIAT — LE PEUPLE PREND LE CONTRÔLE</span>
+    <span>ACCORD CADRE ÉTAT/BANQUE — 100 000 KCOINS PAR SEMAINE</span>
+    <span>CONVOCATION DU PRÉSIDENT AU COMMISSARIAT PAR HENRI</span>
+    <span>COMPTES DE LA POLICE GELÉS PAR ZACKK ET SOHALIA</span>
+    <span>MANIFESTATION AU COMMISSARIAT — LE PEUPLE PREND LE CONTRÔLE</span>
+    <span>ACCORD CADRE ÉTAT/BANQUE — 100 000 KCOINS PAR SEMAINE</span>
+    <span>CONVOCATION DU PRÉSIDENT AU COMMISSARIAT PAR HENRI</span>
+    <span>COMPTES DE LA POLICE GELÉS PAR ZACKK ET SOHALIA</span>
   </div>
 </div>
 
@@ -205,86 +51,97 @@
   <p>Archives complètes · Toutes les éditions</p>
 </section>
 
-<main class="front">
-<div class="container">
+<main class="section">
+
+  <!-- ENCART ENQUÊTE POLICE -->
+  <div style="border:4px solid #FF0000;background:#0A0A0A;margin-bottom:32px;overflow:hidden">
+    <div style="background:#FF0000;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:900;letter-spacing:.25em;text-transform:uppercase;color:#fff">🔍 ENQUÊTE EXCLUSIVE — VIDÉO DISPONIBLE</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fff;animation:blink 1s infinite">NOUVEAU</span>
+    </div>
+    <div style="padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div style="flex:1;min-width:260px">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FF0000;margin-bottom:8px">Enquête N°001 — Justice &amp; Institutions</div>
+        <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;text-transform:uppercase;line-height:1;color:#fff;margin-bottom:10px">La police de Karminéa <em style="font-style:normal;color:#FF0000">sous la loupe</em></h2>
+        <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.6;margin-bottom:16px">Bavures, racisme, détournements d'argent, misogynie et exhibitionnisme. Le Karmine Déchaîné publie les preuves. Ce que personne n'osait dire — nous le montrons.</p>
+        <a href="enquetes/enquete-001-police.html" style="display:inline-block;background:#FF0000;color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;padding:10px 24px;transition:background .2s">Voir l'enquête complète →</a>
+      </div>
+      <div style="font-size:72px;flex-shrink:0">🔍</div>
+    </div>
+  </div>
+  <style>@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}</style>
 
   <div class="featured">
-    <span class="feat-badge">Dernière édition</span>
-    <div class="feat-num">Édition N°009</div>
-    <h2 class="feat-title">Incendie aux écuries Belazur &amp; <em>épidémie : Karminéa face à l'épreuve</em></h2>
-    <p class="feat-desc">Le feu, la maladie, et la mort. Vince, Paul, Kévin, Monte-Carlo et Julien ont sauvé le ranch. Mais Quentin nous a quittés. Le journal lui rend hommage et salue un corps médical au bout du rouleau.</p>
-    <div class="feat-meta">Publié en Juin 2026 &nbsp;·&nbsp; 1 article</div>
-    <a href="editions/edition-009/index.html" class="feat-link">Lire l'édition →</a>
+    <div class="featured-body">
+      <span class="feat-badge">Dernière édition</span>
+      <div class="feat-num">Édition N°004</div>
+      <h2 class="feat-title">Manifestation, révolte &amp; <em>accord historique</em></h2>
+      <p class="feat-desc">Le commissariat pris d'assaut, le président convoqué et un accord État/Banque exclusif — l'édition 004 est en ligne.</p>
+      <div class="feat-meta">Publié en Juin 2026 &nbsp;·&nbsp; 3 articles + 1 pub</div>
+      <a href="editions/edition-004/index.html" class="feat-link">Lire l'édition →</a>
+    </div>
+    <div class="feat-cover">
+      <img src="assets/img/logo-mascot.png" alt=""/>
+    </div>
   </div>
 
   <div class="section-title">Toutes les éditions</div>
+
   <div class="editions-grid">
+
     <article class="ed-card">
       <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°009</div><h3 class="ed-title">Incendie Belazur &amp; épidémie — Karminéa face à l'épreuve</h3><div class="ed-date">Juin 2026</div></div>
-      <a href="editions/edition-009/index.html" class="ed-link">Lire →</a>
-    </article>
-    <article class="ed-card">
-      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°008</div><h3 class="ed-title">Les archives de Sylvaris &amp; au revoir de la rédaction</h3><div class="ed-date">Juin 2026</div></div>
-      <a href="editions/edition-008/index.html" class="ed-link">Lire →</a>
-    </article>
-    <article class="ed-card">
-      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°007</div><h3 class="ed-title">Sohalia démissionne &amp; Karminéa repart de l'avant</h3><div class="ed-date">Juin 2026</div></div>
-      <a href="editions/edition-007/index.html" class="ed-link">Lire →</a>
-    </article>
-    <article class="ed-card">
-      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°006</div><h3 class="ed-title">Prise d'otage &amp; Leonhart de retour dans les rues</h3><div class="ed-date">Juin 2026</div></div>
-      <a href="editions/edition-006/index.html" class="ed-link">Lire →</a>
-    </article>
-    <article class="ed-card">
-      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°005</div><h3 class="ed-title">Capture des révolutionnaires &amp; nuit de tous les dangers</h3><div class="ed-date">Juin 2026</div></div>
-      <a href="editions/edition-005/index.html" class="ed-link">Lire →</a>
-    </article>
-    <article class="ed-card">
-      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°004</div><h3 class="ed-title">Manifestation, révolte &amp; accord historique</h3><div class="ed-date">Juin 2026</div></div>
+      <div class="ed-body">
+        <div class="ed-num">Édition N°004</div>
+        <h3 class="ed-title">Manifestation, révolte &amp; accord historique</h3>
+        <div class="ed-date">Juin 2026</div>
+      </div>
       <a href="editions/edition-004/index.html" class="ed-link">Lire →</a>
     </article>
+
     <article class="ed-card">
       <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°003</div><h3 class="ed-title">Dame Diane, la pool party &amp; les tensions du conseil</h3><div class="ed-date">Juin 2026</div></div>
+      <div class="ed-body">
+        <div class="ed-num">Édition N°003</div>
+        <h3 class="ed-title">Crise politique, casino &amp; solidarité</h3>
+        <div class="ed-date">Mai 2026</div>
+      </div>
       <a href="editions/edition-003/index.html" class="ed-link">Lire →</a>
     </article>
+
+
     <article class="ed-card">
       <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°002</div><h3 class="ed-title">Kidnapping en mer &amp; faits de société</h3><div class="ed-date">Juin 2026</div></div>
+      <div class="ed-body">
+        <div class="ed-num">Édition N°002</div>
+        <h3 class="ed-title">Affaire Boo, Dame Diane : la vérité éclate</h3>
+        <div class="ed-date">Mai 2026</div>
+      </div>
       <a href="editions/edition-002/index.html" class="ed-link">Lire →</a>
     </article>
+
     <article class="ed-card">
       <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
-      <div class="ed-body"><div class="ed-num">Édition N°001</div><h3 class="ed-title">Le premier numéro — Les fondamentaux</h3><div class="ed-date">Juin 2026</div></div>
+      <div class="ed-body">
+        <div class="ed-num">Édition N°001</div>
+        <h3 class="ed-title">Inauguration — Affaire Boo — Scoops</h3>
+        <div class="ed-date">Mai 2026</div>
+      </div>
       <a href="editions/edition-001/index.html" class="ed-link">Lire →</a>
     </article>
-  </div>
 
-</div>
+    <!-- AJOUTER LES NOUVELLES ÉDITIONS ICI -->
+
+  </div>
 </main>
 
-<!-- ENCART DONS -->
-<div style="background:#0A0A0A;border-top:3px solid var(--cyan);border-bottom:3px solid var(--cyan);padding:24px 32px;margin:40px 0;text-align:center">
-  <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">💛 Soutenir le journal</div>
-  <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;text-transform:uppercase;color:#fff;line-height:1;margin-bottom:10px">Faire un don anonyme</h3>
-  <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.7;max-width:560px;margin:0 auto 14px">Le Karmine Déchaîné est un journal indépendant, sans publicité imposée, sans actionnaire.</p>
-  <div style="display:inline-block;background:#111;border:2px solid var(--cyan);padding:12px 28px;margin-bottom:6px">
-    <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa">Identifiant du compte</span>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--cyan);line-height:1;margin-top:4px">106</div>
-  </div>
-  <div style="background:#111;border:1px solid #333;padding:10px 20px;margin-top:10px;display:inline-block">
-    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa">Commande à saisir</span>
-    <div style="font-family:monospace;font-size:15px;color:#fff;margin-top:4px">/bank transfer [compte source] 106 [montant]</div>
-  </div>
-  <p style="font-size:12px;color:#555;margin:8px 0 0;font-style:italic">Le don est entièrement anonyme. Merci de votre soutien.</p>
+<!-- ENCART TÉMOIGNAGE -->
+<div style="background:var(--black);border:3px solid var(--cyan);padding:28px 32px;margin:40px 0;position:relative;overflow:hidden">
+  <div style="position:absolute;top:0;right:0;width:4px;height:100%;background:var(--cyan)"></div>
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px">📰 Vous avez été témoin d'un événement ?</div>
+  <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;color:#fff;line-height:1;margin-bottom:12px">Parlez-nous !</h3>
+  <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.7;max-width:600px">Le Karmine Déchaîné est un journal indépendant, porté par une équipe passionnée — mais nous ne pouvons pas être partout à la fois. Si vous avez assisté à un incident, une altercation, une ouverture de commerce, un fait marquant ou tout autre événement digne d'intérêt sur notre territoire, <strong style="color:#fff">nous avons besoin de vous.</strong></p>
 </div>
-
 <footer>
   <div style="max-width:1200px;margin:0 auto;padding:0 20px">
     <div style="display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid #222;flex-wrap:wrap">
@@ -294,97 +151,17 @@
         <p style="font-size:12px;color:#999;font-weight:300">Journalisme indépendant, libre et sans chaînes.</p>
       </div>
       <nav style="display:flex;gap:20px;flex-wrap:wrap">
-        <a href="editions.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Éditions</a>
-        <a href="enquetes.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Enquêtes</a>
-        <a href="interviews.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Interviews</a>
+        <a href="editions/edition-001/index.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff;transition:color .2s">Éditions</a>
+        <a href="enquetes.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff;transition:color .2s">Enquêtes</a>
+        <a href="interviews.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff;transition:color .2s">Interviews</a>
       </nav>
     </div>
     <div style="padding:14px 0;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#444;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
-      <span>© Le Karmine Déchaîné</span><span style="color:var(--cyan)">Vérité, courage, encre.</span>
+      <span>© Le Karmine Déchaîné</span>
+      <span style="color:var(--cyan)">Vérité, courage, encre.</span>
     </div>
   </div>
 </footer>
 
-<script>
-// Date
-const d=new Date();
-document.getElementById('js-date').textContent=d.toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-
-// Confettis
-(function(){
-  const canvas=document.getElementById('confetti-canvas');
-  const ctx=canvas.getContext('2d');
-  const wrap=canvas.parentElement;
-  function resize(){canvas.width=wrap.offsetWidth;canvas.height=wrap.offsetHeight;}
-  resize();
-
-  const COLORS=['#00C8E0','#FFD700','#FF6B6B','#A8E063','#FF9F43','#C8A2C8','#fff','#00C8E0'];
-  const particles=[];
-
-  for(let i=0;i<120;i++){
-    particles.push({
-      x:Math.random()*canvas.width,
-      y:Math.random()*canvas.height-canvas.height,
-      size:Math.random()*8+4,
-      color:COLORS[Math.floor(Math.random()*COLORS.length)],
-      speed:Math.random()*2+1,
-      angle:Math.random()*360,
-      rotation:Math.random()*360,
-      rotSpeed:(Math.random()-.5)*4,
-      shape:Math.random()>.5?'rect':'circle',
-      opacity:Math.random()*.6+.4,
-    });
-  }
-
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-      p.y+=p.speed;
-      p.x+=Math.sin(p.angle*Math.PI/180)*.5;
-      p.rotation+=p.rotSpeed;
-      p.angle+=.5;
-      if(p.y>canvas.height)p.y=-10;
-      ctx.save();
-      ctx.globalAlpha=p.opacity;
-      ctx.fillStyle=p.color;
-      ctx.translate(p.x,p.y);
-      ctx.rotate(p.rotation*Math.PI/180);
-      if(p.shape==='rect')ctx.fillRect(-p.size/2,-p.size/4,p.size,p.size/2);
-      else{ctx.beginPath();ctx.arc(0,0,p.size/2,0,Math.PI*2);ctx.fill();}
-      ctx.restore();
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
-
-<script>
-(function(){
-  const canvas=document.getElementById('confetti-canvas');
-  const ctx=canvas.getContext('2d');
-  const wrap=canvas.parentElement;
-  function resize(){canvas.width=wrap.offsetWidth;canvas.height=wrap.offsetHeight;}
-  resize();window.addEventListener('resize',resize);
-  const COLORS=['#00B4D8','#FFD700','#FF6B6B','#A8E063','#FF9F43','#C8A2C8','#fff'];
-  const p=[];
-  for(let i=0;i<150;i++)p.push({x:Math.random()*9999,y:Math.random()*-500,s:Math.random()*9+4,c:COLORS[Math.floor(Math.random()*COLORS.length)],sp:Math.random()*2.5+.8,vx:(Math.random()-.5)*.8,r:Math.random()*360,rs:(Math.random()-.5)*5,sh:Math.random()>.4,o:Math.random()*.7+.3});
-  function draw(){
-    canvas.width=wrap.offsetWidth;canvas.height=wrap.offsetHeight;
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    p.forEach(pt=>{
-      pt.y+=pt.sp;pt.x+=pt.vx;pt.r+=pt.rs;
-      if(pt.y>canvas.height+10){pt.y=-10;pt.x=Math.random()*canvas.width;}
-      ctx.save();ctx.globalAlpha=pt.o;ctx.fillStyle=pt.c;
-      ctx.translate(pt.x,pt.y);ctx.rotate(pt.r*Math.PI/180);
-      if(pt.sh)ctx.fillRect(-pt.s/2,-pt.s/4,pt.s,pt.s/2);
-      else{ctx.beginPath();ctx.arc(0,0,pt.s/2,0,Math.PI*2);ctx.fill();}
-      ctx.restore();
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
 </body>
 </html>
