@@ -1,6 +1,6 @@
 
 /* ===== FONTS ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;800;900&family=Syne:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap');
 
 /* ===== FIX SCROLL HORIZONTAL ===== */
 html{overflow-x:hidden;width:100%}
@@ -175,9 +175,9 @@ footer img.flogo{max-height:120px}
 
 .art-rubrique{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);border-top:2px solid var(--cyan);padding-top:5px;margin-bottom:12px;display:inline-block}
 .art-kicker{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
-.art-title{font-family:'Syne','Barlow Condensed',sans-serif;font-size:48px;font-weight:800;text-transform:uppercase;line-height:1.02;margin-bottom:16px;word-break:break-word;overflow-wrap:break-word;letter-spacing:-.01em}
+.art-title{font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;text-transform:uppercase;line-height:1.02;margin-bottom:16px;word-break:break-word;overflow-wrap:break-word;letter-spacing:-.02em}
 .art-title em{font-style:normal;color:var(--cyan)}
-.art-subtitle{font-family:'Inter',sans-serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--midgray);border-left:3px solid var(--cyan);padding-left:16px;margin-bottom:16px}
+.art-subtitle{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--midgray);border-left:3px solid var(--cyan);padding-left:16px;margin-bottom:16px}
 .art-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:8px 0;margin-bottom:0}
 .art-meta strong{color:var(--black)}
 .art-meta .s{color:#ccc}
@@ -185,33 +185,33 @@ footer img.flogo{max-height:120px}
 .art-hero-img{width:100%;max-height:480px;object-fit:cover;margin:28px 0 8px;border:2px solid #111}
 .art-caption{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;color:var(--gray);text-transform:uppercase;margin-bottom:28px;border-left:2px solid var(--cyan);padding-left:8px}
 
-/* Corps article — moderne */
+/* Corps article — Space Grotesk */
 .art-body{
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:'Space Grotesk',sans-serif;
   font-size:16px;
-  line-height:2;
+  line-height:1.85;
   font-weight:400;
-  color:#222;
+  color:#1a1a1a;
   margin-top:36px;
   max-width:700px;
 }
 .art-body p{margin-bottom:1.5em}
 
-/* Lettrine modernisée */
+/* Lettrine */
 .art-body .dc::first-letter,.dc::first-letter{
   float:left;
-  font-family:'Syne','Barlow Condensed',sans-serif;
-  font-size:76px;font-weight:800;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:80px;font-weight:900;
   line-height:.85;
   margin:6px 14px 0 0;
   color:var(--cyan);
 }
 
-/* H3 — style tag moderne */
+/* H3 — tag moderne */
 .art-body h3{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;font-weight:800;
-  text-transform:uppercase;letter-spacing:.25em;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.28em;
   color:var(--cyan);
   margin:48px 0 16px;
   display:flex;align-items:center;gap:10px;
@@ -219,7 +219,7 @@ footer img.flogo{max-height:120px}
 .art-body h3::before{
   content:'';
   display:inline-block;
-  width:24px;height:3px;
+  width:20px;height:2px;
   background:var(--cyan);
   flex-shrink:0;
 }
@@ -227,7 +227,7 @@ footer img.flogo{max-height:120px}
 /* Listes */
 .art-body ul,.art-body ol{padding-left:0;margin-bottom:1.4em;list-style:none}
 .art-body li{
-  font-family:'Inter',sans-serif;
+  font-family:'Space Grotesk',sans-serif;
   padding:8px 0 8px 20px;
   position:relative;
   border-bottom:1px solid #eee;
@@ -238,20 +238,19 @@ footer img.flogo{max-height:120px}
 .art-body strong{font-weight:600;color:var(--black)}
 .art-body em{font-style:italic;color:var(--midgray)}
 
-/* Blockquote modernisé */
+/* Blockquote */
 blockquote{
   border:none;
   border-left:3px solid var(--cyan);
   margin:36px 0;
   padding:18px 24px;
   background:transparent;
-  font-family:'Inter',sans-serif;
+  font-family:'Space Grotesk',sans-serif;
   font-size:17px;
-  font-style:italic;
+  font-style:normal;
   font-weight:500;
   color:var(--black);
-  line-height:1.7;
-  position:relative;
+  line-height:1.65;
 }
 blockquote em{
   font-style:normal;
