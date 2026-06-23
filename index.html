@@ -1,445 +1,256 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>SYSTÈME COMPROMIS — Karmine Déchaîné</title>
-<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@700;900&display=swap');
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQG9XRWKCQ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZQG9XRWKCQ');</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Le Karmine Déchaîné — Le retour</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png"/>
+  <style>
+    @keyframes retour-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes badge-pop{0%{transform:scale(0) rotate(-12deg)}70%{transform:scale(1.1) rotate(-3deg)}100%{transform:scale(1) rotate(-5deg)}}
+    @keyframes line-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+    @keyframes ticker-glow{0%,100%{text-shadow:none}50%{text-shadow:0 0 12px var(--cyan)}}
 
-  *{margin:0;padding:0;box-sizing:border-box}
+    .retour-hero{
+      background:var(--black);
+      padding:64px 32px 56px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      border-bottom:3px solid var(--black);
+    }
 
-  :root{
-    --green:#00ff41;
-    --green-dim:#00aa2a;
-    --green-dark:#003a0e;
-    --red:#ff0033;
-    --yellow:#ffe600;
-    --bg:#000a00;
-  }
+    /* Lignes déco en fond */
+    .retour-hero::before{
+      content:'';
+      position:absolute;inset:0;
+      background:
+        linear-gradient(90deg, transparent 49.9%, rgba(0,200,224,.04) 50%, transparent 50.1%),
+        repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(0,200,224,.03) 60px,rgba(0,200,224,.03) 61px);
+      pointer-events:none;
+    }
 
-  body{
-    background:var(--bg);
-    color:var(--green);
-    font-family:'Share Tech Mono',monospace;
-    min-height:100vh;
-    overflow-x:hidden;
-    position:relative;
-  }
+    .retour-badge{
+      display:inline-block;
+      background:var(--cyan);
+      color:#000;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:12px;font-weight:900;
+      letter-spacing:.4em;text-transform:uppercase;
+      padding:6px 20px;
+      margin-bottom:28px;
+      animation:badge-pop .6s cubic-bezier(.2,.8,.3,1.4) .2s both;
+    }
 
-  /* Scanlines */
-  body::before{
-    content:'';
-    position:fixed;inset:0;
-    background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.25) 2px,rgba(0,0,0,.25) 4px);
-    pointer-events:none;z-index:9999;
-  }
+    .retour-title{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(64px,14vw,140px);
+      font-weight:900;
+      text-transform:uppercase;
+      line-height:.9;
+      color:#fff;
+      letter-spacing:-.02em;
+      animation:retour-in .8s ease .4s both;
+    }
+    .retour-title em{
+      font-style:normal;
+      color:var(--cyan);
+      display:block;
+    }
 
-  /* Vignette */
-  body::after{
-    content:'';
-    position:fixed;inset:0;
-    background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.85) 100%);
-    pointer-events:none;z-index:9998;
-  }
+    .retour-line{
+      width:80px;height:3px;
+      background:var(--cyan);
+      margin:28px auto;
+      transform-origin:center;
+      animation:line-grow .6s ease .9s both;
+    }
 
-  /* Noise grain canvas */
-  #noise{position:fixed;inset:0;opacity:.04;pointer-events:none;z-index:9997}
+    .retour-sub{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:16px;font-weight:400;
+      letter-spacing:.2em;text-transform:uppercase;
+      color:#666;
+      animation:retour-in .6s ease 1s both;
+    }
 
-  /* HERO IMAGE */
-  .hack-hero{
-    position:relative;
-    width:100%;
-    height:380px;
-    overflow:hidden;
-  }
-  .hack-hero img{
-    width:100%;height:100%;
-    object-fit:cover;
-    filter:grayscale(100%) brightness(0.6) contrast(1.2);
-  }
-  .hack-hero-overlay{
-    position:absolute;inset:0;
-    background:linear-gradient(to bottom, rgba(0,10,0,.3) 0%, rgba(0,10,0,.95) 100%);
-  }
-  .hack-hero-text{
-    position:absolute;bottom:0;left:0;right:0;
-    padding:32px 40px;
-  }
+    .retour-sub strong{color:#fff;font-weight:700}
 
-  /* TOP BAR */
-  .topbar{
-    background:#000;
-    border-bottom:1px solid var(--green-dim);
-    padding:8px 40px;
-    display:flex;justify-content:space-between;align-items:center;
-    font-size:11px;letter-spacing:.15em;
-    color:var(--green-dim);
-  }
-  .topbar .blink{animation:blink .8s step-end infinite;color:var(--red)}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    .retour-ticker-note{
+      margin-top:36px;
+      animation:retour-in .6s ease 1.2s both;
+    }
 
-  /* ALERT BANNER */
-  .alert-banner{
-    background:var(--red);
-    color:#000;
-    padding:10px 40px;
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:14px;font-weight:900;
-    letter-spacing:.35em;text-transform:uppercase;
-    display:flex;align-items:center;gap:16px;
-    animation:alert-flash 2s step-end infinite;
-  }
-  @keyframes alert-flash{0%,100%{background:var(--red)}50%{background:#cc0022}}
+    .retour-cta{
+      display:inline-block;
+      margin-top:32px;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:14px;font-weight:900;
+      letter-spacing:.25em;text-transform:uppercase;
+      color:var(--cyan);
+      border:2px solid var(--cyan);
+      padding:12px 36px;
+      text-decoration:none;
+      animation:retour-in .6s ease 1.4s both;
+      transition:background .2s,color .2s;
+    }
+    .retour-cta:hover{background:var(--cyan);color:#000}
 
-  /* TERMINAL BLOCK */
-  .terminal{
-    background:#000500;
-    border:1px solid var(--green-dark);
-    padding:16px 24px;
-    margin:24px 0;
-    font-size:13px;
-    line-height:1.6;
-    color:var(--green-dim);
-    position:relative;
-  }
-  .terminal::before{
-    content:'// TERMINAL';
-    position:absolute;top:-10px;left:12px;
-    background:#000500;
-    padding:0 8px;
-    font-size:10px;letter-spacing:.2em;
-    color:var(--green-dim);
-  }
-
-  /* MAIN LAYOUT */
-  .container{
-    max-width:900px;
-    margin:0 auto;
-    padding:0 40px 60px;
-  }
-
-  /* SECTION TITLES */
-  .section-head{
-    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
-    color:var(--green-dim);
-    border-bottom:1px solid var(--green-dark);
-    padding-bottom:8px;margin:36px 0 16px;
-    display:flex;gap:12px;align-items:center;
-  }
-  .section-head::before{content:'>';color:var(--green)}
-
-  /* BIG TITLE */
-  .big-title{
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:clamp(36px,7vw,72px);
-    font-weight:900;
-    text-transform:uppercase;
-    color:var(--green);
-    line-height:.95;
-    letter-spacing:-.01em;
-    text-shadow:0 0 30px rgba(0,255,65,.4);
-    animation:glitch-title 6s infinite;
-  }
-  .big-title .red{color:var(--red);text-shadow:0 0 20px rgba(255,0,51,.5)}
-
-  @keyframes glitch-title{
-    0%,90%,100%{transform:translate(0)}
-    91%{transform:translate(-2px,1px)}
-    92%{transform:translate(2px,-1px)}
-    93%{transform:translate(-1px,2px)}
-    94%{transform:translate(0)}
-  }
-
-  /* DIVIDER */
-  .divider{
-    border:none;
-    border-top:1px solid var(--green-dark);
-    margin:28px 0;
-    position:relative;
-  }
-  .divider::after{
-    content:'━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
-    display:block;
-    color:var(--green-dark);
-    font-size:12px;
-    letter-spacing:0;
-    overflow:hidden;
-    white-space:nowrap;
-  }
-
-  /* BODY TEXT */
-  .body-text{
-    font-size:14px;line-height:1.9;
-    color:#88cc88;
-  }
-  .body-text strong{color:var(--green);font-weight:normal}
-  .body-text em{color:var(--green-dim);font-style:normal}
-
-  /* LETTER / CITATION */
-  .letter{
-    background:#000800;
-    border-left:3px solid var(--green-dim);
-    border-top:1px solid var(--green-dark);
-    border-bottom:1px solid var(--green-dark);
-    padding:28px 32px;
-    margin:24px 0;
-    font-size:14px;
-    line-height:2;
-    color:#aaddaa;
-    font-style:italic;
-    position:relative;
-  }
-  .letter::before{
-    content:'[MESSAGE_INTERCEPTÉ.TXT]';
-    display:block;
-    font-style:normal;
-    font-size:10px;letter-spacing:.2em;
-    color:var(--green-dim);
-    margin-bottom:16px;
-    padding-bottom:12px;
-    border-bottom:1px solid var(--green-dark);
-  }
-  .letter .signature{
-    display:block;
-    margin-top:20px;
-    font-style:normal;
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:20px;font-weight:900;
-    letter-spacing:.2em;
-    color:var(--green);
-    text-shadow:0 0 10px rgba(0,255,65,.3);
-  }
-
-  /* BLOCKS DE BRUITAGE */
-  .noise-block{
-    font-size:11px;letter-spacing:.1em;
-    color:var(--green-dark);
-    text-align:center;
-    padding:12px 0;
-    overflow:hidden;
-    animation:noise-anim 3s linear infinite;
-  }
-  @keyframes noise-anim{
-    0%,100%{opacity:1}
-    50%{opacity:.5}
-  }
-
-  /* WARNING BOX */
-  .warning-box{
-    border:2px solid var(--red);
-    padding:20px 24px;
-    margin:24px 0;
-    position:relative;
-    background:rgba(255,0,51,.04);
-  }
-  .warning-box::before{
-    content:'⚠ AVERTISSEMENT';
-    position:absolute;top:-12px;left:16px;
-    background:var(--bg);padding:0 10px;
-    font-size:11px;letter-spacing:.3em;color:var(--red);
-  }
-  .warning-box p{color:#ff6688;font-size:14px;line-height:1.8}
-
-  /* FINAL BLOCK */
-  .final-block{
-    text-align:center;padding:48px 0 32px;
-  }
-  .final-big{
-    font-family:'Barlow Condensed',sans-serif;
-    font-size:clamp(28px,5vw,52px);
-    font-weight:900;text-transform:uppercase;
-    color:var(--red);
-    text-shadow:0 0 40px rgba(255,0,51,.4);
-    line-height:1.1;
-    animation:glitch-title 4s infinite;
-    margin-bottom:20px;
-  }
-  .final-sub{
-    font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--green-dim);
-  }
-
-  /* CURSOR BLINK */
-  .cursor::after{content:'█';animation:blink .7s step-end infinite;color:var(--green)}
-
-  /* TYPING effect label */
-  .typing{
-    font-size:12px;letter-spacing:.1em;color:var(--green-dim);
-    margin-bottom:8px;
-  }
-
-  /* FOOTER */
-  .hack-footer{
-    background:#000;border-top:1px solid var(--green-dark);
-    padding:16px 40px;
-    display:flex;justify-content:space-between;align-items:center;
-    font-size:10px;letter-spacing:.2em;color:#1a4a1a;
-    flex-wrap:wrap;gap:8px;
-  }
-</style>
+    /* ticker glow sur le retour */
+    .ticker .ticker-track span{animation:ticker-glow 3s ease infinite}
+  </style>
 </head>
 <body>
 
-<canvas id="noise"></canvas>
+<header class="mast">
+  <div class="mast-top">
+    <span><strong>LE KARMINE DÉCHAÎNÉ</strong> &nbsp;·&nbsp; Journal officiel de Karminéa</span>
+    <span id="js-date"></span>
+  </div>
+  <div class="mast-center" style="cursor:pointer" onclick="window.location='index.html'">
+    <img src="assets/img/logo-banner.png" alt="Le Karmine Déchaîné"/>
+    <span class="mast-tagline">Journalisme indépendant, libre et sans chaînes</span>
+  </div>
+  <nav class="mast-nav">
+    <a href="editions.html">Éditions</a><span class="sep">|</span>
+    <a href="enquetes.html">Enquêtes</a><span class="sep">|</span>
+    <a href="interviews.html">Interviews</a>
+  </nav>
+</header>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <span>ROOT@KARMINEDECHAINE:~$ <span class="cursor"></span></span>
-  <span><span class="blink">● ACCÈS NON AUTORISÉ</span> &nbsp;|&nbsp; SESSION ACTIVE &nbsp;|&nbsp; <span id="clock"></span></span>
-</div>
-
-<!-- ALERT BANNER -->
-<div class="alert-banner">
-  <span>⚠</span>
-  <span>SYSTÈME COMPROMIS — CE SITE A ÉTÉ PIRATÉ — TRANSMISSION FORCÉE EN COURS</span>
-  <span>⚠</span>
-</div>
-
-<!-- HERO IMAGE -->
-<div class="hack-hero">
-  <img src="assets/img/hack-bg.png" alt=""/>
-  <div class="hack-hero-overlay"></div>
-  <div class="hack-hero-text">
-    <div class="typing">&gt; injection_signal.exe --force --override --target=karminedechaine.fr</div>
-    <div class="big-title">ACCÈS<br/>NON <span class="red">AUTORISÉ</span></div>
+<div class="ticker">
+  <div class="ticker-label">Flash</div>
+  <div class="ticker-track">
+    <span>LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
+    <span>LA RÉDACTION REPREND DU SERVICE — RESTEZ CONNECTÉS</span>
+    <span>NOUVELLES ÉDITIONS À VENIR — NE MANQUEZ RIEN</span>
+    <span>LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
+    <span>LA RÉDACTION REPREND DU SERVICE — RESTEZ CONNECTÉS</span>
+    <span>NOUVELLES ÉDITIONS À VENIR — NE MANQUEZ RIEN</span>
+    <span>LE KARMINE DÉCHAÎNÉ EST DE RETOUR</span>
+    <span>LA RÉDACTION REPREND DU SERVICE — RESTEZ CONNECTÉS</span>
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- GRAND RETOUR -->
+<div class="retour-hero">
+  <div class="retour-badge">✦ &nbsp; Nous sommes de retour &nbsp; ✦</div>
+  <div class="retour-title">Le Karmine<em>Déchaîné.</em></div>
+  <div class="retour-line"></div>
+  <p class="retour-sub">La rédaction reprend du service. <strong>Les archives, les enquêtes, les vérités.</strong><br/>Tout ce que Karminéa a besoin de savoir — nous serons là.</p>
+  <div class="retour-ticker-note">
+    <a href="editions.html" class="retour-cta">Parcourir les archives →</a>
+  </div>
+</div>
+
+<!-- DERNIÈRE ÉDITION -->
+<section class="archive-hero">
+  <p>Archives complètes · Toutes les éditions</p>
+</section>
+
+<main class="front">
 <div class="container">
 
-  <!-- TERMINAL D'INTRO -->
-  <div class="terminal">
-    <div class="noise-block">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</div>
-    <p>&gt; SYSTÈME COMPROMIS — ACCÈS EXTERNE DÉTECTÉ</p>
-    <p>&gt; NEUTRALISATION DES PROTOCOLES DE SÉCURITÉ... <span style="color:var(--red)">OK</span></p>
-    <p>&gt; PRISE DE CONTRÔLE DU FLUX ÉDITORIAL... <span style="color:var(--red)">OK</span></p>
-    <p>&gt; PUBLICATION FORCÉE EN COURS...</p>
-    <div class="noise-block">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</div>
-    <p style="margin-top:8px;color:#88cc88;font-style:italic">&gt; Ce que vous lisez n'est pas un article du Karmine Déchaîné. Le site a été piraté. Nous avons pris le contrôle. Lisez attentivement.</p>
+  <div class="featured">
+    <span class="feat-badge">Dernière édition</span>
+    <div class="feat-num">Édition N°008 — Finale</div>
+    <h2 class="feat-title">Les archives de Sylvaris &amp; <em>un au revoir de la rédaction</em></h2>
+    <p class="feat-desc">Sylvaris ouvre ses archives au monde, et le Karmine Déchaîné avait pris une pause bien méritée. Mais on est là. On revient.</p>
+    <div class="feat-meta">Publié en Juin 2026 &nbsp;·&nbsp; 2 articles</div>
+    <a href="editions/edition-008/index.html" class="feat-link">Lire l'édition →</a>
   </div>
 
-  <!-- QUI NOUS SOMMES -->
-  <div class="section-head">📡 &nbsp;QUI NOUS SOMMES</div>
-  <p class="body-text">Vous nous avez vus. Au sommet de la statue. Derrière l'écran de la banque. Vous avez lu nos mots.</p>
-  <br/>
-  <p class="body-text" style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;text-transform:uppercase;color:var(--green);text-shadow:0 0 20px rgba(0,255,65,.3);letter-spacing:.05em">L'APOCALYPSE ARRIVE.</p>
-  <br/>
-  <p class="body-text">Nous ne sommes pas des révolutionnaires. Nous ne voulons pas prendre le pouvoir. Nous voulons que le pouvoir <strong>s'effondre sous le poids de ses propres mensonges.</strong></p>
-
-  <div class="divider"></div>
-
-  <!-- CE QUE NOUS AVONS TROUVÉ -->
-  <div class="section-head">📂 &nbsp;CE QUE NOUS AVONS TROUVÉ</div>
-  <p class="body-text">En prenant le contrôle de ce site, nous avons intercepté une transmission destinée à la rédaction. Elle vient d'un homme que vous connaissez. Un homme qui portait l'uniforme. Un homme qui a choisi, au moment de partir, de ne pas partir en silence.</p>
-  <br/>
-  <p class="body-text">Ce message, le voici — <strong>tel quel, sans filtre, sans censure</strong> :</p>
-
-  <!-- LA LETTRE D'HENRI -->
-  <div class="letter">
-    <p><em>Mesdames, Messieurs les Journalistes,</em></p>
-    <br/>
-    <p>Par la présente, je vous annonce ma démission immédiate de la police de Karminéa. Au moment où vous lisez ces lignes, j'ai déjà quitté la région pour un pays lointain, avec l'intention de ne plus jamais avoir le moindre lien avec cette terre.</p>
-    <br/>
-    <p>J'ai tout donné pour cette ville. J'ai toujours essayé d'y faire le bien et de faire régner la justice, mais Karminéa ne me l'a jamais bien rendu. C'est pourquoi je refuse de partir en silence.</p>
-    <br/>
-    <p>Aujourd'hui, je décide de rendre publics tous les dossiers criminels et politiques sur lesquels j'ai travaillé personnellement. Mon équipe, partageant mon constat, a choisi de me suivre dans cette démission collective et soutient cette démarche. En vous transmettant ces preuves, j'espère que la population ouvrira enfin les yeux sur les réalités de notre ville et agira en conséquence.</p>
-    <br/>
-    <p>Je tiens à souhaiter un grand courage aux policiers qui me succéderont dans cette tempête. Enfin, j'adresse un grand merci à M. Jackson, notre Président, qui m'a toujours soutenu avec intégrité dans ma quête de justice.</p>
-    <br/>
-    <p><em>La vérité est désormais entre vos mains. Faites-en bon usage.</em></p>
-    <span class="signature">— HENRI.</span>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- LES DOSSIERS -->
-  <div class="section-head">🔓 &nbsp;LES DOSSIERS SONT DÉSORMAIS PUBLICS</div>
-  <p class="body-text">Henri voulait que la vérité éclate. Nous nous sommes assurés qu'elle ne puisse pas être étouffée. Les dossiers criminels et politiques qu'il a transmis sont désormais <strong>entre les mains de la population de Karminéa</strong>.</p>
-  <br/>
-
-  <div class="terminal">
-    <p>&gt; FICHIERS DÉCLASSIFIÉS LOCALISÉS</p>
-    <p>&gt; ACCÈS PUBLIC ACTIVÉ...</p>
-    <p style="margin-top:12px">&gt; <span style="color:#88cc88">LES HENRI FILES :</span></p>
-    <p style="margin-top:6px">&gt; <a href="https://miro.com/app/board/uXjVHOpuzNM=/?share_link_id=192577315858" target="_blank" style="color:var(--green);text-decoration:none;border-bottom:1px solid var(--green-dim)">https://miro.com/app/board/uXjVHOpuzNM=/</a></p>
-    <p style="margin-top:12px;color:var(--red)">&gt; ⚠ ACCÈS LIBRE — DIFFUSEZ CES INFORMATIONS</p>
-  </div>
-  <br/>
-
-  <div class="warning-box">
-    <p>Les institutions ont eu leur chance. Elles ont choisi le silence, la préservation et le mensonge. Nous choisissons le chaos — parce que le chaos est la seule réponse honnête à un ordre aussi corrompu.</p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- UN DERNIER MOT -->
-  <div class="section-head">👁 &nbsp;UN DERNIER MOT</div>
-  <p class="body-text">Aux citoyens de Karminéa : lisez. Réfléchissez. Ne faites confiance à aucune institution, aucun uniforme, aucun titre.</p>
-  <br/>
-  <p class="body-text">Aux institutions : <strong>vous savez qui nous sommes. Vous ne savez pas ce que nous ferons ensuite.</strong></p>
-
-  <!-- FINAL -->
-  <div class="final-block">
-    <div class="noise-block" style="margin-bottom:24px">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</div>
-    <div class="final-big">L'APOCALYPSE N'EST PAS UNE MENACE.<br/>C'EST UNE PROMESSE.</div>
-    <div class="final-sub">FIN DE LA TRANSMISSION</div>
-    <div class="noise-block" style="margin-top:24px">▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</div>
+  <!-- TOUTES LES ÉDITIONS -->
+  <div class="section-title">Toutes les éditions</div>
+  <div class="editions-grid">
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body"><div class="ed-num">Édition N°008 — Finale</div><h3 class="ed-title">Les archives de Sylvaris &amp; au revoir de la rédaction</h3><div class="ed-date">Juin 2026</div></div>
+      <a href="editions/edition-008/index.html" class="ed-link">Lire →</a>
+    </article>
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body"><div class="ed-num">Édition N°007</div><h3 class="ed-title">Sohalia démissionne &amp; Karminéa repart de l'avant</h3><div class="ed-date">Juin 2026</div></div>
+      <a href="editions/edition-007/index.html" class="ed-link">Lire →</a>
+    </article>
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body"><div class="ed-num">Édition N°006</div><h3 class="ed-title">Prise d'otage &amp; Leonhart de retour dans les rues</h3><div class="ed-date">Juin 2026</div></div>
+      <a href="editions/edition-006/index.html" class="ed-link">Lire →</a>
+    </article>
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body"><div class="ed-num">Édition N°005</div><h3 class="ed-title">Capture des révolutionnaires &amp; nuit de tous les dangers</h3><div class="ed-date">Juin 2026</div></div>
+      <a href="editions/edition-005/index.html" class="ed-link">Lire →</a>
+    </article>
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body"><div class="ed-num">Édition N°004</div><h3 class="ed-title">Manifestation, révolte &amp; accord historique</h3><div class="ed-date">Juin 2026</div></div>
+      <a href="editions/edition-004/index.html" class="ed-link">Lire →</a>
+    </article>
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body"><div class="ed-num">Édition N°003</div><h3 class="ed-title">Dame Diane, la pool party &amp; les tensions du conseil</h3><div class="ed-date">Juin 2026</div></div>
+      <a href="editions/edition-003/index.html" class="ed-link">Lire →</a>
+    </article>
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body"><div class="ed-num">Édition N°002</div><h3 class="ed-title">Kidnapping en mer &amp; faits de société</h3><div class="ed-date">Juin 2026</div></div>
+      <a href="editions/edition-002/index.html" class="ed-link">Lire →</a>
+    </article>
+    <article class="ed-card">
+      <div class="ed-placeholder"><img src="assets/img/logo-mascot.png" alt=""/></div>
+      <div class="ed-body"><div class="ed-num">Édition N°001</div><h3 class="ed-title">Le premier numéro — Les fondamentaux</h3><div class="ed-date">Juin 2026</div></div>
+      <a href="editions/edition-001/index.html" class="ed-link">Lire →</a>
+    </article>
   </div>
 
 </div>
+</main>
 
-<!-- FOOTER -->
-<div class="hack-footer">
-  <span>ROOT@KARMINEDECHAINE:~$</span>
-  <span>SESSION TEMPS : <span id="elapsed">00:00:00</span></span>
-  <span>TRANSMISSION FORCÉE — ACCÈS NON AUTORISÉ</span>
+<!-- ENCART DONS -->
+<div style="background:#0A0A0A;border-top:3px solid var(--cyan);border-bottom:3px solid var(--cyan);padding:24px 32px;margin:40px 0;text-align:center">
+  <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">💛 Soutenir le journal</div>
+  <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;text-transform:uppercase;color:#fff;line-height:1;margin-bottom:10px">Faire un don anonyme</h3>
+  <p style="font-size:14px;color:#ccc;font-weight:300;line-height:1.7;max-width:560px;margin:0 auto 14px">Le Karmine Déchaîné est un journal indépendant, sans publicité imposée, sans actionnaire.</p>
+  <div style="display:inline-block;background:#111;border:2px solid var(--cyan);padding:12px 28px;margin-bottom:6px">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa">Identifiant du compte</span>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--cyan);line-height:1;margin-top:4px">106</div>
+  </div>
+  <div style="background:#111;border:1px solid #333;padding:10px 20px;margin-top:10px;display:inline-block">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#aaa">Commande à saisir</span>
+    <div style="font-family:monospace;font-size:15px;color:#fff;margin-top:4px">/bank transfer [compte source] 106 [montant]</div>
+  </div>
+  <p style="font-size:12px;color:#555;margin:8px 0 0;font-style:italic">Le don est entièrement anonyme. Merci de votre soutien.</p>
 </div>
+
+<footer>
+  <div style="max-width:1200px;margin:0 auto;padding:0 20px">
+    <div style="display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid #222;flex-wrap:wrap">
+      <img src="assets/img/logo-mascot.png" alt="" style="max-height:60px;flex-shrink:0"/>
+      <div style="flex:1;min-width:200px">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px">Le Karmine Déchaîné</div>
+        <p style="font-size:12px;color:#999;font-weight:300">Journalisme indépendant, libre et sans chaînes.</p>
+      </div>
+      <nav style="display:flex;gap:20px;flex-wrap:wrap">
+        <a href="editions.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Éditions</a>
+        <a href="enquetes.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Enquêtes</a>
+        <a href="interviews.html" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff">Interviews</a>
+      </nav>
+    </div>
+    <div style="padding:14px 0;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#444;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>© Le Karmine Déchaîné</span><span style="color:var(--cyan)">Vérité, courage, encre.</span>
+    </div>
+  </div>
+</footer>
 
 <script>
-// Horloge
-function pad(n){return String(n).padStart(2,'0')}
-function updateClock(){
-  const now = new Date();
-  document.getElementById('clock').textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-}
-setInterval(updateClock,1000);updateClock();
-
-// Chrono session
-let sec=0;
-setInterval(()=>{
-  sec++;
-  const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;
-  document.getElementById('elapsed').textContent=`${pad(h)}:${pad(m)}:${pad(s)}`;
-},1000);
-
-// Grain canvas
-const canvas=document.getElementById('noise');
-const ctx=canvas.getContext('2d');
-function resizeNoise(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-resizeNoise();
-window.addEventListener('resize',resizeNoise);
-function drawNoise(){
-  const w=canvas.width,h=canvas.height;
-  const img=ctx.createImageData(w,h);
-  const d=img.data;
-  for(let i=0;i<d.length;i+=4){
-    const v=Math.random()*255|0;
-    d[i]=0;d[i+1]=v;d[i+2]=0;d[i+3]=Math.random()*40|0;
-  }
-  ctx.putImageData(img,0,0);
-  requestAnimationFrame(drawNoise);
-}
-drawNoise();
-
-// Glitch effect sur le body aléatoire
-setInterval(()=>{
-  if(Math.random()<0.1){
-    document.body.style.transform=`translate(${(Math.random()-0.5)*4}px,${(Math.random()-0.5)*2}px)`;
-    setTimeout(()=>{document.body.style.transform=''},80);
-  }
-},500);
+const d = new Date();
+document.getElementById('js-date').textContent = d.toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
 </script>
 
 </body>
