@@ -167,37 +167,85 @@ footer img.flogo{max-height:120px}
 
 /* ===== ARTICLE PAGE ===== */
 .container.article-container{max-width:860px}
-.article-page{padding:48px 0 80px}
+/* ── ARTICLE PAGE ── */
+.article-page{padding:60px 0 100px}
 
-.breadcrumb{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);margin-bottom:32px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+/* Layout deux colonnes : texte + marge déco */
+.article-page .container{
+  max-width:1000px;
+  display:grid;
+  grid-template-columns:1fr 200px;
+  gap:0 60px;
+  align-items:start;
+}
+/* Tout revient en pleine largeur sauf art-body */
+.article-page .container > *{grid-column:1 / -1}
+.article-page .container .art-body{grid-column:1 / 2}
+.article-page .container .art-sidebar{grid-column:2 / 3;grid-row:span 4}
+
+.breadcrumb{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:36px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .breadcrumb a{color:var(--gray);text-decoration:none;transition:color .2s}
 .breadcrumb a:hover{color:var(--cyan)}
-.breadcrumb span{color:#ccc}
+.breadcrumb span{color:#ddd}
 
-.art-rubrique{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);border-top:2px solid var(--cyan);padding-top:5px;margin-bottom:12px;display:inline-block}
-.art-kicker{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
-.art-title{font-family:'Clash Display',sans-serif;font-size:48px;font-weight:700;text-transform:uppercase;line-height:1.02;margin-bottom:16px;word-break:break-word;overflow-wrap:break-word;letter-spacing:-.02em}
+/* Rubrique + kicker */
+.art-rubrique{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);border-top:2px solid var(--cyan);padding-top:5px;margin-bottom:14px;display:inline-block}
+.art-kicker{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
+
+/* TITRE — massif, impact maximal */
+.art-title{
+  font-family:'Clash Display',sans-serif;
+  font-size:clamp(36px,6vw,68px);
+  font-weight:700;
+  text-transform:uppercase;
+  line-height:.97;
+  margin-bottom:24px;
+  word-break:break-word;
+  overflow-wrap:break-word;
+  letter-spacing:-.03em;
+}
 .art-title em{font-style:normal;color:var(--cyan)}
-.art-subtitle{font-family:'Satoshi',system-ui,sans-serif;font-size:17px;font-weight:400;line-height:1.6;color:var(--midgray);border-left:3px solid var(--cyan);padding-left:16px;margin-bottom:16px}
-.art-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:8px 0;margin-bottom:0}
+
+/* Sous-titre */
+.art-subtitle{
+  font-family:'Satoshi',system-ui,sans-serif;
+  font-size:18px;font-weight:500;
+  line-height:1.65;color:var(--midgray);
+  border-left:3px solid var(--cyan);
+  padding-left:18px;margin-bottom:20px;
+  font-style:italic;
+}
+
+/* Meta */
+.art-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0;padding:10px 0;margin-bottom:0}
 .art-meta strong{color:var(--black)}
-.art-meta .s{color:#ccc}
+.art-meta .s{color:#ddd}
 
-.art-hero-img{width:100%;max-height:480px;object-fit:cover;margin:28px 0 8px;border:2px solid #111}
-.art-caption{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.08em;color:var(--gray);text-transform:uppercase;margin-bottom:28px;border-left:2px solid var(--cyan);padding-left:8px}
+/* Hero image — pleine largeur, plus haute */
+.art-hero-img{width:100%;max-height:560px;object-fit:cover;margin:36px 0 0;border:none;display:block}
+.art-caption{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin:10px 0 36px;padding-left:12px;border-left:2px solid #ddd}
 
-/* Corps article — Satoshi + Clash Display */
+/* ── CORPS ARTICLE ── */
 .art-body{
   font-family:'Satoshi',system-ui,sans-serif;
-  font-size:17px;
-  line-height:1.9;
-  font-weight:400;
+  font-size:17.5px;
+  line-height:1.95;
+  font-weight:500;
   color:#111;
-  margin-top:40px;
-  max-width:700px;
-  letter-spacing:-.01em;
+  margin-top:44px;
+  max-width:680px;
+  letter-spacing:-.012em;
 }
-.art-body p{margin-bottom:1.6em}
+.art-body p{margin-bottom:1.7em}
+
+/* Premier paragraphe plus grand — lead */
+.art-body p.dc,
+.art-body p:first-of-type{
+  font-size:20px;
+  line-height:1.75;
+  font-weight:500;
+  color:#000;
+}
 
 /* Lettrine */
 .art-body .dc::first-letter,.dc::first-letter{
@@ -434,4 +482,206 @@ blockquote.kd-visible{
 /* Pas d'animation si préférence reduced-motion */
 @media(prefers-reduced-motion:reduce){
   .kd-reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ── EXTRAS ARTICLE — hiérarchie & richesse visuelle ── */
+
+/* Lettrine — plus grande, plus de caractère */
+.art-body .dc::first-letter,
+.dc::first-letter{
+  float:left;
+  font-family:'Clash Display',sans-serif;
+  font-size:96px;font-weight:700;
+  line-height:.78;
+  margin:10px 16px -4px 0;
+  color:var(--cyan);
+  text-transform:uppercase;
+}
+
+/* PULL-QUOTE — citation mise en avant */
+.pull-quote{
+  font-family:'Clash Display',sans-serif;
+  font-size:clamp(22px,3.5vw,32px);
+  font-weight:700;
+  text-transform:uppercase;
+  line-height:1.15;
+  letter-spacing:-.02em;
+  color:var(--black);
+  border-top:3px solid var(--cyan);
+  border-bottom:1px solid #e0e0e0;
+  padding:24px 0 28px;
+  margin:48px 0;
+  position:relative;
+}
+.pull-quote::before{
+  content:'«';
+  font-family:'Clash Display',sans-serif;
+  font-size:80px;font-weight:700;
+  color:var(--cyan);opacity:.15;
+  position:absolute;top:-20px;left:-8px;
+  line-height:1;
+}
+
+/* H3 redesigné — plus impactant */
+.art-body h3{
+  font-family:'Clash Display',sans-serif;
+  font-size:22px;font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:-.01em;
+  color:var(--black);
+  margin:56px 0 20px;
+  display:flex;align-items:center;gap:14px;
+  line-height:1.1;
+}
+.art-body h3::before{
+  content:'';display:inline-block;
+  width:6px;height:22px;
+  background:var(--cyan);
+  flex-shrink:0;
+  border-radius:1px;
+}
+
+/* Séparateur de section stylisé */
+.art-body .section-sep,
+.art-sep{
+  display:flex;align-items:center;gap:12px;
+  margin:52px 0;
+  color:#ccc;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+}
+.art-sep::before,.art-sep::after{
+  content:'';flex:1;
+  height:1px;background:linear-gradient(to right,transparent,#ddd);
+}
+.art-sep::after{
+  background:linear-gradient(to left,transparent,#ddd);
+}
+
+/* Blockquote — style magazine premium */
+blockquote{
+  border:none;
+  border-left:2px solid var(--cyan);
+  margin:44px 0;
+  padding:22px 28px;
+  background:linear-gradient(105deg,rgba(0,180,216,.03) 0%,transparent 100%);
+  font-family:'Satoshi',sans-serif;
+  font-size:19px;font-weight:600;
+  color:var(--black);
+  line-height:1.65;
+  letter-spacing:-.012em;
+}
+blockquote em{
+  font-style:normal;display:block;
+  margin-top:14px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gray);
+  padding-top:12px;
+  border-top:1px solid #e0e0e0;
+}
+
+/* SIDEBAR STICKY — chiffre/stat qui reste visible */
+.art-sidebar{
+  position:sticky;top:100px;
+  display:flex;flex-direction:column;gap:24px;
+}
+.art-sidebar-stat{
+  border-top:3px solid var(--black);
+  padding-top:16px;
+}
+.art-sidebar-stat .num{
+  font-family:'Clash Display',sans-serif;
+  font-size:52px;font-weight:700;
+  line-height:1;color:var(--cyan);
+  letter-spacing:-.03em;
+}
+.art-sidebar-stat .lbl{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:700;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gray);margin-top:4px;
+}
+.art-sidebar-tag{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:800;
+  letter-spacing:.25em;text-transform:uppercase;
+  color:#fff;background:var(--black);
+  padding:6px 12px;display:inline-block;
+}
+
+/* Listes — plus de présence */
+.art-body ul,.art-body ol{padding-left:0;margin-bottom:1.6em;list-style:none}
+.art-body li{
+  font-family:'Satoshi',sans-serif;
+  padding:10px 0 10px 24px;
+  position:relative;
+  border-bottom:1px solid #ebebeb;
+  font-size:16px;line-height:1.7;font-weight:500;
+}
+.art-body li:last-child{border-bottom:none}
+.art-body ul li::before{
+  content:'';
+  position:absolute;left:0;top:50%;
+  transform:translateY(-50%);
+  width:6px;height:6px;
+  background:var(--cyan);
+  border-radius:50%;
+}
+.art-body strong{font-weight:700;color:var(--black)}
+.art-body em{font-style:italic;color:#444}
+
+/* Nav articles — plus premium */
+.nav-articles{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  margin-top:64px;
+  border-top:3px solid var(--black);
+  padding-top:0;
+  background:var(--black);
+}
+.nav-art-btn{
+  display:block;
+  background:var(--offwhite);
+  border:none;
+  padding:20px 24px;
+  text-decoration:none;
+  transition:background .2s;
+  max-width:100%;
+}
+.nav-art-btn:hover{background:#fff}
+.nav-label{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;font-weight:800;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:8px;
+}
+.nav-title{
+  display:block;
+  font-family:'Clash Display',sans-serif;
+  font-size:16px;font-weight:700;
+  text-transform:uppercase;
+  color:var(--black);line-height:1.15;
+  letter-spacing:-.01em;
+}
+
+/* ── RESPONSIVE article ── */
+@media(max-width:900px){
+  .article-page .container{grid-template-columns:1fr;gap:0}
+  .article-page .container .art-body{grid-column:1/-1}
+  .article-page .container .art-sidebar{display:none}
+  .art-title{font-size:38px}
+  .pull-quote{font-size:22px}
+}
+@media(max-width:600px){
+  .article-page{padding:36px 0 60px}
+  .art-title{font-size:28px}
+  .art-body{font-size:16px}
+  .art-body p:first-of-type{font-size:17px}
+  .nav-articles{grid-template-columns:1fr}
+  .dc::first-letter,.art-body .dc::first-letter{font-size:68px}
+  blockquote{font-size:16px;padding:16px 18px}
 }
