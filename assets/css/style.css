@@ -348,3 +348,90 @@ blockquote em{
   .breadcrumb{font-size:10px}
   .dc::first-letter,.art-body .dc::first-letter{font-size:56px}
 }
+
+/* ============================================================
+   SCROLL ANIMATIONS — article
+   ============================================================ */
+
+/* Progress bar */
+#kd-progress{
+  position:fixed;top:0;left:0;z-index:9999;
+  height:2px;width:0%;
+  background:var(--cyan);
+  transition:width .1s linear;
+  pointer-events:none;
+}
+
+/* Reveal de base */
+.kd-reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .55s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1);
+  will-change:opacity,transform;
+}
+.kd-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* H3 — slide depuis la gauche */
+.art-body h3.kd-reveal{
+  opacity:0;
+  transform:translateX(-16px);
+  transition:opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1);
+}
+.art-body h3.kd-visible{
+  opacity:1;
+  transform:translateX(0);
+}
+
+/* Blockquote — léger scale */
+.art-body blockquote.kd-reveal,
+blockquote.kd-reveal{
+  opacity:0;
+  transform:translateY(16px) scale(.98);
+  transition:opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+}
+.art-body blockquote.kd-visible,
+blockquote.kd-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+/* Image hero — fade sans décalage */
+.art-hero-img.kd-reveal{
+  opacity:0;
+  transform:translateY(0) scale(.99);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.art-hero-img.kd-visible{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* Bandeaux spéciaux */
+.bandeau-rip.kd-reveal,
+.bandeau-medecins.kd-reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
+}
+.bandeau-rip.kd-visible,
+.bandeau-medecins.kd-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Nav articles */
+.nav-articles.kd-reveal{
+  opacity:0;
+  transition:opacity .5s ease .1s;
+}
+.nav-articles.kd-visible{
+  opacity:1;
+}
+
+/* Pas d'animation si préférence reduced-motion */
+@media(prefers-reduced-motion:reduce){
+  .kd-reveal{opacity:1;transform:none;transition:none}
+}
