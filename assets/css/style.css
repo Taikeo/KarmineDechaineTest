@@ -168,7 +168,7 @@ footer img.flogo{max-height:120px}
 /* ===== ARTICLE PAGE ===== */
 .container.article-container{max-width:860px}
 /* ── ARTICLE PAGE ── */
-.article-page{padding:60px 0 100px}
+.article-page{padding:40px 0 72px}
 
 /* Layout deux colonnes : texte + marge déco */
 .article-page .container{
@@ -987,7 +987,7 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 
 /* ── FIGURE dans article ── */
 .art-figure {
-  margin: 44px -32px;
+  margin: 44px 0;
   position: relative;
   overflow: hidden;
 }
@@ -1008,12 +1008,12 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
   color: var(--gray);
   padding: 10px 32px;
   border-left: 2px solid var(--cyan);
-  margin: 0 32px;
+  margin: 0;
   background: #f9f9f7;
 }
 @media(max-width:600px){
-  .art-figure { margin: 32px -12px; }
-  .art-figure-caption { margin: 0 12px; padding: 8px 12px; }
+  .art-figure { margin: 32px 0; }
+  .art-figure-caption { margin: 0; padding: 8px 12px; }
 }
 
 /* ── TEASER prochain article ── */
@@ -1092,4 +1092,22 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 }
 @media(max-width:600px){
   .art-teaser { padding: 24px 20px; margin: 40px 0 0; }
+}
+
+/* ── Blocs spéciaux — animation CSS autonome (pas de JS requis) ── */
+.election-results,
+.candidats-grid,
+.symptomes-grid,
+.cas-list,
+.bandeau-passation,
+.bandeau-horaire,
+.bandeau-alerte,
+.bandeau-medecins-light,
+.procuration-block,
+.art-teaser {
+  animation: block-in .6s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes block-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── 4. SCROLL REVEAL ── */
   const targets = document.querySelectorAll(
-    '.art-body p, .art-body h3, .art-body blockquote, .art-body ul, .art-body li, .art-hero-img, .art-caption, .pull-quote, .bandeau-rip, .bandeau-medecins, .nav-articles'
+    '.art-body p, .art-body h3, .art-body blockquote, .art-body ul, .art-body li, .art-hero-img, .art-caption, .pull-quote, .bandeau-rip, .bandeau-medecins, .nav-articles, .election-results, .candidats-grid, .symptomes-grid, .cas-list, .bandeau-passation, .bandeau-horaire, .bandeau-alerte, .bandeau-medecins-light, .procuration-block, .art-teaser'
   );
 
   targets.forEach((el, i) => {

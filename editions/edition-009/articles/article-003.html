@@ -13,7 +13,7 @@
 .bandeau-rip {
   position: relative;
   background: #080808;
-  margin: 56px -32px;
+  margin: 48px 0;
   padding: 56px 40px;
   text-align: center;
   overflow: hidden;
@@ -103,7 +103,7 @@
   border-top: 3px solid #111 !important;
   border-bottom: 3px solid #111 !important;
   padding: 40px 36px !important;
-  margin: 56px -32px !important;
+  margin: 48px 0 !important;
   display: grid !important;
   grid-template-columns: 80px 1fr !important;
   gap: 0 32px !important;
@@ -147,8 +147,8 @@
   font-weight: 700 !important;
 }
 @media(max-width:600px){
-  .bandeau-rip { margin: 40px -12px; padding: 40px 20px; }
-  .bandeau-medecins { margin: 40px -12px; padding: 28px 20px; grid-template-columns: 1fr; }
+  .bandeau-rip { margin: 32px 0; padding: 40px 20px; }
+  .bandeau-medecins { margin: 32px 0; padding: 28px 20px; grid-template-columns: 1fr; }
   .bandeau-medecins-icon { display: none; }
 }
 </style>
@@ -241,7 +241,7 @@
 </div>
 
 <!-- ACCROCHE PROCHAIN ARTICLE -->
-<div class="art-teaser kd-reveal">
+<div class="art-teaser">
   <div class="art-teaser-label">🔎 À suivre — Enquête en cours</div>
   <div class="art-teaser-title">L'épidémie de Karminéa : origine animale ?</div>
   <p class="art-teaser-body">Diarrhées violentes, maux de ventre intenses, nausées — les symptômes sont apparus brutalement chez des dizaines d'habitants, certains touchés à plusieurs reprises en l'espace de quelques jours. Si l'épidémie semble aujourd'hui contenue grâce au corps médical, une question hante désormais Karminéa : <strong>quelle en est la source ?</strong> Des témoignages convergent vers une contamination d'origine animale — mais rien n'est confirmé à ce stade. Notre rédaction enquête.</p>
@@ -250,8 +250,9 @@
 
 </div><!-- /art-body -->
 
-<nav class="nav-articles" style="display:flex;justify-content:flex-end;gap:16px;margin-top:48px;flex-wrap:wrap">
-  <a href="article-002.html" class="nav-art-btn" style="text-align:right"><span class="nav-label">Article suivant →</span><span class="nav-title" style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;text-transform:uppercase">Prochain article</span></a>
+<nav class="nav-articles">
+  <a href="article-002.html" class="nav-art-btn"><span class="nav-label">← Article précédent</span><span class="nav-title">Élections du Conseil</span></a>
+  <a href="article-004.html" class="nav-art-btn" style="text-align:right"><span class="nav-label">Article suivant →</span><span class="nav-title">Épidémie — Origine animale suspectée</span></a>
 </nav>
 
 </div></main>
