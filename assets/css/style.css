@@ -984,3 +984,34 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 }
 .nav-art-btn:hover { transform: translateX(4px) !important; }
 
+
+/* ── FIGURE dans article ── */
+.art-figure {
+  margin: 44px -32px;
+  position: relative;
+  overflow: hidden;
+}
+.art-figure-img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  display: block;
+  transition: transform .8s cubic-bezier(.22,1,.36,1);
+}
+.art-figure:hover .art-figure-img { transform: scale(1.02); }
+.art-figure-caption {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 10px 32px;
+  border-left: 2px solid var(--cyan);
+  margin: 0 32px;
+  background: #f9f9f7;
+}
+@media(max-width:600px){
+  .art-figure { margin: 32px -12px; }
+  .art-figure-caption { margin: 0 12px; padding: 8px 12px; }
+}
