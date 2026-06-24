@@ -1015,3 +1015,81 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
   .art-figure { margin: 32px -12px; }
   .art-figure-caption { margin: 0 12px; padding: 8px 12px; }
 }
+
+/* ── TEASER prochain article ── */
+.art-teaser {
+  margin: 56px 0 0;
+  background: var(--black);
+  padding: 36px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.art-teaser::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+}
+.art-teaser::after {
+  content: 'SUITE';
+  position: absolute;
+  right: -20px; top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 80px; font-weight: 900;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.03);
+  pointer-events: none;
+  user-select: none;
+}
+.art-teaser-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.art-teaser-label::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(0,180,216,.3), transparent);
+}
+.art-teaser-title {
+  font-family: 'Clash Display', 'Barlow Condensed', sans-serif;
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin-bottom: 16px;
+}
+.art-teaser-body {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 15px; font-weight: 400;
+  color: #888;
+  line-height: 1.75;
+  margin-bottom: 24px;
+  max-width: 560px;
+}
+.art-teaser-body strong { color: #ccc; font-weight: 600; }
+.art-teaser-btn {
+  display: inline-block;
+  background: var(--cyan);
+  color: var(--black);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; font-weight: 800;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: 11px 24px;
+  transition: background var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-spring);
+}
+.art-teaser-btn:hover {
+  background: #90E0EF;
+  transform: translateX(4px);
+}
+@media(max-width:600px){
+  .art-teaser { padding: 24px 20px; margin: 40px 0 0; }
+}

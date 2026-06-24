@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Le Karmine Déchaîné — Épidémie à Karminéa : origine animale suspectée</title>
+<link rel="stylesheet" href="../../../assets/css/style.css"/>
+<link rel="icon" type="image/x-icon" href="../../../assets/img/favicon.ico"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQG9XRWKCQ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZQG9XRWKCQ');</script>
+<style>
+/* ── SYMPTÔMES ── */
+.symptomes-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2px;
+  background: #111;
+  border: 2px solid #111;
+  margin: 44px 0;
+}
+.symptome-card {
+  background: #fff;
+  padding: 24px 22px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: background .2s ease;
+}
+.symptome-card:hover { background: #f7f7f5; }
+.symptome-icon { font-size: 32px; }
+.symptome-name {
+  font-family: 'Clash Display','Barlow Condensed',sans-serif;
+  font-size: 18px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: -.01em;
+  color: #111; line-height: 1;
+}
+.symptome-desc {
+  font-family: 'Satoshi',sans-serif;
+  font-size: 13px; color: var(--gray); line-height: 1.6;
+}
+
+/* ── CAS RECENSÉS ── */
+.cas-list {
+  margin: 44px 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.cas-row {
+  display: flex; align-items: center; gap: 20px;
+  padding: 18px 24px;
+  background: #fff;
+  border-left: 3px solid #eee;
+  transition: border-color .2s, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.cas-row:hover { border-color: var(--cyan); transform: translateX(4px); }
+.cas-row.notable { border-left-color: var(--cyan); background: #f0fafd; }
+.cas-name {
+  font-family: 'Clash Display','Barlow Condensed',sans-serif;
+  font-size: 18px; font-weight: 700;
+  text-transform: uppercase; color: #111;
+  letter-spacing: -.01em; flex: 1;
+}
+.cas-count {
+  display: flex; gap: 4px;
+}
+.cas-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--cyan);
+  display: inline-block;
+}
+
+/* ── ALERTE SANITAIRE ── */
+.bandeau-alerte {
+  background: #1a0a00;
+  border-top: 3px solid #ff6b00;
+  padding: 32px 36px;
+  margin: 52px 0;
+  position: relative; overflow: hidden;
+}
+.bandeau-alerte::before {
+  content: '⚠';
+  position: absolute; right: 20px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 120px; opacity: .04;
+  pointer-events: none;
+}
+.alerte-label {
+  font-family: 'Barlow Condensed',sans-serif;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: #ff6b00; margin-bottom: 10px;
+}
+.alerte-title {
+  font-family: 'Clash Display','Barlow Condensed',sans-serif;
+  font-size: 26px; font-weight: 700;
+  text-transform: uppercase; color: #fff;
+  letter-spacing: -.02em; margin-bottom: 12px;
+}
+.alerte-body {
+  font-family: 'Satoshi',sans-serif;
+  font-size: 14px; color: #888; line-height: 1.75;
+}
+.alerte-body strong { color: #ccc; font-weight: 600; }
+
+/* Bandeau médecins version légère */
+.bandeau-medecins-light {
+  border-top: 3px solid #111;
+  border-bottom: 1px solid #ddd;
+  padding: 28px 0;
+  margin: 48px 0;
+  display: flex; gap: 20px; align-items: center;
+}
+.bml-icon { font-size: 36px; flex-shrink: 0; }
+.bml-content {}
+.bml-label {
+  font-family: 'Barlow Condensed',sans-serif;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 6px;
+}
+.bml-title {
+  font-family: 'Clash Display','Barlow Condensed',sans-serif;
+  font-size: 24px; font-weight: 700;
+  text-transform: uppercase; color: #111;
+  letter-spacing: -.02em; margin-bottom: 8px;
+}
+.bml-body {
+  font-family: 'Satoshi',sans-serif;
+  font-size: 14px; color: #555; line-height: 1.7;
+}
+
+@media(max-width:600px){
+  .symptomes-grid { grid-template-columns: 1fr 1fr; }
+  .bandeau-alerte { padding: 24px 20px; }
+  .cas-row { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-top"><span><strong>ÉDITION N°009</strong> · JUIN 2026</span><a href="../index.html">← Retour à l'édition</a></div>
+  <div class="mast-center" style="cursor:pointer" onclick="window.location='../../../index.html'">
+    <img src="../../../assets/img/logo-banner.png" alt="Le Karmine Déchaîné"/>
+    <span class="mast-tagline">Journalisme indépendant, libre et sans chaînes</span>
+  </div>
+  <nav class="mast-nav"><a href="../../../editions.html">Éditions</a><span class="sep">|</span><a href="../../../enquetes.html">Enquêtes</a><span class="sep">|</span><a href="../../../interviews.html">Interviews</a></nav>
+</header>
+
+<div class="ticker">
+  <div class="ticker-label">Flash</div>
+  <div class="ticker-track">
+    <span>ÉPIDÉMIE — ORIGINE ANIMALE SUSPECTÉE, ENQUÊTE EN COURS</span>
+    <span>DES DIZAINES DE CAS RECENSÉS — ÉPIDÉMIE AUJOURD'HUI CONTENUE</span>
+    <span>SYMPTÔMES : DIARRHÉES, MAUX DE VENTRE, NAUSÉES</span>
+    <span>HOMMAGE AU CORPS MÉDICAL — MERCI POUR VOTRE DÉVOUEMENT</span>
+    <span>ÉPIDÉMIE — ORIGINE ANIMALE SUSPECTÉE, ENQUÊTE EN COURS</span>
+    <span>DES DIZAINES DE CAS RECENSÉS — ÉPIDÉMIE AUJOURD'HUI CONTENUE</span>
+    <span>SYMPTÔMES : DIARRHÉES, MAUX DE VENTRE, NAUSÉES</span>
+    <span>HOMMAGE AU CORPS MÉDICAL — MERCI POUR VOTRE DÉVOUEMENT</span>
+  </div>
+</div>
+
+<main class="article-page"><div class="container">
+
+<div class="breadcrumb">
+  <a href="../../../index.html">Accueil</a><span>›</span>
+  <a href="../index.html">Édition N°009</a><span>›</span>
+  Santé publique
+</div>
+
+<span class="art-rubrique">🦠 Santé publique — Enquête</span>
+<div class="art-kicker">Épidémie à Karminéa</div>
+<h1 class="art-title">Origine animale <em>suspectée</em> — mais rien n'est confirmé</h1>
+<p class="art-subtitle">Des dizaines d'habitants touchés, certains à plusieurs reprises. Des symptômes violents et soudains. Une piste animale qui se dessine — mais l'enquête est toujours ouverte. Le Karmine Déchaîné fait le point.</p>
+<div class="art-meta">
+  <span>Par <strong>La Rédaction</strong></span>
+  <span class="s">·</span>
+  <span>Juin 2026</span>
+  <span class="s">·</span>
+  <span>Santé publique</span>
+</div>
+
+<div class="art-body">
+
+<p class="dc">Karminéa a vécu une semaine sanitaire hors du commun. Alors que l'incendie des écuries Belazur occupait encore tous les esprits, un autre fléau s'est abattu sur la communauté — silencieux, rapide, violent. En quelques heures, des dizaines d'habitants ont été terrassés par les mêmes symptômes. La question reste entière : <strong>d'où vient cette épidémie ?</strong></p>
+
+<h3>🤒 Les symptômes</h3>
+<p>Le tableau clinique est identique pour tous les cas recensés — une triade de symptômes apparus brutalement, sans signe avant-coureur.</p>
+
+</div>
+
+<div class="symptomes-grid kd-reveal">
+  <div class="symptome-card">
+    <div class="symptome-icon">🚽</div>
+    <div class="symptome-name">Diarrhées</div>
+    <div class="symptome-desc">Violentes et soudaines, signalées comme premier symptôme dans la majorité des cas.</div>
+  </div>
+  <div class="symptome-card">
+    <div class="symptome-icon">😣</div>
+    <div class="symptome-name">Maux de ventre</div>
+    <div class="symptome-desc">Douleurs abdominales intenses, décrites comme insupportables par plusieurs habitants.</div>
+  </div>
+  <div class="symptome-card">
+    <div class="symptome-icon">🤢</div>
+    <div class="symptome-name">Nausées</div>
+    <div class="symptome-desc">Accompagnant systématiquement les deux autres symptômes, parfois jusqu'au malaise.</div>
+  </div>
+</div>
+
+<div class="art-body">
+
+<h3>📋 Cas recensés</h3>
+<p>Parmi les habitants touchés, plusieurs noms reviennent dans les témoignages recueillis par notre rédaction. Certains ont été frappés à <strong>plusieurs reprises</strong>, ce qui est particulièrement préoccupant.</p>
+
+</div>
+
+<div class="cas-list kd-reveal">
+  <div class="cas-row notable">
+    <div class="cas-name">Monsieur le Président</div>
+    <div class="cas-count">
+      <div class="cas-dot"></div>
+      <div class="cas-dot"></div>
+      <div class="cas-dot"></div>
+    </div>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan)">3 fois</span>
+  </div>
+  <div class="cas-row notable">
+    <div class="cas-name">Hector Lonpif</div>
+    <div class="cas-count">
+      <div class="cas-dot"></div>
+      <div class="cas-dot"></div>
+      <div class="cas-dot"></div>
+    </div>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan)">3 fois</span>
+  </div>
+  <div class="cas-row">
+    <div class="cas-name">Dizaines d'habitants</div>
+    <div class="cas-count">
+      <div class="cas-dot"></div>
+    </div>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray)">1 fois ou +</span>
+  </div>
+</div>
+
+<div class="art-body">
+
+<!-- Alerte sanitaire -->
+<div class="bandeau-alerte kd-reveal">
+  <div class="alerte-label">⚠ Piste en cours d'investigation</div>
+  <div class="alerte-title">Contamination d'origine animale ?</div>
+  <p class="alerte-body">Plusieurs témoignages convergent vers une <strong>contamination d'origine animale</strong> — potentiellement liée aux animaux présents dans ou autour des écuries Belazur, touchées par l'incendie. Mais à ce stade, <strong>aucune source officielle ne confirme cette hypothèse</strong>. L'enquête est ouverte. Le Karmine Déchaîné continue de suivre l'affaire et publiera tout nouvel élément dès qu'il sera disponible.</p>
+</div>
+
+<!-- Hommage médecins -->
+<div class="bandeau-medecins-light kd-reveal">
+  <div class="bml-icon">⚕️</div>
+  <div class="bml-content">
+    <div class="bml-label">Hommage — Corps médical</div>
+    <div class="bml-title">Épidémie contenue grâce à nos médecins</div>
+    <p class="bml-body">Hier, grâce au travail acharné et inlassable du corps médical de Karminéa, l'épidémie a pu être contenue. Des dizaines de cas pris en charge, des gardes enchaînées sans relâche. Le Karmine Déchaîné s'incline devant leur dévouement. <strong>Merci.</strong></p>
+  </div>
+</div>
+
+<p>La rédaction appelle les habitants à la vigilance et à signaler tout nouveau cas. Prenez soin de vous.</p>
+
+</div>
+
+<nav class="nav-articles">
+  <a href="article-003.html" class="nav-art-btn"><span class="nav-label">← Article précédent</span><span class="nav-title">Incendie des Écuries Belazur</span></a>
+  
+</nav>
+
+</div></main>
+
+<footer>
+  <div style="max-width:1200px;margin:0 auto;padding:0 20px">
+    <div style="display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid #222;flex-wrap:wrap">
+      <img src="../../../assets/img/logo-mascot.png" alt="" style="max-height:60px;flex-shrink:0" class="flogo"/>
+      <div style="flex:1;min-width:200px">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px">Le Karmine Déchaîné</div>
+        <p style="font-size:12px;color:#999;font-weight:300">Journalisme indépendant, libre et sans chaînes.</p>
+      </div>
+    </div>
+    <div style="padding:14px 0;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#444;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>© Le Karmine Déchaîné</span><span style="color:var(--cyan)">Vérité, courage, encre.</span>
+    </div>
+  </div>
+</footer>
+<script src="../../../assets/js/article.js"></script>
+<script src="../../../assets/js/global.js"></script>
+</body>
+</html>
