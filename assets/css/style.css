@@ -690,29 +690,7 @@ blockquote em{
    EFFETS MODERNES GLOBAUX
    ============================================================ */
 
-/* ── Curseur custom ── */
-*, *::before, *::after { cursor: none !important; }
-#kd-cursor {
-  position: fixed; top: 0; left: 0; z-index: 99999;
-  width: 10px; height: 10px;
-  background: var(--cyan);
-  border-radius: 50%;
-  pointer-events: none;
-  transition: transform .12s ease, background .2s ease;
-  mix-blend-mode: difference;
-}
-#kd-cursor-ring {
-  position: fixed; top: 0; left: 0; z-index: 99998;
-  width: 36px; height: 36px;
-  border: 1.5px solid var(--cyan);
-  border-radius: 50%;
-  pointer-events: none;
-  transition: transform .22s cubic-bezier(.22,1,.36,1), opacity .3s, width .25s, height .25s;
-  opacity: .5;
-  transform: translate(-50%,-50%);
-}
-#kd-cursor.hovered { transform: translate(-50%,-50%) scale(2.5); background: #fff; }
-#kd-cursor-ring.hovered { width: 52px; height: 52px; opacity: .2; }
+
 
 /* ── Sélection de texte stylisée ── */
 ::selection { background: var(--cyan); color: #000; }
@@ -855,3 +833,154 @@ footer::before {
   *, *::before, *::after { transition: none !important; animation: none !important; }
   #kd-cursor, #kd-cursor-ring { display: none; }
 }
+
+/* ============================================================
+   SMOOTHNESS — tout ce qui bouge doit être fluide
+   ============================================================ */
+
+/* Easing global sur les transitions */
+:root {
+  --ease-out: cubic-bezier(.22,1,.36,1);
+  --ease-in-out: cubic-bezier(.65,0,.35,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --dur-fast: .18s;
+  --dur-mid: .35s;
+  --dur-slow: .6s;
+}
+
+/* ── PAGE LOAD — fade in doux ── */
+body {
+  animation: page-in .5s var(--ease-out) both;
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── LIENS — transition couleur fluide ── */
+a { transition: color var(--dur-fast) var(--ease-out), opacity var(--dur-fast) ease; }
+
+/* ── BOUTONS — scale spring au clic ── */
+.hero-btn, .feat-link, .art-btn, .ed-link, .card-btn, .ba-cta, .nav-art-btn {
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-spring),
+              box-shadow var(--dur-mid) var(--ease-out) !important;
+}
+.hero-btn:active, .feat-link:active, .art-btn:active,
+.ed-link:active, .card-btn:active { transform: scale(.97) !important; }
+
+/* ── CARDS — spring lift ── */
+.ed-card {
+  transition: transform var(--dur-mid) var(--ease-spring),
+              box-shadow var(--dur-mid) var(--ease-out) !important;
+}
+.ed-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 24px 56px rgba(0,0,0,.14) !important;
+}
+.card {
+  transition: transform var(--dur-mid) var(--ease-spring),
+              box-shadow var(--dur-mid) var(--ease-out),
+              background var(--dur-fast) ease !important;
+}
+.card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 14px 36px rgba(0,0,0,.09) !important;
+}
+
+/* ── IMAGES — zoom ultra fluide ── */
+.ed-placeholder img, .card-img, .hero-main-img, .art-hero-img {
+  transition: transform var(--dur-slow) var(--ease-out),
+              filter var(--dur-mid) ease !important;
+}
+
+/* ── SCROLL REVEAL — easing premium ── */
+.kd-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+  will-change: opacity, transform;
+}
+.kd-visible { opacity: 1; transform: translateY(0); }
+
+.art-body h3.kd-reveal {
+  transform: translateX(-20px);
+  transition: opacity var(--dur-mid) var(--ease-out),
+              transform var(--dur-mid) var(--ease-spring);
+}
+.art-body h3.kd-visible { transform: translateX(0); }
+
+blockquote.kd-reveal, .art-body blockquote.kd-reveal {
+  transform: translateY(20px) scale(.99);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-spring);
+}
+blockquote.kd-visible, .art-body blockquote.kd-visible {
+  transform: translateY(0) scale(1);
+}
+
+.pull-quote.kd-reveal {
+  transform: translateY(16px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-spring);
+}
+.pull-quote.kd-visible { transform: translateY(0); }
+
+/* Stagger sur les cards de la grille */
+.editions-grid .ed-card:nth-child(1) { transition-delay: 0s; }
+.editions-grid .ed-card:nth-child(2) { transition-delay: .07s; }
+.editions-grid .ed-card:nth-child(3) { transition-delay: .14s; }
+.editions-grid .ed-card:nth-child(4) { transition-delay: .21s; }
+.editions-grid .ed-card:nth-child(5) { transition-delay: .28s; }
+.editions-grid .ed-card:nth-child(6) { transition-delay: .35s; }
+.cards .card:nth-child(1) { transition-delay: 0s; }
+.cards .card:nth-child(2) { transition-delay: .08s; }
+.cards .card:nth-child(3) { transition-delay: .16s; }
+
+/* ── PROGRESS BAR — easing smooth ── */
+#kd-progress {
+  transition: width .08s linear !important;
+  background: linear-gradient(90deg, var(--cyan), #90E0EF);
+}
+
+/* ── TICKER — pause au hover ── */
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-track { transition: opacity .2s; }
+
+/* ── MASTHEAD — transition shadow ── */
+.mast { transition: box-shadow var(--dur-mid) var(--ease-out) !important; }
+.mast.scrolled {
+  box-shadow: 0 2px 24px rgba(0,0,0,.08) !important;
+  position: sticky; top: 0; z-index: 100;
+}
+
+/* ── ART BODY paragraphes — micro fade ── */
+.art-body p {
+  transition: opacity var(--dur-fast) ease;
+}
+
+/* ── BANDEAU RIP — glow pulsé ── */
+.bandeau-rip {
+  animation: rip-breathe 4s ease-in-out infinite;
+}
+@keyframes rip-breathe {
+  0%,100% { box-shadow: 0 0 0 rgba(139,0,0,0); }
+  50%      { box-shadow: 0 0 48px rgba(139,0,0,.18); }
+}
+
+/* ── PULL QUOTE hover ── */
+.pull-quote {
+  transition: transform var(--dur-mid) var(--ease-spring),
+              color var(--dur-fast) ease;
+}
+.pull-quote:hover { transform: translateX(8px); }
+
+/* ── NAV ARTICLES — indicateur slide ── */
+.nav-art-btn {
+  transition: background var(--dur-fast) ease,
+              transform var(--dur-mid) var(--ease-spring) !important;
+}
+.nav-art-btn:hover { transform: translateX(4px) !important; }
+
