@@ -1067,14 +1067,17 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
   margin-bottom: 16px;
 }
 .art-teaser-body {
-  font-family: 'Satoshi', sans-serif;
-  font-size: 15px; font-weight: 400;
-  color: #888;
-  line-height: 1.75;
-  margin-bottom: 24px;
-  max-width: 560px;
+  font-family: 'Satoshi', sans-serif !important;
+  font-size: 15px !important; font-weight: 400 !important;
+  color: #888 !important;
+  line-height: 1.75 !important;
+  margin-bottom: 24px !important;
+  max-width: 560px !important;
 }
-.art-teaser-body strong { color: #ccc; font-weight: 600; }
+.art-teaser-body strong { color: #ccc !important; font-weight: 600 !important; }
+.art-teaser, .art-teaser * { box-sizing: border-box; }
+.art-teaser p { color: #888 !important; font-size: 15px !important; font-weight: 400 !important; line-height: 1.75 !important; }
+.art-teaser strong { color: #ccc !important; }
 .art-teaser-btn {
   display: inline-block;
   background: var(--cyan);

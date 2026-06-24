@@ -95,10 +95,13 @@
   letter-spacing: -.02em; margin-bottom: 12px;
 }
 .alerte-body {
-  font-family: 'Satoshi',sans-serif;
-  font-size: 14px; color: #888; line-height: 1.75;
+  font-family: 'Satoshi',sans-serif !important;
+  font-size: 15px !important; color: #aaa !important; line-height: 1.75 !important;
+  font-weight: 400 !important;
 }
-.alerte-body strong { color: #ccc; font-weight: 600; }
+.alerte-body strong { color: #fff !important; font-weight: 600 !important; }
+.bandeau-alerte * { color: inherit; }
+.bandeau-alerte p, .bandeau-alerte .alerte-body { color: #aaa !important; }
 
 /* Bandeau médecins version légère */
 .bandeau-medecins-light {
@@ -186,7 +189,7 @@
 <h3>🤒 Les symptômes</h3>
 <p>Le tableau clinique est identique pour tous les cas recensés — une triade de symptômes apparus brutalement, sans signe avant-coureur.</p>
 
-</div>
+</div><!-- /art-body -->
 
 <div class="symptomes-grid">
   <div class="symptome-card">
@@ -211,7 +214,7 @@
 <h3>📋 Cas recensés</h3>
 <p>Parmi les habitants touchés, plusieurs noms reviennent dans les témoignages recueillis par notre rédaction. Certains ont été frappés à <strong>plusieurs reprises</strong>, ce qui est particulièrement préoccupant.</p>
 
-</div>
+</div><!-- /art-body -->
 
 <div class="cas-list">
   <div class="cas-row notable">
@@ -262,7 +265,7 @@
 
 <p>La rédaction appelle les habitants à la vigilance et à signaler tout nouveau cas. Prenez soin de vous.</p>
 
-</div>
+</div><!-- /art-body -->
 
 <nav class="nav-articles">
   <a href="article-003.html" class="nav-art-btn"><span class="nav-label">← Article précédent</span><span class="nav-title">Incendie des Écuries Belazur</span></a>
