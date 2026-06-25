@@ -159,6 +159,56 @@
 @media(max-width:450px){
   .candidats-grid { grid-template-columns: 1fr; }
 }
+
+/* ── RÉSULTATS CONSEIL ── */
+.resultats-conseil {
+  display: flex; flex-direction: column; gap: 2px;
+  margin: 28px 0 44px;
+}
+.res-elu, .res-non-elu {
+  display: grid;
+  grid-template-columns: 40px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  transition: transform .25s cubic-bezier(.22,1,.36,1);
+}
+.res-elu { background: #f0faf4; border-left: 4px solid #00c853; }
+.res-non-elu { background: #fff5f5; border-left: 4px solid #e53935; }
+.res-elu:hover, .res-non-elu:hover { transform: translateX(4px); }
+.res-rang {
+  font-family: 'Clash Display','Barlow Condensed',sans-serif;
+  font-size: 22px; font-weight: 700; color: #ccc; line-height: 1;
+}
+.res-nom {
+  font-family: 'Clash Display','Barlow Condensed',sans-serif;
+  font-size: 18px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: -.01em; color: #111;
+}
+.res-tag {
+  font-family: 'Barlow Condensed',sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--gray);
+  grid-column: 2; margin-top: -8px;
+}
+.res-votes {
+  font-family: 'Clash Display','Barlow Condensed',sans-serif;
+  font-size: 32px; font-weight: 700; color: #111;
+  letter-spacing: -.03em; line-height: 1; text-align: right;
+  grid-row: 1 / 3; grid-column: 4;
+}
+.res-votes span {
+  display: block; font-family: 'Barlow Condensed',sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gray); margin-top: 2px;
+}
+.res-elu .res-votes { color: #00c853; }
+.res-non-elu .res-votes { color: #e53935; }
+@media(max-width:600px){
+  .res-elu, .res-non-elu { grid-template-columns: 30px 1fr auto; gap: 10px; padding: 12px 14px; }
+  .res-nom { font-size: 15px; }
+  .res-votes { font-size: 24px; }
+}
 </style>
 </head>
 <body>
@@ -193,9 +243,9 @@
 </div>
 
 <span class="art-rubrique">🏛️ Politique</span>
-<div class="art-kicker">Élections du Conseil de Karminéa</div>
-<h1 class="art-title">Ce soir, <em>Karminéa choisit son Conseil</em></h1>
-<p class="art-subtitle">De 20h à 23h, les habitants de Karminéa sont appelés aux urnes pour élire les 6 membres qui composeront le Conseil. Huit candidatures, une seule soirée pour décider.</p>
+<div class="art-kicker">Élections du Conseil de Karminéa — Résultats</div>
+<h1 class="art-title">Le Conseil de Karminéa <em>est élu</em></h1>
+<p class="art-subtitle">Les votes sont comptés. Six membres ont été élus pour siéger au Conseil aux côtés de Mr Januk. Voici les résultats officiels.</p>
 <div class="art-meta">
   <span>Par <strong>La Rédaction</strong></span>
   <span class="s">·</span>
@@ -257,8 +307,8 @@
   </div>
   <div class="candidat-card">
     <div class="candidat-num">07</div>
-    <div class="candidat-name">Association Slayyyyyy</div>
-    <div class="candidat-tag">Pauline &amp; co</div>
+    <div class="candidat-name">Pauline</div>
+    <div class="candidat-tag">En soutien de l'Association Slayyyyyy</div>
   </div>
   <div class="candidat-card">
     <div class="candidat-num">08</div>
@@ -288,6 +338,65 @@ Cette procuration est valable à compter d'aujourd'hui et jusqu'à aujourd'hui u
 <p>La rédaction du Karmine Déchaîné encourage tous les habitants à participer. Votre voix compte — le Conseil de demain se décide ce soir.</p>
 
 </div><!-- /art-body -->
+
+<!-- RÉSULTATS -->
+<h3 style="font-family:'Clash Display',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;color:#111;margin:48px 0 20px;display:flex;align-items:center;gap:14px;letter-spacing:-.01em"><span style="display:inline-block;width:6px;height:22px;background:var(--cyan);border-radius:1px;flex-shrink:0"></span>🗳️ Les résultats officiels</h3>
+
+<div class="resultats-conseil">
+  <div class="res-elu">
+    <div class="res-rang">01</div>
+    <div class="res-nom">Pauline</div>
+    <div class="res-tag">En soutien de l'Association Slayyyyyy</div>
+    <div class="res-votes">18 <span>voix</span></div>
+  </div>
+  <div class="res-elu">
+    <div class="res-rang">02</div>
+    <div class="res-nom">Amaryllis</div>
+    <div class="res-tag">Candidature individuelle</div>
+    <div class="res-votes">15 <span>voix</span></div>
+  </div>
+  <div class="res-elu">
+    <div class="res-rang">03</div>
+    <div class="res-nom">David Martinez</div>
+    <div class="res-tag">En soutien d'Hector Lonpiff</div>
+    <div class="res-votes">14 <span>voix</span></div>
+  </div>
+  <div class="res-elu">
+    <div class="res-rang">04</div>
+    <div class="res-nom">Vince Lance</div>
+    <div class="res-tag">En soutien de Kevin Bodin</div>
+    <div class="res-votes">13 <span>voix</span></div>
+  </div>
+  <div class="res-elu">
+    <div class="res-rang">05</div>
+    <div class="res-nom">Hanmā</div>
+    <div class="res-tag">Candidature individuelle</div>
+    <div class="res-votes">10 <span>voix</span></div>
+  </div>
+  <div class="res-elu">
+    <div class="res-rang">06</div>
+    <div class="res-nom">Golden Sluje Belazur</div>
+    <div class="res-tag">Candidature individuelle</div>
+    <div class="res-votes">8 <span>voix</span></div>
+  </div>
+  <div class="res-non-elu">
+    <div class="res-rang">07</div>
+    <div class="res-nom">MonteCarlo</div>
+    <div class="res-tag">Candidature individuelle</div>
+    <div class="res-votes">6 <span>voix</span></div>
+  </div>
+  <div class="res-non-elu">
+    <div class="res-rang">08</div>
+    <div class="res-nom">Franck McLane</div>
+    <div class="res-tag">Candidature individuelle</div>
+    <div class="res-votes">3 <span>voix</span></div>
+  </div>
+</div>
+
+<figure class="art-figure" style="margin:44px 0">
+  <img src="img/conseil-reunion.png" alt="Le nouveau Conseil de Karminéa réuni" class="art-figure-img"/>
+  <figcaption class="art-figure-caption">Le nouveau Conseil de Karminéa réuni pour la première fois — une page s'ouvre.</figcaption>
+</figure>
 
 <nav class="nav-articles">
   <a href="article-001.html" class="nav-art-btn"><span class="nav-label">← Article précédent</span><span class="nav-title">Résultats Présidentielle</span></a>
