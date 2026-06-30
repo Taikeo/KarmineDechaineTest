@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bar = document.createElement('div');
     bar.id = 'kd-alert-bar';
     bar.innerHTML = `
-      <div class="al-label">🔴 ALERTE</div>
+      <div class="al-label"><span class="al-dot"></span> ALERTE</div>
       <div class="al-track">
         <span>${repeat}</span>
         <span>${repeat}</span>
