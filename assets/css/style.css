@@ -1114,3 +1114,153 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================================
+   PRÉVENTION EAU — Popup + Bandeau
+   ============================================================ */
+
+/* ── BANDEAU EAU — fixe en haut, jaune, ticker ── */
+#kd-water-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9000;
+  background: #FFD600;
+  color: #000;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 36px;
+  transform: translateY(-100%);
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
+}
+#kd-water-banner.visible { transform: translateY(0); }
+#kd-water-banner .water-label {
+  background: #000;
+  color: #FFD600;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 900;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: 0 16px;
+  height: 100%;
+  display: flex; align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+#kd-water-banner .water-track-wrap {
+  flex: 1; overflow: hidden; height: 100%;
+  display: flex; align-items: center;
+}
+#kd-water-banner .water-track {
+  display: flex; gap: 60px;
+  animation: water-scroll 18s linear infinite;
+  white-space: nowrap;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: #000;
+}
+#kd-water-banner .water-track span::before { content: "🔥 "; }
+@keyframes water-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+#kd-water-banner .water-close {
+  background: none; border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px; font-weight: 900;
+  color: #000; cursor: pointer;
+  opacity: .4; transition: opacity .2s;
+  padding: 0 14px; height: 100%;
+  flex-shrink: 0;
+}
+#kd-water-banner .water-close:hover { opacity: 1; }
+
+/* ── POPUP EAU ── */
+#kd-water-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,.7);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+  backdrop-filter: blur(4px);
+}
+#kd-water-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+#kd-water-popup {
+  background: #fff;
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(20px) scale(.97);
+  transition: transform .4s cubic-bezier(.22,1,.36,1);
+}
+#kd-water-overlay.visible #kd-water-popup {
+  transform: translateY(0) scale(1);
+}
+.water-popup-top {
+  background: var(--cyan);
+  padding: 28px 32px 24px;
+  text-align: center;
+}
+.water-popup-emoji {
+  font-size: 52px;
+  display: block;
+  margin-bottom: 8px;
+  animation: water-bounce 2s ease-in-out infinite;
+}
+@keyframes water-bounce {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.water-popup-title {
+  font-family: 'Clash Display','Barlow Condensed', sans-serif;
+  font-size: 28px; font-weight: 700;
+  text-transform: uppercase;
+  color: var(--black);
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.water-popup-body {
+  padding: 24px 32px;
+}
+.water-popup-text {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 15px; color: #444;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.water-popup-text strong { color: var(--black); font-weight: 700; }
+.water-popup-btn {
+  display: block;
+  width: 100%;
+  background: var(--black);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 800;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: 14px;
+  text-align: center;
+  border: none; cursor: pointer;
+  transition: background .2s, transform .2s cubic-bezier(.22,1,.36,1);
+}
+.water-popup-btn:hover { background: var(--cyan); color: var(--black); transform: scale(.99); }
+.water-popup-close {
+  position: absolute; top: 10px; right: 14px;
+  background: none; border: none;
+  font-size: 20px; font-weight: 900;
+  color: var(--black); cursor: pointer;
+  opacity: .4; transition: opacity .2s;
+  font-family: 'Barlow Condensed', sans-serif;
+}
+.water-popup-close:hover { opacity: 1; }
