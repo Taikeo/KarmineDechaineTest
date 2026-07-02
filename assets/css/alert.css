@@ -118,3 +118,27 @@ body {
 @media(prefers-reduced-motion: reduce) {
   body, body::before, body::after { animation: none !important; }
 }
+
+/* ── SKIN 2.0 — harmonisation alerte ── */
+#kd-alert-bar{
+  background:#FF3B5C;
+  border-bottom:3px solid #1A1512;
+  box-shadow:0 4px 0 rgba(26,21,18,.15);
+  height:38px;
+}
+#kd-alert-bar .al-label{
+  background:#1A1512;color:#fff;
+  font-family:'Satoshi',sans-serif;font-weight:800;
+  border-radius:0 999px 999px 0;
+  letter-spacing:.18em;
+}
+.al-label .al-dot{background:#FFD64D}
+#kd-alert-bar .al-track{
+  font-family:'Satoshi',sans-serif;font-weight:800;
+  letter-spacing:.06em;
+}
+#kd-alert-bar .al-track span::before{content:"⚠ ";color:#FFD64D}
+header.mast{margin-top:38px !important}
+header{margin-top:38px !important}
+body{outline:none}
+.hero-main-img,.art-hero-img{box-shadow:6px 6px 0 #1A1512}

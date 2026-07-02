@@ -9,6 +9,82 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQG9XRWKCQ"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZQG9XRWKCQ');</script>
 <link rel="stylesheet" href="../../../assets/css/alert.css"/>
+<style>
+/* ── BANDEAU RIP JACKSON ── */
+.bandeau-jackson {
+  position: relative;
+  background: #060606;
+  margin: 52px 0;
+  padding: 0;
+  overflow: hidden;
+  border-top: 3px solid #8b0000;
+  border-bottom: 3px solid #8b0000;
+}
+.jackson-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+.jackson-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(60%) contrast(1.2) brightness(.7);
+  display: block;
+}
+.jackson-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(6,6,6,.1) 0%, rgba(6,6,6,.85) 100%);
+}
+.jackson-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px 32px 28px;
+  z-index: 2;
+  text-align: center;
+}
+.jackson-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: .5em; text-transform: uppercase;
+  color: #8b0000; margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+}
+.jackson-label::before, .jackson-label::after {
+  content: ''; display: inline-block;
+  width: 36px; height: 1px; background: #8b0000; opacity: .6;
+}
+.jackson-name {
+  font-family: 'Clash Display', 'Barlow Condensed', sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: -.02em; line-height: 1;
+  color: #fff; margin-bottom: 6px;
+}
+.jackson-dates {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: #666; margin-bottom: 14px;
+}
+.jackson-line {
+  width: 48px; height: 2px;
+  background: #8b0000;
+  margin: 12px auto 14px;
+}
+.jackson-sub {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px; font-weight: 400;
+  font-style: italic; color: #888;
+  line-height: 1.7; max-width: 480px;
+  margin: 0 auto;
+}
+.jackson-sub strong { color: #bbb; font-weight: 600; }
+</style>
 </head>
 <body>
 <header class="mast">
@@ -23,11 +99,11 @@
 <div class="ticker">
   <div class="ticker-label">Flash</div>
   <div class="ticker-track">
-    <span>ÉDITION SPÉCIALE N°010 — SÉCURITÉ, PROPRETÉ, RECENSEMENT & URBANISME</span>
+    <span>🔴 MR. JACKSON ASSASSINÉ PAR LES HOMMES EN NOIR — KARMINÉA EN DEUIL</span>
     <span>NETHER VERROUILLÉ — ALERTE MAXIMALE SUR KARMINÉA</span>
     <span>SERVICE DE PROPRETÉ URBAINE LANCÉ — KARMINÉA S'EMBELLIT</span>
     <span>STAND À IDÉES PAR CARL & PAULINE — DONNEZ VOTRE VOIX</span>
-    <span>ÉDITION SPÉCIALE N°010 — SÉCURITÉ, PROPRETÉ, RECENSEMENT & URBANISME</span>
+    <span>🔴 MR. JACKSON ASSASSINÉ PAR LES HOMMES EN NOIR — KARMINÉA EN DEUIL</span>
     <span>NETHER VERROUILLÉ — ALERTE MAXIMALE SUR KARMINÉA</span>
     <span>SERVICE DE PROPRETÉ URBAINE LANCÉ — KARMINÉA S'EMBELLIT</span>
     <span>STAND À IDÉES PAR CARL & PAULINE — DONNEZ VOTRE VOIX</span>
@@ -68,9 +144,30 @@
 <h3>⚔️ Instauration d'un service militaire préventif</h3>
 <p>Face à la puissance de frappe de ce nouvel ennemi, la sécurité de la ville ne peut plus reposer sur les seules épaules des forces de l'ordre habituelles. Pour anticiper de futures offensives, le gouvernement annonce la mise en place immédiate d'un <strong>service militaire</strong>. Cette mesure de prévention vise à former la population, à renforcer nos lignes de défense et à préparer Karminéa à se protéger contre toute éventualité. Les détails concernant les modalités de conscription et d'entraînement seront communiqués très prochainement.</p>
 
+<h3>💀 Mr. Jackson kidnappé et assassiné</h3>
+<p>Alors que Karminéa peinait encore à digérer l'attaque, une nouvelle d'une gravité extrême est tombée : <strong>Mr. Jackson, ancien Président de Karminéa</strong>, a été retrouvé mort. Une vidéo, dont l'authenticité a été confirmée par les autorités, montre l'ex-président kidnappé par les hommes en noir et <strong>exécuté par un gaz</strong> dans ce qui semble être une mise en scène délibérée et froide.</p>
+<p>Ce meurtre ne laisse plus aucun doute sur les intentions de cette faction. Ce n'est plus une menace — c'est une déclaration de guerre.</p>
+
 <h3>✊ Ce qu'il faut retenir</h3>
 <p>La ville entre dans une nouvelle ère où la vigilance est de mise. Le peuple de Karminéa doit rester uni, respecter les consignes de sécurité, et se tenir prêt. Le Karmine Déchaîné continuera de vous informer en temps réel de l'évolution de ce conflit inédit.</p>
 
+</div>
+
+<!-- BANDEAU RIP JACKSON -->
+<div class="bandeau-jackson">
+  <div class="jackson-img-wrap">
+    <img src="img/jackson-mort.png" alt="Mr. Jackson — In memoriam"/>
+    <div class="jackson-content">
+      <div class="jackson-label">— In memoriam —</div>
+      <div class="jackson-name">Mr. Jackson</div>
+      <div class="jackson-dates">Président de Karminéa · Assassiné par les Hommes en Noir</div>
+      <div class="jackson-line"></div>
+      <p class="jackson-sub">Kidnappé, gazé, exécuté. <strong>Mr. Jackson</strong> a payé de sa vie son engagement pour Karminéa. La ville ne l'oubliera jamais. Repose en paix.</p>
+    </div>
+  </div>
+</div>
+
+<div class="art-body">
 <blockquote>« Quand les ombres menacent de dévorer la lumière, c'est à la cité tout entière de se tenir prête à faire face. »<em>— La Rédaction du Karmine Déchaîné</em></blockquote>
 </div>
 
