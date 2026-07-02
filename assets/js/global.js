@@ -107,3 +107,103 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+/* ============================================================
+   SKIN 2.0 — MICRO-INTERACTIONS MODERNES
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  /* ── A. BURST D'ÉTOILES au clic sur les boutons ── */
+  const burstTargets = '.hero-btn, .feat-link, .art-btn, .ed-link, .card-btn, .ba-cta, .mast-nav a, .nav-art-btn';
+  document.querySelectorAll(burstTargets).forEach(btn => {
+    btn.addEventListener('click', e => {
+      const colors = ['#00B4D8', '#90E0EF', '#0A0A0A', '#48CAE4'];
+      for (let i = 0; i < 7; i++) {
+        const s = document.createElement('span');
+        s.className = 'kd-spark';
+        const angle = (Math.PI * 2 * i) / 7 + Math.random() * .6;
+        const dist = 26 + Math.random() * 26;
+        s.style.cssText = `
+          left:${e.clientX}px; top:${e.clientY}px;
+          --dx:${Math.cos(angle) * dist}px;
+          --dy:${Math.sin(angle) * dist}px;
+          background:${colors[i % colors.length]};
+          width:${4 + Math.random() * 4}px; height:${4 + Math.random() * 4}px;
+        `;
+        document.body.appendChild(s);
+        s.addEventListener('animationend', () => s.remove());
+      }
+    });
+  });
+
+  /* ── B. BOUTONS MAGNÉTIQUES (attirés par le curseur) ── */
+  document.querySelectorAll('.hero-btn, .feat-link, .art-btn, .ba-cta, .mast-nav a').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width / 2) * 0.18;
+      const y = (e.clientY - r.top - r.height / 2) * 0.3;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transition = 'transform .4s cubic-bezier(.34,1.56,.64,1)';
+      btn.style.transform = '';
+      setTimeout(() => btn.style.transition = '', 400);
+    });
+  });
+
+  /* ── C. COMPTEURS ANIMÉS (stats sidebar) ── */
+  const counters = document.querySelectorAll('.stat-num, .sb-num, .art-sidebar-stat .num');
+  const cObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      const raw = el.textContent.trim();
+      const num = parseInt(raw.replace(/\D/g, ''), 10);
+      if (isNaN(num) || num === 0 || num > 99999) { cObs.unobserve(el); return; }
+      const suffix = raw.replace(/^[\d\s]+/, '');
+      const dur = 900, t0 = performance.now();
+      function tick(t) {
+        const p = Math.min((t - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(num * eased) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      cObs.unobserve(el);
+    });
+  }, { threshold: .6 });
+  counters.forEach(el => cObs.observe(el));
+
+  /* ── D. SHINE SWEEP sur les images au survol ── */
+  document.querySelectorAll('.ed-placeholder, .hero-img, .feat-cover, .art-figure').forEach(el => {
+    el.classList.add('kd-shine');
+  });
+
+  /* ── E. LOGO — wiggle au survol ── */
+  const logo = document.querySelector('.mast-center img');
+  if (logo) {
+    logo.addEventListener('mouseenter', () => {
+      logo.style.animation = 'kd-wiggle .5s ease';
+      logo.addEventListener('animationend', () => logo.style.animation = '', { once: true });
+    });
+  }
+
+  /* ── F. TRANSITION DE PAGE (fondu sortant sur liens internes) ── */
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+    a.addEventListener('click', e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
+      e.preventDefault();
+      document.body.classList.add('kd-page-out');
+      setTimeout(() => { window.location = href; }, 200);
+    });
+  });
+
+  /* ── G. TICKER — clic = pause/reprise ── */
+  document.querySelectorAll('.ticker').forEach(t => {
+    t.addEventListener('click', () => t.classList.toggle('kd-paused'));
+  });
+});

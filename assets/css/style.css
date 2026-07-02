@@ -12,25 +12,26 @@ table{max-width:100%;overflow-x:auto;display:block}
 /* ===== BASE ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  /* Palette candy — skin 2.0 */
-  --cyan:#00C6E8;
-  --black:#1A1512;            /* encre chaude (remappe tous les fonds sombres) */
-  --offwhite:#FFF6E9;         /* papier crème */
-  --gray:#8A8073;
-  --midgray:#4A443C;
-  --ink:#1A1512;
-  --paper:#FFF6E9;
-  --pink:#FF5FA2;
-  --lime:#C9F158;
-  --sun:#FFD64D;
-  --orange:#FF8A47;
+  /* Palette de base du journal */
+  --cyan:#00B4D8;
+  --black:#0A0A0A;
+  --offwhite:#F4F3EF;
+  --gray:#6B6B6B;
+  --midgray:#3A3A3A;
+  --ink:#0A0A0A;
+  --paper:#F4F3EF;
+  /* Déclinaisons cyan pour les accents du skin */
+  --pink:#0096C7;      /* cyan profond */
+  --lime:#90E0EF;      /* cyan clair */
+  --sun:#48CAE4;       /* cyan moyen */
+  --orange:#00B4D8;
   --r-sm:12px;--r-md:18px;--r-lg:26px;
   --pop:6px 6px 0 var(--ink);
   --pop-sm:3px 3px 0 var(--ink);
 }
 body{
   background:var(--offwhite);
-  background-image:radial-gradient(rgba(26,21,18,.045) 1px,transparent 1px);
+  background-image:radial-gradient(rgba(10,10,10,.045) 1px,transparent 1px);
   background-size:22px 22px;
   font-family:'Satoshi',system-ui,sans-serif;
   color:var(--black);
@@ -1296,8 +1297,8 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
    ============================================================ */
 
 /* ── SÉLECTION & FOCUS ── */
-::selection{background:var(--pink);color:#fff}
-:focus-visible{outline:3px solid var(--pink);outline-offset:2px;border-radius:6px}
+::selection{background:var(--cyan);color:#000}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:12px}
@@ -1308,7 +1309,7 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 .mast{background:var(--paper);border-bottom:3px solid var(--ink)}
 .mast-top{
   background:var(--paper);
-  border-bottom:2px dashed rgba(26,21,18,.25);
+  border-bottom:2px dashed rgba(10,10,10,.25);
   color:var(--midgray);
   font-family:'Satoshi',sans-serif;font-weight:700;
   letter-spacing:.12em;
@@ -1318,7 +1319,7 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 .mast-tagline{
   font-family:'Satoshi',sans-serif;font-weight:700;
   color:var(--ink);
-  background:var(--lime);
+  background:var(--cyan);
   border:2px solid var(--ink);
   border-radius:999px;
   padding:4px 14px;
@@ -1348,7 +1349,7 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 }
 .mast-nav a::after{display:none}
 .mast-nav .sep{display:none}
-.mast.scrolled{box-shadow:0 6px 0 rgba(26,21,18,.08)!important}
+.mast.scrolled{box-shadow:0 6px 0 rgba(10,10,10,.08)!important}
 
 /* Dropdown */
 .dropdown-menu{
@@ -1362,14 +1363,14 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 .dropdown-menu a{
   font-family:'Satoshi',sans-serif;font-weight:800;
   color:var(--ink);
-  border-bottom:2px dashed rgba(26,21,18,.2);
+  border-bottom:2px dashed rgba(10,10,10,.2);
   background:var(--paper);
 }
 .dropdown-menu a:hover{background:var(--lime);color:var(--ink)}
 
 /* ── TICKER — marquee lime ── */
 .ticker{
-  background:var(--lime);
+  background:var(--cyan);
   color:var(--ink);
   border-bottom:3px solid var(--ink);
   font-family:'Satoshi',sans-serif;font-weight:800;
@@ -1378,12 +1379,12 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
   padding:9px 0;
 }
 .ticker-label{
-  background:var(--ink);color:var(--lime);
+  background:var(--ink);color:var(--cyan);
   border-radius:0 999px 999px 0;
   font-family:'Satoshi',sans-serif;
   padding:2px 18px;
 }
-.ticker-track span::before{content:'★ ';opacity:1;color:var(--pink)}
+.ticker-track span::before{content:'★ ';opacity:1;color:var(--ink)}
 
 /* ── ARCHIVE HERO ── */
 .archive-hero{
@@ -1393,7 +1394,7 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 }
 .archive-hero p{
   font-family:'Satoshi',sans-serif;font-weight:800;
-  color:var(--sun);letter-spacing:.28em;
+  color:var(--lime);letter-spacing:.28em;
 }
 
 /* ── TITRES DE SECTION ── */
@@ -1464,7 +1465,7 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
 /* ── MOT SURLIGNÉ dans les titres ── */
 .feat-title em,.hero-title em,.art-title em,.ba-title em{
   font-style:normal;color:var(--ink);
-  background:var(--lime);
+  background:var(--lime);/* cyan clair */
   padding:0 .16em;
   border-radius:.22em;
   box-decoration-break:clone;
@@ -1499,14 +1500,14 @@ blockquote.kd-visible, .art-body blockquote.kd-visible {
   background:var(--ink);color:var(--paper);
 }
 .hero-btn:hover,.feat-link:hover,.art-btn:hover,.card-btn:hover{
-  background:var(--pink)!important;color:#fff!important;
+  background:var(--cyan)!important;color:var(--ink)!important;
   transform:translate(-2px,-2px);
   box-shadow:var(--pop-sm);
 }
 .ed-link{margin:0 18px 18px;border-radius:999px!important}
 .ed-link:hover{background:var(--cyan)!important;color:var(--ink)!important;transform:translate(-2px,-2px);box-shadow:var(--pop-sm)}
-.ba-cta{background:var(--ink)!important;color:var(--sun)!important}
-.ba-cta:hover{background:var(--pink)!important;color:#fff!important}
+.ba-cta{background:var(--ink)!important;color:var(--lime)!important}
+.ba-cta:hover{background:#fff!important;color:var(--ink)!important}
 
 /* ── CARDS (grille 3 colonnes) ── */
 .cards{
@@ -1574,15 +1575,15 @@ hr.div{border-top:3px solid var(--ink);border-radius:99px}
 .ed-title{font-family:'Clash Display',sans-serif;font-weight:700;letter-spacing:-.01em}
 .ed-date{font-family:'Satoshi',sans-serif;font-weight:700;color:var(--gray)}
 .ed-placeholder{border-bottom:3px solid var(--ink)}
-.ed-placeholder img{opacity:.95;max-height:110px;filter:drop-shadow(3px 3px 0 rgba(26,21,18,.25))}
+.ed-placeholder img{opacity:.95;max-height:110px;filter:drop-shadow(3px 3px 0 rgba(10,10,10,.25))}
 .ed-cover{border-bottom:3px solid var(--ink)}
-/* Fond bonbon différent pour chaque carte */
-.editions-grid .ed-card:nth-child(6n+1) .ed-placeholder{background:var(--cyan)}
-.editions-grid .ed-card:nth-child(6n+2) .ed-placeholder{background:var(--pink)}
-.editions-grid .ed-card:nth-child(6n+3) .ed-placeholder{background:var(--sun)}
-.editions-grid .ed-card:nth-child(6n+4) .ed-placeholder{background:var(--lime)}
-.editions-grid .ed-card:nth-child(6n+5) .ed-placeholder{background:var(--orange)}
-.editions-grid .ed-card:nth-child(6n+6) .ed-placeholder{background:#B79CFF}
+/* Dégradé de cyans — chaque carte a sa nuance */
+.editions-grid .ed-card:nth-child(6n+1) .ed-placeholder{background:#00B4D8}
+.editions-grid .ed-card:nth-child(6n+2) .ed-placeholder{background:#0096C7}
+.editions-grid .ed-card:nth-child(6n+3) .ed-placeholder{background:#48CAE4}
+.editions-grid .ed-card:nth-child(6n+4) .ed-placeholder{background:#90E0EF}
+.editions-grid .ed-card:nth-child(6n+5) .ed-placeholder{background:#0077B6}
+.editions-grid .ed-card:nth-child(6n+6) .ed-placeholder{background:#CAF0F8}
 
 /* ── PAGE ARTICLE ── */
 .breadcrumb{font-family:'Satoshi',sans-serif;font-weight:700}
@@ -1595,7 +1596,7 @@ hr.div{border-top:3px solid var(--ink);border-radius:99px}
   padding:12px 18px;
   font-style:normal;
 }
-.art-meta{font-family:'Satoshi',sans-serif;font-weight:700;border-top:2px dashed rgba(26,21,18,.25);border-bottom:2px dashed rgba(26,21,18,.25)}
+.art-meta{font-family:'Satoshi',sans-serif;font-weight:700;border-top:2px dashed rgba(10,10,10,.25);border-bottom:2px dashed rgba(10,10,10,.25)}
 .art-hero-img{border-radius:var(--r-lg);border:3px solid var(--ink);box-shadow:var(--pop)}
 .art-caption{font-family:'Satoshi',sans-serif;font-weight:700;border-left:3px solid var(--pink);border-radius:0 8px 8px 0}
 .art-body{font-family:'Satoshi',system-ui,sans-serif}
@@ -1610,7 +1611,7 @@ blockquote,.art-body blockquote{
   box-shadow:var(--pop-sm);
   padding:22px 26px;
 }
-blockquote em{border-top:2px dashed rgba(26,21,18,.25)}
+blockquote em{border-top:2px dashed rgba(10,10,10,.25)}
 .pull-quote{
   border-top:3px solid var(--pink);
   color:var(--ink);
@@ -1639,7 +1640,7 @@ blockquote em{border-top:2px dashed rgba(26,21,18,.25)}
 .nav-label{font-family:'Satoshi',sans-serif;font-weight:800;color:var(--pink)}
 
 /* ── PROGRESS BAR ── */
-#kd-progress{height:4px;background:linear-gradient(90deg,var(--pink),var(--cyan),var(--lime))}
+#kd-progress{height:4px;background:linear-gradient(90deg,#0077B6,var(--cyan),var(--lime))}
 
 /* ── FOOTER — gros bloc arrondi ── */
 footer{
@@ -1649,7 +1650,7 @@ footer{
   margin-top:64px;
 }
 footer::before{
-  background:linear-gradient(90deg,var(--pink),var(--sun),var(--cyan),var(--lime));
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--lime),var(--cyan),transparent);
   border-radius:99px;
   height:4px;
   animation:none;
@@ -1690,4 +1691,101 @@ footer::before{
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){
   .mast-nav a,.ed-card,.card,.hero,.featured{transform:none!important}
+}
+
+/* ============================================================
+   SKIN 2.0 — ANIMATIONS & MICRO-INTERACTIONS (CSS support)
+   ============================================================ */
+
+/* ── Étoiles au clic ── */
+.kd-spark{
+  position:fixed;
+  z-index:99999;
+  pointer-events:none;
+  border-radius:2px;
+  border:1px solid var(--ink);
+  animation:kd-spark-fly .55s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes kd-spark-fly{
+  0%{transform:translate(-50%,-50%) scale(1) rotate(0deg);opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(0) rotate(180deg);opacity:0}
+}
+
+/* ── Wiggle du logo ── */
+@keyframes kd-wiggle{
+  0%,100%{transform:rotate(0)}
+  25%{transform:rotate(-3deg) scale(1.03)}
+  50%{transform:rotate(2.5deg)}
+  75%{transform:rotate(-1.5deg)}
+}
+
+/* ── Shine sweep sur images ── */
+.kd-shine{position:relative;overflow:hidden}
+.kd-shine::after{
+  content:'';
+  position:absolute;top:0;left:-80%;
+  width:50%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-20deg);
+  transition:none;
+  pointer-events:none;
+}
+.kd-shine:hover::after{
+  animation:kd-shine-sweep .7s ease;
+}
+@keyframes kd-shine-sweep{
+  from{left:-80%}
+  to{left:130%}
+}
+
+/* ── Transition de page ── */
+body.kd-page-out{
+  animation:kd-page-out .2s ease forwards;
+}
+@keyframes kd-page-out{
+  to{opacity:0;transform:translateY(-10px)}
+}
+
+/* ── Ticker : pause au clic ── */
+.ticker{cursor:pointer}
+.ticker.kd-paused .ticker-track{animation-play-state:paused!important}
+
+/* ── Boutons : shadow press au clic ── */
+.hero-btn:active,.feat-link:active,.art-btn:active,.ed-link:active,.card-btn:active,.ba-cta:active,.mast-nav a:active{
+  transform:translate(2px,2px) scale(.97)!important;
+  box-shadow:0 0 0 var(--ink)!important;
+}
+
+/* ── Underline animé sur les liens du corps d'article ── */
+.art-body a{
+  color:var(--pink);
+  font-weight:700;
+  text-decoration:none;
+  background-image:linear-gradient(var(--cyan),var(--cyan));
+  background-size:100% 2px;
+  background-position:0 100%;
+  background-repeat:no-repeat;
+  transition:background-size .25s ease,color .15s ease;
+}
+.art-body a:hover{
+  color:var(--ink);
+  background-size:100% 40%;
+}
+
+/* ── Apparition en cascade des lignes de listes ── */
+.art-body li{
+  transition:transform .2s ease,padding-left .2s ease;
+}
+.art-body li:hover{
+  transform:translateX(6px);
+}
+
+/* ── Images d'articles : léger zoom + rotation au survol ── */
+.art-hero-img{transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .3s ease}
+.art-hero-img:hover{transform:scale(1.01) rotate(-.4deg);box-shadow:8px 8px 0 var(--ink)}
+
+/* ── Reduced motion ── */
+@media(prefers-reduced-motion:reduce){
+  .kd-spark,.kd-shine::after{display:none!important}
+  body.kd-page-out{animation:none}
 }
