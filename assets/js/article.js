@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── 2. PULL-QUOTES auto sur les blockquotes ── */
   document.querySelectorAll('.art-body blockquote').forEach((bq, i) => {
+    // Ignorer les blockquotes marqués no-pull (pull-quote manuelle déjà présente)
+    if (bq.classList.contains('no-pull')) return;
     // Toutes les 2 blockquotes, créer un pull-quote avant
     if (i % 2 === 0) {
       const text = bq.querySelector('em') 
