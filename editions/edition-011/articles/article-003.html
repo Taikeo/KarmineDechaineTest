@@ -50,11 +50,15 @@
   letter-spacing:-.02em;line-height:1;
   color:#fff;margin-bottom:8px;
 }
+.art-body .bandeau-julien p.julien-sub,
 .julien-sub{
   font-family:'Satoshi',sans-serif;
-  font-size:14px;font-style:italic;color:#888;
+  font-size:14px;font-style:italic;
+  color:#999!important;
   line-height:1.7;max-width:520px;margin:14px auto 0;
 }
+.art-body .bandeau-julien p.julien-sub:hover{color:#ccc!important}
+.julien-sub strong{color:#ddd!important}
 .julien-line{width:48px;height:2px;background:#8b0000;margin:14px auto 0}
 
 /* ── Encadré phénomènes ── */
@@ -115,16 +119,6 @@
   <span>🕯️ Hommage &amp; Inexpliqué</span>
 </div>
 
-<!-- PHOTO À INSÉRER : remplacer ce bloc par
-<img src="img/julien-dupre.png" alt="Julien Dupré" class="art-hero-img"/>
-<p class="art-caption">📷 Légende à définir</p>
--->
-<div class="photo-slot">
-  <span>🕯️</span>
-  Photo à venir — img/julien-dupre.png
-</div>
-<p class="art-caption">📷 Photo à venir — Julien Dupré</p>
-
 <div class="art-body">
 <p class="dc">Il y a des articles que l'on n'aimerait jamais avoir à écrire. Celui-ci en fait partie. Julien Dupré s'en est allé, et avec lui une partie du cœur de ce journal. Julien n'était pas un simple habitant de Karminéa pour nous : il était un ami de la rédaction, de ceux qui poussent la porte sans frapper, qui s'intéressent, qui encouragent, qui sont là.</p>
 
@@ -151,13 +145,10 @@
   </div>
 </div>
 
-<!-- PHOTO À INSÉRER : remplacer ce bloc par
-<img src="img/soucoupe.png" alt="La soucoupe volante" class="art-figure-img"/>
--->
-<div class="photo-slot small">
-  <span>🛸</span>
-  Photo à venir — img/soucoupe.png
-</div>
+<figure class="art-figure">
+  <img src="img/soucoupe.png" alt="La soucoupe volante observée au-dessus du territoire" class="art-figure-img"/>
+  <figcaption class="art-figure-caption">📷 L'objet volant non identifié, photographié par un témoin au crépuscule</figcaption>
+</figure>
 
 <div class="phenomene">
   <div class="p-emoji">📺</div>
@@ -167,13 +158,10 @@
   </div>
 </div>
 
-<!-- PHOTO À INSÉRER : remplacer ce bloc par
-<img src="img/glitch.png" alt="Le personnage glitché" class="art-figure-img"/>
--->
-<div class="photo-slot small">
-  <span>📺</span>
-  Photo à venir — img/glitch.png
-</div>
+<figure class="art-figure">
+  <img src="img/glitch.png" alt="La silhouette glitchée aperçue en pleine ville" class="art-figure-img"/>
+  <figcaption class="art-figure-caption">📷 La silhouette « glitchée », capturée en pleine ville par un habitant</figcaption>
+</figure>
 
 <div class="phenomene">
   <div class="p-emoji">🧭</div>
