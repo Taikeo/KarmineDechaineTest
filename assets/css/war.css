@@ -1,0 +1,106 @@
+/* ============================================================
+   ⚔️  MODE GUERRE — KARMINÉA VS RINESTHIA
+   Direction artistique de guerre : rouge sang, papier cendré,
+   accents khaki/or. Chargé après style.css → override global.
+   Pour revenir en temps de paix : retirer ce fichier des <link>.
+   ============================================================ */
+
+:root{
+  /* Le cyan du journal cède la place au rouge de guerre */
+  --cyan:#C1121F;
+  --war:#C1121F;
+  --war-dark:#780000;
+  --gold:#E0A458;
+  --khaki:#E3D5A8;
+  /* Accents du skin remappés */
+  --pink:#C1121F;
+  --lime:#E3D5A8;
+  --sun:#E0A458;
+  --orange:#9E2A2B;
+  /* Papier cendré */
+  --offwhite:#EDE9DF;
+  --paper:#EDE9DF;
+}
+
+body{
+  background:var(--paper);
+  background-image:radial-gradient(rgba(10,10,10,.05) 1px,transparent 1px);
+  background-size:22px 22px;
+}
+
+::selection{background:var(--war);color:#fff}
+:focus-visible{outline-color:var(--war)}
+
+/* ── MASTHEAD ── */
+.mast-tagline{background:var(--war);color:#fff}
+.mast-nav a:hover{background:var(--war);color:#fff}
+.dropdown-menu a:hover{background:var(--khaki)}
+
+/* ── TICKER DE GUERRE ── */
+.ticker{background:var(--war);color:#fff;border-bottom:3px solid var(--ink)}
+.ticker-label{background:var(--ink);color:#fff}
+.ticker-track span::before{content:'⚔ ';color:var(--gold)}
+
+/* ── TITRES DE SECTION ── */
+.section-title::before{content:'⚔';color:var(--war);font-size:22px}
+
+/* ── STICKERS & BADGES ── */
+.hero-badge{background:var(--war);color:#fff}
+.art-rubrique{background:var(--war);color:#fff}
+.card-cat{background:var(--gold);color:var(--ink)}
+.feat-badge{background:var(--war);color:#fff}
+
+/* ── SURLIGNAGE DES TITRES ── */
+.feat-title em,.hero-title em,.art-title em,.ba-title em{background:var(--khaki)}
+
+/* ── BOUTONS ── */
+.hero-btn:hover,.feat-link:hover,.art-btn:hover,.card-btn:hover{
+  background:var(--war)!important;color:#fff!important;
+}
+.ed-link:hover{background:var(--war)!important;color:#fff!important}
+.ba-cta{color:var(--khaki)!important}
+.ba-cta:hover{background:var(--war)!important;color:#fff!important}
+.nav-art-btn:hover{background:var(--khaki)}
+
+/* ── GRILLE DES ÉDITIONS — palette de guerre ── */
+.editions-grid .ed-card:nth-child(6n+1) .ed-placeholder{background:#C1121F}
+.editions-grid .ed-card:nth-child(6n+2) .ed-placeholder{background:#780000}
+.editions-grid .ed-card:nth-child(6n+3) .ed-placeholder{background:#E0A458}
+.editions-grid .ed-card:nth-child(6n+4) .ed-placeholder{background:#E3D5A8}
+.editions-grid .ed-card:nth-child(6n+5) .ed-placeholder{background:#9E2A2B}
+.editions-grid .ed-card:nth-child(6n+6) .ed-placeholder{background:#B8A98C}
+
+/* ── ARCHIVE HERO / SIDEBAR / ARTICLE ── */
+.archive-hero p{color:var(--gold)}
+.sb-block.cyan{background:var(--khaki)}
+.sb-block.dark .sb-title{color:var(--gold)}
+.art-sidebar-tag{color:var(--gold)}
+.itw-question{color:var(--war)}
+.fcol-title{color:var(--gold)}
+.footer-bottom .c{color:var(--war)}
+
+/* ── FOOTER — liseré de guerre ── */
+footer::before{background:linear-gradient(90deg,transparent,var(--war),var(--gold),var(--war),transparent)}
+
+/* ── PROGRESS BAR ── */
+#kd-progress{background:linear-gradient(90deg,var(--war-dark),var(--war),var(--gold))}
+
+/* ── ÉTOILES DE CLIC → couleurs de guerre gérées côté JS via var ── */
+.kd-spark{border-color:var(--ink)}
+
+/* ── BANDEAU ALERTE (alert.css) — libellé guerre ── */
+#kd-alert-bar{background:#7f0d0d;border-bottom:3px solid #C1121F}
+#kd-alert-bar .al-label{background:#000;color:#fff}
+#kd-alert-bar .al-track span::before{content:"⚔ ";color:var(--gold)}
+
+/* ── AMBIANCE : vignette de guerre légèrement plus lourde ── */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  pointer-events:none;z-index:9987;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(60,10,10,.14) 100%);
+}
+
+@media(prefers-reduced-motion:reduce){
+  body::after{display:none}
+}

@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const msg = "KARMINÉA EN ÉTAT D'ALERTE MAXIMALE — NETHER VERROUILLÉ — LES HOMMES EN NOIR ONT ATTAQUÉ — RESPECTEZ LES CONSIGNES — SERVICE MILITAIRE INSTAURÉ — ";
+  const msg = "⚔ KARMINÉA EST EN GUERRE CONTRE RINESTHIA — MOBILISATION GÉNÉRALE — SERVICE MILITAIRE : RÉPONDEZ À L'APPEL — LES ACCORDS SONT ROMPUS — W KARMINÉA — ";
   const repeat = msg.repeat(6);
 
   /* ── BANDEAU ── */
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bar = document.createElement('div');
     bar.id = 'kd-alert-bar';
     bar.innerHTML = `
-      <div class="al-label"><span class="al-dot"></span> ALERTE</div>
+      <div class="al-label"><span class="al-dot"></span> GUERRE</div>
       <div class="al-track">
         <span>${repeat}</span>
         <span>${repeat}</span>

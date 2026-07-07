@@ -3,22 +3,13 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Le Karmine Déchaîné — Titou kidnappé : les Hommes en Noir frappent encore</title>
+<title>Le Karmine Déchaîné — Titou kidnappé : le président Januk a négocié avec les Hommes en Noir</title>
 <link rel="stylesheet" href="../../../assets/css/style.css"/>
+<link rel="stylesheet" href="../../../assets/css/war.css"/>
 <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon.ico"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQG9XRWKCQ"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZQG9XRWKCQ');</script>
 <style>
-.photo-slot{
-  border:3px dashed var(--cyan);border-radius:22px;
-  background:rgba(0,180,216,.06);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-  min-height:340px;margin:36px 0 0;
-  color:var(--gray);
-  font-family:'Satoshi',sans-serif;font-weight:700;
-  text-transform:uppercase;letter-spacing:.15em;font-size:11px;text-align:center;padding:20px;
-}
-.photo-slot span{font-size:34px}
 .heros-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
 .heros-card{
   background:#fff;border:3px solid var(--black);border-radius:18px;
@@ -26,9 +17,47 @@
   padding:18px;text-align:center;
 }
 .heros-card .h-emoji{font-size:34px;margin-bottom:8px}
-.heros-card .h-name{font-family:'Clash Display',sans-serif;font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:4px}
+.heros-card .h-name{font-family:'Clash Display',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:4px}
 .heros-card .h-role{font-family:'Satoshi',sans-serif;font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--pink)}
 @media(max-width:600px){.heros-grid{grid-template-columns:1fr}}
+
+/* ── Bandeau Benzouz retenu ── */
+.bandeau-benzouz{
+  background:#060606;
+  border:3px solid #8b0000;
+  border-radius:22px;
+  padding:26px 30px;
+  margin:36px 0;
+  display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+}
+.bandeau-benzouz .b-emoji{font-size:44px;flex-shrink:0;filter:drop-shadow(0 0 18px rgba(255,23,68,.4))}
+.bandeau-benzouz .b-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.4em;text-transform:uppercase;color:#ff1744;margin-bottom:6px;
+}
+.bandeau-benzouz .b-title{
+  font-family:'Clash Display','Barlow Condensed',sans-serif;
+  font-size:24px;font-weight:700;text-transform:uppercase;
+  letter-spacing:-.02em;color:#fff;line-height:1.1;margin-bottom:6px;
+}
+.art-body .bandeau-benzouz p.b-sub,
+.bandeau-benzouz .b-sub{
+  font-family:'Satoshi',sans-serif;font-size:13px;font-style:italic;
+  color:#999!important;line-height:1.6;margin:0;
+}
+.art-body .bandeau-benzouz p.b-sub:hover{color:#ccc!important}
+
+/* ── Témoignage présidentiel ── */
+.temoignage-tag{
+  display:inline-block;
+  font-family:'Satoshi',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;
+  background:var(--black);color:var(--lime);
+  border:2px solid var(--black);border-radius:999px;
+  padding:4px 14px;margin:24px 0 4px;
+  transform:rotate(-1deg);
+  box-shadow:3px 3px 0 rgba(10,10,10,.2);
+}
 </style>
 <link rel="stylesheet" href="../../../assets/css/alert.css"/>
 </head>
@@ -45,14 +74,14 @@
 <div class="ticker">
   <div class="ticker-label">Flash</div>
   <div class="ticker-track">
-    <span>🔴 TITOU KIDNAPPÉ PUIS SAUVÉ — RONAN, BENZOUZ &amp; DAVID MARTINEZ HÉROS DU JOUR</span>
+    <span>🔴 TITOU LIBÉRÉ — LE PRÉSIDENT JANUK A NÉGOCIÉ FACE AUX HOMMES EN NOIR</span>
+    <span>⚠️ BENZOUZ INTROUVABLE — NUL NE SAIT CE QU'IL EST ADVENU DE LUI</span>
     <span>SLUJE VIOLEMMENT AGRESSÉ — LORD ECLIPSE ET OSCAR ONT ENCORE SÉVI</span>
     <span>🕯️ JULIEN DUPRÉ NOUS A QUITTÉS — LA RÉDACTION EN DEUIL</span>
-    <span>PHÉNOMÈNES INEXPLIQUÉS — SOUCOUPE, GLITCH ET BOUSSOLES AFFOLÉES</span>
-    <span>🔴 TITOU KIDNAPPÉ PUIS SAUVÉ — RONAN, BENZOUZ &amp; DAVID MARTINEZ HÉROS DU JOUR</span>
+    <span>🔴 TITOU LIBÉRÉ — LE PRÉSIDENT JANUK A NÉGOCIÉ FACE AUX HOMMES EN NOIR</span>
+    <span>⚠️ BENZOUZ INTROUVABLE — NUL NE SAIT CE QU'IL EST ADVENU DE LUI</span>
     <span>SLUJE VIOLEMMENT AGRESSÉ — LORD ECLIPSE ET OSCAR ONT ENCORE SÉVI</span>
     <span>🕯️ JULIEN DUPRÉ NOUS A QUITTÉS — LA RÉDACTION EN DEUIL</span>
-    <span>PHÉNOMÈNES INEXPLIQUÉS — SOUCOUPE, GLITCH ET BOUSSOLES AFFOLÉES</span>
   </div>
 </div>
 
@@ -65,9 +94,9 @@
 </div>
 
 <span class="art-rubrique">🚨 Sécurité &amp; Défense</span>
-<div class="art-kicker">🚨 Édition Spéciale — Les Hommes en Noir</div>
-<h1 class="art-title">Titou kidnappé chez Pauline : les Hommes en Noir frappent <em>encore</em></h1>
-<p class="art-subtitle">Quelques semaines à peine après l'assassinat de Mr. Jackson, les Hommes en Noir ont enlevé Titou en plein domicile de Pauline. L'urgence maximale a été déclenchée — et grâce au sang-froid de Ronan, Benzouz et David Martinez, Titou est rentré sain et sauf.</p>
+<div class="art-kicker">🚨 Édition Spéciale — Les Hommes en Noir · Témoignage exclusif du président</div>
+<h1 class="art-title">Titou kidnappé : le président Januk a bravé le Nether pour le <em>ramener</em></h1>
+<p class="art-subtitle">Enlevé au domicile de Pauline par les Hommes en Noir, Titou a été emmené de l'autre côté du portail. Réveillé en pleine nuit, le président Januk a bravé sa propre interdiction pour aller négocier au pied de la forteresse ennemie. Titou est libre. Mais de Benzouz, nul ne sait ce qu'il est advenu.</p>
 <div class="art-meta">
   <span>Par <strong>La Rédaction</strong></span>
   <span class="s">·</span>
@@ -77,60 +106,76 @@
 </div>
 
 <div class="art-body">
-<p class="dc">Karminéa retenait son souffle. Alors que la ville vit encore sous le choc de l'assassinat de Mr. Jackson et du verrouillage du Nether, les Hommes en Noir ont de nouveau frappé — et cette fois, c'est au domicile de Pauline qu'ils sont venus chercher leur proie. Titou a été enlevé sous les yeux des témoins, déclenchant immédiatement l'urgence maximale sur l'ensemble du territoire.</p>
+<p class="dc">Karminéa retenait son souffle. Alors que la ville vit encore sous le choc de l'assassinat de Mr. Jackson et du verrouillage du Nether, les Hommes en Noir ont de nouveau frappé — et cette fois, c'est au domicile de Pauline qu'ils sont venus chercher leur proie. Titou a été enlevé et emmené à travers un portail, déclenchant l'urgence maximale sur l'ensemble du territoire. Le Karmine Déchaîné a recueilli le témoignage exclusif du président Januk, acteur central d'une nuit que Karminéa n'oubliera pas.</p>
 
 <h3>🏠 Le rapt : ils sont entrés chez Pauline</h3>
-<p>Les faits se sont déroulés au domicile de Pauline, où se trouvait Titou. Selon les premiers éléments recueillis par la rédaction, les Hommes en Noir ont opéré avec la même froideur méthodique que lors de leurs précédentes attaques : intrusion rapide, aucune revendication sur place, et une disparition aussi soudaine que leur arrivée. En quelques instants, <strong>Titou avait disparu</strong>.</p>
-<p>Le choix du lieu interroge : frapper dans un domicile privé, c'est envoyer un message glaçant à chaque habitant de Karminéa. Plus personne ne peut se croire à l'abri derrière sa propre porte.</p>
+<p>Les faits se sont déroulés au domicile de Pauline, où se trouvait Titou. Les Hommes en Noir ont opéré avec la même froideur méthodique que lors de leurs précédentes attaques : intrusion rapide, aucune revendication sur place, et une fuite par un portail — celui-là même que les autorités avaient interdit de franchir. En quelques instants, <strong>Titou avait disparu de l'autre côté</strong>.</p>
 
 <blockquote class="no-pull">« Ils sont venus le chercher chez moi. Chez moi. Je n'oublierai jamais ce moment. »<em>— Pauline, témoin direct de l'enlèvement</em></blockquote>
 
-<h3>🚨 L'urgence maximale déclenchée</h3>
-<p>Dans les minutes qui ont suivi l'alerte, le protocole d'urgence maximale a été activé. Une première dans l'histoire récente de la ville : depuis les mesures de l'édition précédente — Nether verrouillé, service militaire instauré — Karminéa s'était préparée à ce scénario. Cette fois, la préparation a payé.</p>
-<p>Fait notable relevé par la rédaction : lors de <a href="../../../interviews/kiki-koko.html">notre interview des perroquets de la police</a>, Koko criait déjà « Titouuuu » suivi d'un bruit de portail du Nether. Simple répétition de perroquet, ou véritable témoignage à plumes ? La question reste ouverte.</p>
+<h3>🌙 21h30 : le président tiré du sommeil</h3>
+<span class="temoignage-tag">🎙️ Témoignage exclusif — Januk, président de Karminéa</span>
+<p>« On m'a réveillé d'un sommeil profond à 21h30 pour me dire que Titou a été enlevé », confie le président Januk à notre rédaction. Dans la foulée, <strong>Pauline, Xeno et Lucas</strong> l'escortent jusqu'au portail emprunté par les ravisseurs. Sur place, il retrouve <strong>Ronan</strong> et <strong>Magnus</strong>, ainsi que <strong>Léo</strong> — « apeuré », selon les mots du président, et qui suppliait le groupe de ne pas entrer.</p>
+<p>Face au portail, l'hésitation est palpable. Franchir, c'est violer l'interdiction que le gouvernement a lui-même décrétée après l'assassinat de Mr. Jackson. Ne pas franchir, c'est abandonner Titou. Le président tranche.</p>
 
-<h3>🦸 Le sauvetage : trois hommes, une mission</h3>
-<p>C'est là que trois noms entrent dans l'histoire de Karminéa. <strong>Ronan</strong>, le policier de la ville, épaulé par <strong>Benzouz</strong> et <strong>David Martinez</strong>, a mené l'opération de sauvetage. Coordination, courage et détermination : le trio a réussi à localiser Titou et à l'arracher aux mains de ses ravisseurs.</p>
+<blockquote class="no-pull">« Je considère Titou comme mon fils spirituel, et Benzouz est mon meilleur ami. Il m'était impossible de rester sans rien faire. Président ou pas, mes proches passent avant tout — et je mourrais pour eux. »<em>— Januk, président de Karminéa</em></blockquote>
 
-<div class="heros-grid">
-  <div class="heros-card">
-    <div class="h-emoji">👮</div>
-    <div class="h-name">Ronan</div>
-    <div class="h-role">Police de Karminéa</div>
-  </div>
-  <div class="heros-card">
-    <div class="h-emoji">💪</div>
-    <div class="h-name">Benzouz</div>
-    <div class="h-role">Héros du jour</div>
-  </div>
-  <div class="heros-card">
-    <div class="h-emoji">🎖️</div>
-    <div class="h-name">David Martinez</div>
-    <div class="h-role">Héros du jour</div>
+<h3>🌀 La traversée interdite</h3>
+<p>Januk franchit le portail le premier, bravant sa propre loi. Sa décision fait basculer le groupe : tous le suivent et le guident jusqu'au cœur du territoire ennemi. Seul Léo reste en surface. De l'autre côté, le décor glace le sang — un <strong>château fortifié</strong>, dressé dans les ténèbres du Nether, gardé par une sentinelle.</p>
+<p>Le président s'avance alors, seul, sur le pont de la forteresse. Face au garde, il formule sa demande : la libération de Titou.</p>
+
+<h3>🤝 Les négociations sur le pont</h3>
+<p>Les portes s'ouvrent. Les négociations commencent. Januk plaide : Titou est un enfant, il n'a rien demandé, il ne doit pas être blessé. Les Hommes en Noir finissent par accepter de le libérer — <strong>mais pas Benzouz</strong>. L'avertissement est sans appel : partir sur-le-champ une fois Titou remis, <em>sans se retourner</em>.</p>
+<p>« Nous n'étions pas en position de force pour demander davantage », reconnaît le président. « Nous pouvions nous estimer heureux d'avoir pu libérer quelqu'un sans effusion de sang. » Le groupe obtempère : Titou récupéré, tous regagnent la surface sans un regard en arrière.</p>
+
+<div class="pull-quote">Titou est rentré. Benzouz, lui, reste introuvable — et personne ne sait ce qu'il est advenu de lui.</div>
+
+<div class="bandeau-benzouz">
+  <div class="b-emoji">⛓️</div>
+  <div style="flex:1;min-width:220px">
+    <div class="b-label">Sort inconnu</div>
+    <div class="b-title">Benzouz — nul ne sait ce qu'il est advenu de lui</div>
+    <p class="b-sub">« Benzouz, nous ne savons pas ce qu'il est advenu de lui… » — Januk. Aucune information sur son sort depuis cette nuit-là. La rédaction suivra chaque développement.</p>
   </div>
 </div>
 
-<p>Titou a été retrouvé <strong>sain et sauf</strong>. Un dénouement heureux qui contraste douloureusement avec le sort réservé à Mr. Jackson — et qui prouve qu'une riposte organisée est possible face aux Hommes en Noir.</p>
-
-<div class="pull-quote">Cette fois, Karminéa n'a pas plié. Titou est rentré chez lui.</div>
+<h3>🧭 Ils étaient sur place cette nuit-là</h3>
+<div class="heros-grid">
+  <div class="heros-card">
+    <div class="h-emoji">🕊️</div>
+    <div class="h-name">Januk</div>
+    <div class="h-role">Le négociateur — a bravé l'interdit</div>
+  </div>
+  <div class="heros-card">
+    <div class="h-emoji">🧭</div>
+    <div class="h-name">Pauline, Xeno &amp; Lucas</div>
+    <div class="h-role">L'escorte jusqu'au portail</div>
+  </div>
+  <div class="heros-card">
+    <div class="h-emoji">👮</div>
+    <div class="h-name">Ronan &amp; Magnus</div>
+    <div class="h-role">Mobilisés au portail</div>
+  </div>
+</div>
+<p>Léo, resté en surface, aura été la vigie de l'expédition. Fait notable relevé par la rédaction : lors de <a href="../../../interviews/kiki-koko.html">notre interview des perroquets de la police</a>, Koko criait déjà « Titouuuu » suivi d'un bruit de portail du Nether. Simple répétition de perroquet, ou véritable témoignage à plumes ? La question reste ouverte.</p>
 
 <h3>❓ Et maintenant ?</h3>
-<p>Les questions demeurent : pourquoi Titou ? Que cherchaient les Hommes en Noir ? Et surtout — frapperont-ils à nouveau ? La rédaction poursuit son enquête et appelle tout témoin à se manifester. Une chose est certaine : la ville a montré qu'elle savait se défendre, et les noms de Ronan, Benzouz et David Martinez resteront associés à l'une des rares victoires de Karminéa face à ses ennemis les plus redoutables.</p>
+<p>Titou est <strong>sain et sauf</strong> — un dénouement qui contraste douloureusement avec le sort réservé à Mr. Jackson. Mais cette nuit laisse deux vérités dérangeantes : le sort de Benzouz demeure un mystère complet, et les Hommes en Noir disposent d'une forteresse organisée, gardée, capable de négocier en position de force. Que veulent-ils ? Qu'est-il arrivé à Benzouz ? Karminéa a gagné une bataille cette nuit-là, pas la guerre. La rédaction poursuit son enquête et appelle tout témoin à se manifester.</p>
 </div>
 
 <div class="art-sidebar">
   <div class="art-sidebar-tag">Édition N°011</div>
   <div class="art-sidebar-stat">
+    <div class="num">21h30</div>
+    <div class="lbl">Le président réveillé</div>
+  </div>
+  <div class="art-sidebar-stat">
     <div class="num">1</div>
-    <div class="lbl">Otage libéré</div>
+    <div class="lbl">Otage libéré — Titou</div>
   </div>
   <div class="art-sidebar-stat">
-    <div class="num">3</div>
-    <div class="lbl">Héros du sauvetage</div>
-  </div>
-  <div class="art-sidebar-stat">
-    <div class="num">0</div>
-    <div class="lbl">Victime à déplorer</div>
+    <div class="num">1</div>
+    <div class="lbl">Sort inconnu — Benzouz</div>
   </div>
 </div>
 

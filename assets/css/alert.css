@@ -77,8 +77,8 @@ body::after {
 
 /* ── FLASH ROUGE PÉRIODIQUE ── */
 @keyframes emergency-flash {
-  0%,89%,91%,93%,100% { background-color: transparent; }
-  90%,92%              { background-color: rgba(183,28,28,.07); }
+  0%,89%,91%,93%,100% { background-color: var(--offwhite,#F4F3EF); }
+  90%,92%              { background-color: #E6D5CC; }
 }
 body {
   animation: emergency-flash 6s ease-in-out infinite;
